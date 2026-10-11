@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Pressable,
   ScrollView,
@@ -46,14 +46,21 @@ export default function CheckInPassScreen() {
   const [seconds, setSeconds] = useState(0);
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
+  const expiresAt = useRef(0);
+  const requesting = useRef(false);
   const requestToken = useCallback(async () => {
+    if (requesting.current) return;
     if (!accountId) {
       setToken(null);
       setError('Không tìm thấy tài khoản đăng nhập.');
       return;
     }
+    requesting.current = true;
+    const requestedAt = Date.now();
     try {
       const next = await createCheckInToken(accountId);
+      // Use the server's lifetime; the phone clock may differ from the server.
+      expiresAt.current = requestedAt + next.expiresIn * 1000;
       setToken(next);
       setSeconds(next.expiresIn);
       setError('');
@@ -64,6 +71,8 @@ export default function CheckInPassScreen() {
           ? loadError.message
           : 'Không thể tải mã QR check-in.'
       );
+    } finally {
+      requesting.current = false;
     }
   }, [accountId]);
 
@@ -78,18 +87,18 @@ export default function CheckInPassScreen() {
     const tick = () => {
       const remaining = Math.max(
         0,
-        Math.ceil((new Date(token.expiresAt).getTime() - Date.now()) / 1000)
+        Math.ceil((expiresAt.current - Date.now()) / 1000)
       );
       setSeconds(remaining);
       if (!remaining) {
-        setToken(null);
+        clearInterval(timer);
         requestToken();
       }
     };
-    tick();
     const timer = setInterval(() => {
       tick();
     }, 1000);
+    tick();
     return () => clearInterval(timer);
   }, [requestToken, token]);
   const qrSize = Math.min(230, width - 96);
@@ -234,7 +243,7 @@ export default function CheckInPassScreen() {
                 />
               </View>
             </View>
-            {token ? (
+            {seconds > 0 ? (
               <View
                 style={s.qr}
                 accessible
@@ -248,8 +257,12 @@ export default function CheckInPassScreen() {
                   ecl="M"
                 />
                 <Text style={s.qrLabel}>♢ MÃ QR ĐƯỢC BACKEND KÝ</Text>
+                {token.shortCode ? <>
+                  <Text style={s.qrLabel}>MÃ NHẬP TAY</Text>
+                  <Text selectable style={{ color: '#111316', fontSize: 20, fontWeight: '900', letterSpacing: 1 }}>{token.shortCode}</Text>
+                </> : null}
               </View>
-            ) : null}
+            ) : <Text style={s.center}>Đang làm mới mã QR...</Text>}
             <View style={s.localWarning}>
               <Ionicons
                 name="shield-checkmark-outline"

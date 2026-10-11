@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { MetricCard } from '../components/AdminLayout'
 import {
   getQrRecords,
+  cleanupExpiredQr,
   issueQr,
   revokeQr,
   searchMembers,
@@ -11,6 +12,7 @@ import {
 } from '../services/checkins'
 
 export default function CheckInQrPage() {
+  const [cleaning, setCleaning] = useState(false)
   const [rows, setRows] = useState<QrRecord[]>([]),
     [members, setMembers] = useState<MemberOption[]>([]),
     [selected, setSelected] = useState<MemberOption | null>(null),
@@ -79,6 +81,20 @@ export default function CheckInQrPage() {
       notify('Đã sao chép token')
     }
   }
+  const cleanup = async () => {
+    if (cleaning) return
+    setCleaning(true)
+    try {
+      const result = await cleanupExpiredQr()
+      if (issued && new Date(issued.expiresAt).getTime() <= Date.now()) setIssued(null)
+      await load()
+      notify(result.message)
+    } catch (e) {
+      notify(e instanceof Error ? e.message : 'Không thể dọn QR hết hạn')
+    } finally {
+      setCleaning(false)
+    }
+  }
   return (
     <div className="admin-page checkin-page qr-page">
       <div className="security-strip">
@@ -96,6 +112,11 @@ export default function CheckInQrPage() {
           <span className="online-badge">● MYSQL · SIGNED TOKEN</span>
         </div>
         <div className="heading-actions">
+          <button disabled={loading || busy || cleaning || !!error || !rows.some(row => row.TrangThai === 'EXPIRED')}
+            title="Xóa QR hết hạn, giữ nguyên lịch sử check-in"
+            onClick={() => void cleanup()}>
+            {cleaning ? 'Đang dọn QR…' : 'Dọn QR hết hạn'}
+          </button>
           <button onClick={() => void load()}>↻ LÀM MỚI</button>
         </div>
       </header>
@@ -185,15 +206,13 @@ export default function CheckInQrPage() {
         </section>
         <section className="guest-panel">
           <header>
-            <h2>⌗ CẤP QR TẠI QUẦY</h2>
-            <b>Backend</b>
+            <h2>Cấp QR tại quầy</h2>
           </header>
           <p>
-            Tìm theo tên, SĐT hoặc HoiVienID. Backend kiểm tra toàn bộ điều kiện
-            membership và thanh toán.
+            Tìm theo tên, số điện thoại hoặc mã hội viên, sau đó chọn người cần cấp QR.
           </p>
-          <label>
-            TÌM HỘI VIÊN
+          <label className="qr-member-search">
+            Tìm hội viên
             <input
               value={query}
               onChange={(e) => {
@@ -201,20 +220,23 @@ export default function CheckInQrPage() {
                 setSelected(null)
                 if (!e.target.value.trim()) setMembers([])
               }}
-              placeholder="Tên / SĐT / HoiVienID"
+              placeholder="Nhập tên, số điện thoại hoặc mã hội viên"
             />
           </label>
-          <div>
+          <div className="qr-member-results" role="group" aria-label="Kết quả tìm hội viên">
             {members.map((member) => (
               <button
                 className={
-                  selected?.HoiVienID === member.HoiVienID ? 'primary' : ''
+                  `qr-member-option ${selected?.HoiVienID === member.HoiVienID ? 'primary' : ''}`
                 }
+                type="button"
+                aria-pressed={selected?.HoiVienID === member.HoiVienID}
                 onClick={() => setSelected(member)}
                 key={member.HoiVienID}
               >
-                {member.HoTen} · HV-{member.HoiVienID} ·{' '}
-                {member.SoDienThoai || '—'}
+                <span className="qr-member-initial" aria-hidden="true">{member.HoTen.charAt(0)}</span>
+                <span className="qr-member-identity"><strong>{member.HoTen}</strong><small>HV-{member.HoiVienID} · {member.SoDienThoai || 'Chưa có số điện thoại'}</small></span>
+                {selected?.HoiVienID === member.HoiVienID && <span className="qr-member-picked">Đã chọn</span>}
               </button>
             ))}
           </div>
@@ -223,7 +245,7 @@ export default function CheckInQrPage() {
             disabled={!selected || busy}
             onClick={issue}
           >
-            {busy ? 'ĐANG KIỂM TRA...' : '⊕ CẤP QR TẠI QUẦY'}
+            {busy ? 'Đang kiểm tra…' : 'Cấp QR cho hội viên'}
           </button>
           {issued && (
             <div className="qr-preview">

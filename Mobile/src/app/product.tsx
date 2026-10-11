@@ -1,5 +1,5 @@
 import { FontAwesome } from '@expo/vector-icons';
-import { Image } from 'expo-image';
+import BackendImage from '@/components/backend-image';
 import { DEFAULT_PRODUCT_IMAGE } from '@/constants/shop-image';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -135,13 +135,6 @@ export default function ProductsScreen() {
                 accessibilityLabel="Tìm sản phẩm"
               />
             </View>
-            <Pressable
-              style={styles.filterButton}
-              onPress={() => router.push('/cart')}
-              accessibilityLabel="Mở giỏ hàng"
-            >
-              <FontAwesome name="shopping-cart" size={20} color="#d9ff00" />
-            </Pressable>
           </View>
           <ScrollView
             horizontal
@@ -218,8 +211,9 @@ export default function ProductsScreen() {
                       accessibilityLabel={`Xem chi tiết ${p.TenSanPham}`}
                     >
                       <View style={styles.productImageWrap}>
-                        <Image
-                          source={DEFAULT_PRODUCT_IMAGE}
+                        <BackendImage
+                          value={p.HinhAnh}
+                          fallback={DEFAULT_PRODUCT_IMAGE}
                           style={styles.productImage}
                           contentFit="contain"
                         />
@@ -303,14 +297,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 11,
   },
   searchInput: { flex: 1, color: '#e6ebe1', fontSize: 12, paddingVertical: 0 },
-  filterButton: {
-    width: 44,
-    height: 42,
-    borderRadius: 9,
-    backgroundColor: '#292d30',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   filterDot: {
     position: 'absolute',
     top: 8,

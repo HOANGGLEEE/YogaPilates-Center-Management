@@ -38,6 +38,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+  setHeaders(res) { res.setHeader('X-Content-Type-Options', 'nosniff'); }
+}));
 
 app.get('/', (req, res) => {
   res.json({
@@ -100,9 +103,10 @@ const routes = [
 
 const adminOnly = new Set(['/apdungkhuyenmaidonhang','/apdungkhuyenmaigoitap','/apdungkhuyenmaipt','/danhmuc','/goitap','/hoadon','/kho','/khuyenmai','/nhanvien','/phieunhap','/reports','/sanpham','/taikhoan']);
 const customerPaths = [
+  /^GET \/checkin\/crowding$/,
   /^GET \/(?:goitap\/active|pt\/active|lichpt\/available|sanpham|danhmuc)(?:\/|$)/,
   /^(?:GET|PUT) \/hoivien\/account\/\d+$/, /^POST \/taikhoan\/\d+\/change-password$/,
-  /^GET \/dangkygoitap\/(?:(?:current|owned)\/account\/\d+|detail\/\d+)$/, /^POST \/dangkygoitap\/(?:register|\d+\/renew)$/,
+  /^GET \/dangkygoitap\/(?:(?:current|owned|pending)\/account\/\d+|detail\/\d+)$/, /^POST \/dangkygoitap\/(?:register|\d+\/renew)$/,
   /^(?:GET|POST) \/checkin\/(?:token|history\/account\/\d+)$/, /^(?:GET|POST) \/thanhtoan\/(?:history\/account\/\d+|package(?:\/\d+)?|registration\/\d+)$/,
   /^(?:GET|POST) \/thuept\/(?:book|account\/\d+|detail\/\d+|\d+\/cancel)$/, /^(?:GET|POST|PUT) \/thongbao\/(?:account\/\d+(?:\/read-all)?|preferences\/account\/\d+|\d+\/read)$/,
   /^(?:GET|POST|PUT) \/giohang\/account\/\d+\/items$/, /^(?:GET|POST) \/donhang\/(?:checkout\/\d+|account\/\d+\/)/

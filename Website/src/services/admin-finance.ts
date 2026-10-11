@@ -23,6 +23,7 @@ export type Payment = {
   DonHangID: number | null
 }
 export type Promotion = {
+  TinhTrang: 'UPCOMING' | 'ACTIVE' | 'EXPIRED' | 'STOPPED'
   KhuyenMaiID: number
   MaKhuyenMai: string
   TenKhuyenMai: string
@@ -42,6 +43,8 @@ export type PromotionStats = {
   TongSoTienGiam: number | string
 }
 export type PromotionHistory = {
+  KhuyenMaiID: number
+  TinhTrangThanhToan: 'SUCCESS' | 'PENDING' | 'FAILED' | 'CANCELLED' | 'UNVERIFIED'
   ApDungKhuyenMaiID: number
   MaKhuyenMai: string
   TenKhuyenMai: string
@@ -70,6 +73,8 @@ export type Report = {
   topTrainers: { PTID: number; HoTen: string; rentals: number }[]
 }
 export const getPayments = () => request<Payment[]>('thanhtoan')
+export const confirmShopPayment = (orderId: number) =>
+  request(`donhang/${orderId}/confirm-payment`, { method:'POST' })
 export const getPromotions = () => request<Promotion[]>('khuyenmai')
 export const getPromotionStats = () =>
   request<PromotionStats>('khuyenmai/admin/stats')

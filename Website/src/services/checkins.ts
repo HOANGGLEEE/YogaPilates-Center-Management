@@ -2,6 +2,8 @@ export type CheckInRow = {
   CheckInID: number
   HoiVienID: number
   HoTen: string
+  AnhDaiDien?: string | null
+  ThoiGianDaTap?: number
   SoDienThoai?: string
   ThoiGianCheckIn: string
   ThoiGianCheckOut?: string
@@ -19,6 +21,7 @@ export type QrRecord = {
 }
 export type IssuedQr = {
   token: string
+  shortCode: string
   MaQRID: number
   issuedAt: string
   expiresAt: string
@@ -36,7 +39,8 @@ export type MemberOption = {
 }
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
-  const response = await adminFetch(url, {
+  const base = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '')
+  const response = await adminFetch(`${base}${url.replace(/^\/api/, '')}`, {
     ...options,
     headers: { 'Content-Type': 'application/json', ...options?.headers },
   })
@@ -58,6 +62,8 @@ export const getCheckInHistory = (params: URLSearchParams) =>
     pageSize: number
   }>(`/api/checkin/admin/history?${params}`)
 export const getQrRecords = () => request<QrRecord[]>('/api/maqr/admin')
+export const cleanupExpiredQr = () =>
+  request<{ message: string; data: { deleted: number } }>('/api/maqr/admin/expired', { method: 'DELETE' })
 export const issueQr = (TaiKhoanID: number) =>
   request<IssuedQr>('/api/checkin/token', {
     method: 'POST',
@@ -70,5 +76,30 @@ export const searchMembers = (q: string) =>
 export const revokeQr = (id: number) =>
   request(`/api/maqr/${id}/revoke`, { method: 'PATCH' })
 export const checkout = (CheckInID: number) =>
-  request(`/api/checkin/${CheckInID}/checkout`, { method: 'POST' })
+  request<{ message: string; data: CheckInRow }>(`/api/checkin/admin/${CheckInID}/checkout`, { method: 'POST' })
+
+export type CheckInPreview = {
+  token: string
+  expiresAt: string
+  HoiVienID: number
+  DangKyID: number
+  HoTen: string
+  SoDienThoai: string | null
+  AnhDaiDien: string | null
+  TenGoi: string
+  NgayBatDau: string
+  NgayKetThuc: string
+  SoNgayConLai: number
+  TrangThaiTaiKhoan: string
+  TrangThaiHoiVien: string
+  TrangThaiDangKy: string
+  TrangThaiThanhToan: string
+  TrangThaiCheckIn: string
+  eligible: boolean
+  reasons: { code: string; message: string }[]
+}
+export const previewCheckIn = (code: string) =>
+  request<CheckInPreview>('/api/checkin/admin/preview', { method: 'POST', body: JSON.stringify({ code }) })
+export const confirmCheckIn = (code: string) =>
+  request<{ message: string; data: CheckInRow }>('/api/checkin/admin/confirm', { method: 'POST', body: JSON.stringify({ code }) })
 import { adminFetch } from './auth'

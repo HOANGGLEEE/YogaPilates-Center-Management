@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import PersonAvatar from '../components/PersonAvatar'
+import ImageInput from '../components/ImageInput'
 import { Modal } from '../components/AdminLayout'
 import { Pagination } from '../components/MemberUi'
 import { formatDate, money } from '../services/members'
@@ -11,6 +14,7 @@ export default function TrainerPages({
   mode: Mode
   onOpenRoster?: () => void
 }) {
+  const [uploading, setUploading] = useState(false)
   const {
     changeSearch,
     changeStatus,
@@ -202,7 +206,14 @@ export default function TrainerPages({
           )}
           <section className="catalog-table-card">
             <div className="catalog-table-scroll">
-              <table className="catalog-table">
+              <table className={`catalog-table${mode === 'trainers' ? ' trainer-directory-table' : ''}`}>
+                {mode === 'trainers' && (
+                  <colgroup>
+                    {[21, 24, 19, 10, 12, 14].map((width, index) => (
+                      <col key={index} style={{ width: `${width}%` }} />
+                    ))}
+                  </colgroup>
+                )}
                 <thead>
                   <tr>
                     {(mode === 'trainers'
@@ -240,12 +251,17 @@ export default function TrainerPages({
                     visibleTrainers.map((t) => (
                       <tr key={t.PTID}>
                         <td>
-                          <strong>{t.HoTen}</strong>
-                          <small className="trainer-sub">PT #{t.PTID}</small>
+                          <div className="trainer-identity">
+                            <PersonAvatar name={t.HoTen} image={t.AnhDaiDien} />
+                            <div>
+                              <strong>{t.HoTen}</strong>
+                              <small className="trainer-sub">PT #{t.PTID}</small>
+                            </div>
+                          </div>
                         </td>
                         <td>
                           {t.SoDienThoai || '—'}
-                          <small className="trainer-sub">
+                          <small className="trainer-sub trainer-email" title={t.Email || undefined}>
                             {t.Email || 'Chưa có email'}
                           </small>
                         </td>
@@ -257,7 +273,7 @@ export default function TrainerPages({
                             <button
                               onClick={() => open({ kind: 'trainer', row: t })}
                             >
-                              Hồ sơ / Sửa
+                              Hồ sơ
                             </button>
                             <button
                               className="catalog-danger"
@@ -426,10 +442,10 @@ export default function TrainerPages({
                   ? 'Đặt lịch thuê PT'
                   : 'Xác nhận thao tác'
           }
-          onClose={close}
+          onClose={() => { if (!uploading) close() }}
         >
-          <form className="catalog-form" onSubmit={submit}>
-            <fieldset disabled={busy}>
+          <form className="catalog-form" onSubmit={event => { if (uploading) event.preventDefault(); else submit(event) }}>
+            <fieldset disabled={busy || uploading}>
               {editor.kind === 'trainer' && (
                 <>
                   <label className="catalog-full">
@@ -510,15 +526,8 @@ export default function TrainerPages({
                       <option value="INACTIVE">Ngừng hoạt động</option>
                     </select>
                   </label>
-                  <label>
-                    Ảnh đại diện (URL)
-                    <input
-                      name="AnhDaiDien"
-                      type="url"
-                      maxLength={255}
-                      defaultValue={currentTrainer?.AnhDaiDien || ''}
-                    />
-                  </label>
+                  <ImageInput name="AnhDaiDien" value={currentTrainer?.AnhDaiDien}
+                    endpoint="pt/upload-image" onBusyChange={setUploading} />
                   <label className="catalog-full">
                     Kinh nghiệm
                     <textarea
@@ -677,12 +686,12 @@ export default function TrainerPages({
               </p>
             )}
             <footer>
-              <button type="button" disabled={busy} onClick={close}>
+              <button type="button" disabled={busy || uploading} onClick={close}>
                 Đóng
               </button>
               <button
                 className="catalog-primary"
-                disabled={busy || (editor.kind === 'book' && !available.length)}
+                disabled={uploading || busy || (editor.kind === 'book' && !available.length)}
               >
                 {busy ? 'Đang xử lý…' : 'Xác nhận lưu'}
               </button>
