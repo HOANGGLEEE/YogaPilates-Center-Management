@@ -65,11 +65,11 @@ await waitFor(
   'cold start login'
 );
 await waitFor(
-  `[...document.images].some(i => i.src.includes('gym-hero') && i.complete && i.naturalWidth > 0)`,
+  `[...document.images].some(i => i.src.includes('power-yoga') && i.complete && i.naturalWidth > 0)`,
   'local hero image'
 );
 console.log('cold start: login');
-await fill('vd: 0988xxxxxx hoặc email@gym.vn', 'admin@qagym.vn');
+await fill('email@example.com', 'admin@qagym.vn');
 await fill('••••••••', '12345678');
 await click('ĐĂNG NHẬP NGAY');
 await waitFor(

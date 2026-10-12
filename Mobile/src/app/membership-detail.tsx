@@ -19,14 +19,14 @@ import { formatVND, parseLocalDate } from '@/lib/package-logic';
 import { backendPaymentMethodNames } from '@/lib/payment-api';
 
 const C = {
-  bg: '#111316',
-  card: '#1e2023',
-  high: '#282a2d',
-  text: '#e2e2e6',
+  bg: '#182521',
+  card: '#26382f',
+  high: '#30443a',
+  text: '#f2eee5',
   muted: '#aeb59e',
-  lime: '#c3f400',
-  mint: '#4edea3',
-  ink: '#161e00',
+  lime: '#c4d5aa',
+  mint: '#a8c7b5',
+  ink: '#18251d',
 };
 const daysBetween = (from: Date, to: Date) =>
   Math.max(0, Math.ceil((to.getTime() - from.getTime()) / 86400000));
@@ -109,7 +109,7 @@ export default function MembershipDetailScreen() {
             <Ionicons name="arrow-back" color={C.text} size={21} />
           </Pressable>
           <View style={s.headingCopy}>
-            <Text style={s.kicker}>QA-GYM ELITE ACCESS</Text>
+            <Text style={s.kicker}>YOGA & PILATES ELITE ACCESS</Text>
             <Text style={s.title}>GÓI TẬP CỦA TÔI</Text>
           </View>
         </View>
@@ -141,7 +141,7 @@ export default function MembershipDetailScreen() {
                     {membership.TenGoi.toUpperCase()}
                   </Text>
                   <Text style={s.label}>
-                    {data.package?.tier ?? 'QA-GYM MEMBERSHIP'}
+                    {data.package?.tier ?? 'YOGA & PILATES MEMBERSHIP'}
                   </Text>
                 </View>
                 <Text style={s.active}>

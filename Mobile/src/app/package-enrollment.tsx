@@ -641,7 +641,7 @@ export default function PackageEnrollmentScreen() {
             <Text style={s.termsText}>
               Tôi xác nhận đồng ý với{' '}
               <Text style={s.link}>Điều khoản dịch vụ</Text>, quy chế phòng tập
-              QA-Gym và điều khoản kích hoạt gói tập tự động.
+              Yoga & Pilates và điều khoản kích hoạt gói tập tự động.
             </Text>
           </Pressable>
           {errors.terms ? <Text style={s.error}>{errors.terms}</Text> : null}

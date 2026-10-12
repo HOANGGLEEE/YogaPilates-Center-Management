@@ -38,78 +38,60 @@ export default function Login({
         <header className="admin-brand-row">
           <div className="admin-brand">
             <span className="brand-mark">
-              <Icon name="fitness_center" />
+              <Icon name="self_improvement" />
             </span>
             <div>
               <strong>
-                QA-GYM <small>ENTERPRISE PRO</small>
+                YOGA & PILATES <small>STUDIO MANAGEMENT</small>
               </strong>
-              <span>CENTRAL CORE SYSTEM v4.2</span>
+              <span>YOGA & PILATES CENTER</span>
             </div>
           </div>
           <span className="admin-node">
-            <i /> NODE SG-04 · 256-BIT SSL ACTIVE
+            <i /> KHÔNG GIAN QUẢN TRỊ
           </span>
         </header>
         <div className="admin-intro">
           <span className="admin-badge">
-            <Icon name="verified_user" /> HQ OPERATIONS CONSOLE
+            <Icon name="verified_user" /> QUẢN LÝ TRUNG TÂM
           </span>
           <h1>
-            HỆ THỐNG ĐIỀU HÀNH TẬP TRUNG <em>VẬN HÀNH CHUỖI</em> & KIỂM SOÁT AN
-            NINH <em>TOÀN DIỆN</em>.
+            CHĂM SÓC HỘI VIÊN. <em>KẾT NỐI CHUYỂN ĐỘNG.</em>{' '}
+            VẬN HÀNH <em>THẢNH THƠI.</em>
           </h1>
           <p>
-            Nền tảng kiểm soát hạ tầng biometric, tự động hóa cổng xoay
-            turnstile, đồng bộ hóa chỉ số hội viên cao cấp và quản lý tài chính
-            đa chi nhánh theo thời gian thực.
+            Quản lý hội viên, gói Yoga & Pilates, lịch hướng dẫn cá nhân,
+            check-in và thanh toán trong cùng một không gian.
+            Dành thêm thời gian cho trải nghiệm của từng hội viên.
           </p>
         </div>
         <footer className="admin-trust">
           <span>
             <Icon name="lock" />
-            Zero-Trust Architecture
+            Hồ sơ hội viên
           </span>
           <span>
             <Icon name="key" />
-            FIDO2 / TOTP 2FA Required
+            QR check-in
           </span>
           <span>
             <Icon name="fact_check" />
-            Audit Log Immutability
+            Theo dõi thanh toán
           </span>
         </footer>
       </aside>
       <section className="admin-access">
         <form onSubmit={submit} aria-busy={pending}>
           <span className="admin-badge">
-            <i /> KHU VỰC GIÁM SÁT AN NINH NỘI BỘ
+            <i /> DÀNH CHO ĐỘI NGŨ TRUNG TÂM
           </span>
           <h2>Đăng nhập Quản trị Viên</h2>
           <p className="admin-description">
             Vui lòng sử dụng tài khoản quản trị được cấp để truy cập trung tâm
             điều hành.
           </p>
-          <div className="admin-methods">
-            {[
-              ['domain', 'SSO Corp'],
-              ['person_key', 'FIDO2 Key'],
-              ['qr_code_scanner', 'Authenticator'],
-            ].map(([icon, label]) => (
-              <button
-                key={label}
-                type="button"
-                disabled
-                title="Phương thức này chưa được hỗ trợ"
-              >
-                <Icon name={icon} />
-                <span>{label}</span>
-                <small>Chưa khả dụng</small>
-              </button>
-            ))}
-          </div>
           <div className="admin-divider">
-            <span>HOẶC ĐỊNH DANH CÁN BỘ</span>
+            <span>ĐĂNG NHẬP BẰNG EMAIL</span>
           </div>
           <label htmlFor="admin-email">Email Quản trị</label>
           <div className="admin-field">
@@ -118,7 +100,7 @@ export default function Login({
               id="admin-email"
               type="email"
               autoComplete="username"
-              placeholder="admin@qagym.vn"
+              placeholder="admin@example.com"
               required
               maxLength={254}
               value={email}
@@ -169,7 +151,7 @@ export default function Login({
             </p>
           )}
           <button className="admin-submit" type="submit" disabled={pending}>
-            {pending ? 'ĐANG XÁC THỰC…' : 'XÁC THỰC VÀO TRUNG TÂM CHỈ HUY'}
+            {pending ? 'ĐANG XÁC THỰC…' : 'ĐĂNG NHẬP QUẢN TRỊ'}
             <Icon name="arrow_forward" />
           </button>
           <div className="admin-security">
@@ -182,10 +164,10 @@ export default function Login({
           </div>
           <footer className="admin-support">
             <span>
-              Hotline IT Security: <a href="tel:19008899">1900 8899</a>
+              Hỗ trợ trung tâm: <a href="tel:19008899">1900 8899</a>
             </span>
             <span>
-              <i /> SOC Level-3 Monitoring
+              <i /> Yoga & Pilates
             </span>
           </footer>
         </form>

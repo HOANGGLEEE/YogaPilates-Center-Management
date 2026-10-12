@@ -65,7 +65,7 @@ await evaluate(`localStorage.removeItem('qa-gym-memberships')`);
 await evaluate(`localStorage.removeItem('qa-gym-package-favorites')`);
 await send('Page.navigate', { url: 'http://127.0.0.1:8091/login' });
 await waitFor(`document.body.innerText.includes('Chào mừng trở lại')`, 'login');
-await fill('vd: 0988xxxxxx hoặc email@gym.vn', 'admin@qagym.vn');
+await fill('email@example.com', 'admin@qagym.vn');
 await fill('••••••••', '12345678');
 await click('ĐĂNG NHẬP NGAY');
 await waitFor(

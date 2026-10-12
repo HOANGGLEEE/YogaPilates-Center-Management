@@ -44,7 +44,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'QA-Gym Backend API đang chạy',
+    message: 'Yoga & Pilates Backend API đang chạy',
     health: '/health'
   });
 });
@@ -176,7 +176,7 @@ let server;
 
 if (require.main === module) {
   server = app.listen(PORT, HOST, () => {
-    console.log(`🚀 QA-Gym API: http://${HOST}:${PORT}`);
+    console.log(`🚀 Yoga & Pilates API: http://${HOST}:${PORT}`);
     console.log(`🩺 Health check: http://localhost:${PORT}/health`);
   });
 

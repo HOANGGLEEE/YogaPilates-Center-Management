@@ -14,8 +14,8 @@ import {
 import { AuthColors as C } from '@/constants/theme';
 import { useAuth } from '@/context/AuthContext';
 
-const hero = require('../../assets/auth/login/gym-hero.jpg');
-const gymStatus = { occupancy: 'Vắng (38% công suất)', hours: '24/7 OPEN' }; // presentation mock
+const hero = require('../../assets/packages/diamond/classes/power-yoga.jpg');
+const studioMessage = 'Yoga • Pilates • Cân bằng thân tâm';
 export default function Login() {
   const { login, savedCredential } = useAuth();
   const [credential, setCredential] = useState(savedCredential);
@@ -62,24 +62,24 @@ export default function Login() {
         <View style={s.heroBottomShade} />
         <View style={s.heroBadge}>
           <Ionicons name="flash" size={17} color={C.lime} />
-          <Text style={s.heroBadgeText}>HIIT • HYPERTROPHY • ELITE</Text>
+          <Text style={s.heroBadgeText}>YOGA • PILATES • MINDFULNESS</Text>
         </View>
         <View style={s.heroDot} />
       </View>
       <View style={s.kickerRow}>
         <View style={s.iconBox}>
-          <Ionicons name="barbell" size={20} color={C.lime} />
+          <Ionicons name="leaf" size={20} color={C.lime} />
         </View>
-        <Text style={authStyles.kicker}>ATHLETIC MATRIX</Text>
+        <Text style={authStyles.kicker}>MINDFUL MOVEMENT</Text>
       </View>
       <Text style={authStyles.title}>Chào mừng trở lại</Text>
       <Text style={[authStyles.description, s.intro]}>
-        Đăng nhập để tiếp tục hành trình bứt phá giới hạn cùng QA-Gym.
+        Đăng nhập để tiếp tục hành trình cân bằng thân tâm cùng Yoga & Pilates.
       </Text>
       <AuthField
         label="EMAIL"
         icon="id-card-outline"
-        placeholder="email@gym.vn"
+        placeholder="email@example.com"
         value={credential}
         onChangeText={setCredential}
         autoCapitalize="none"
@@ -101,7 +101,7 @@ export default function Login() {
         >
           <View style={[s.checkbox, remember && s.checked]}>
             {remember && (
-              <Ionicons name="checkmark" size={16} color="#283500" />
+              <Ionicons name="checkmark" size={16} color="#263529" />
             )}
           </View>
           <Text style={s.muted}>Ghi nhớ đăng nhập</Text>
@@ -125,8 +125,8 @@ export default function Login() {
           <Text style={s.bioTitle}>Xác thực sinh trắc học</Text>
           <Text style={s.muted}>Face ID / Touch ID cho hội viên</Text>
         </View>
-        <Pressable style={s.scan} onPress={handleBiometricLogin}>
-          <Text style={s.scanText}>QUÉT NGAY</Text>
+        <Pressable style={s.scan} onPress={handleBiometricLogin} disabled accessibilityState={{ disabled: true }}>
+          <Text style={s.scanText}>CHƯA HỖ TRỢ</Text>
         </Pressable>
       </View>
       <AuthDivider title="HOẶC ĐĂNG NHẬP NHANH BẰNG" />
@@ -134,15 +134,15 @@ export default function Login() {
       <View style={s.status}>
         <View style={s.mintDot} />
         <Text style={s.statusText}>
-          Phòng tập hiện tại:{' '}
+          Chào mừng đến với{' '}
           <Text style={{ fontWeight: '700', color: C.text }}>
-            {gymStatus.occupancy}
+            {studioMessage}
           </Text>
         </Text>
-        <Text style={s.hours}>{gymStatus.hours}</Text>
+        <Text style={s.hours}>Yoga & Pilates</Text>
       </View>
       <AuthLink
-        text="Chưa có tài khoản QA-Gym?"
+        text="Chưa có tài khoản Yoga & Pilates?"
         action="Đăng ký ngay"
         href="/register"
       />

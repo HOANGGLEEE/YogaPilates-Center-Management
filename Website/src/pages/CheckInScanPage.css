@@ -31,5 +31,5 @@
 .checkin-scan-card dt { color: #adb9a7; font-size: 13px; }
 .checkin-scan-card dd { margin: 6px 0 0; font-weight: 600; overflow-wrap: anywhere; }
 .checkin-scan-error { color: #ffb4ac; line-height: 1.6; }
-.checkin-scan-notice { border-color: #4edea3; }
+.checkin-scan-notice { border-color: #a8c7b5; }
 .checkin-scan-card > button { width: 100%; }

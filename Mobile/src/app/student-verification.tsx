@@ -99,11 +99,11 @@ const s = StyleSheet.create({
     padding: 14,
   },
   button: {
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 9,
     padding: 15,
     alignItems: 'center',
   },
   buttonText: { color: '#1b2600', fontWeight: '900' },
-  link: { color: '#caff00', textAlign: 'center', marginTop: 12 },
+  link: { color: '#c4d5aa', textAlign: 'center', marginTop: 12 },
 });

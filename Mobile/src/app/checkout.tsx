@@ -121,7 +121,7 @@ export default function CheckoutScreen() {
       cartVersion: preview.cartVersion,
     };
     if (!attempt && data.paymentMethod==='CHUYEN_KHOAN' && preview.bankTransferAvailable===false) {
-      setError('Chưa cấu hình ngân hàng nhận tiền. Vui lòng chọn tiền mặt hoặc liên hệ QA-Gym.');
+      setError('Chưa cấu hình ngân hàng nhận tiền. Vui lòng chọn tiền mặt hoặc liên hệ Yoga & Pilates.');
       return;
     }
     if (
@@ -186,7 +186,7 @@ export default function CheckoutScreen() {
           onPress={() => router.push('/login')}
         />
       ) : loading ? (
-        <ActivityIndicator color="#d9ff00" />
+        <ActivityIndicator color="#c4d5aa" />
       ) : (
         <>
           {!!error && (
@@ -223,7 +223,7 @@ export default function CheckoutScreen() {
                 />
                 <ShopButton
                   choice
-                  title="Nhận tại QA-Gym"
+                  title="Nhận tại Yoga & Pilates"
                   secondary={form.delivery !== 'PICKUP'}
                   disabled={locked}
                   onPress={() => field('delivery', 'PICKUP')}

@@ -121,7 +121,7 @@ export default function CartScreen() {
               onRefresh={() => {
                 if (!saving) setReload((n) => n + 1);
               }}
-              tintColor="#d9ff00"
+              tintColor="#c4d5aa"
             />
           }
         >
@@ -133,7 +133,7 @@ export default function CartScreen() {
               }
               accessibilityLabel="Quay lại"
             >
-              <FontAwesome name="angle-left" size={22} color="#d9ff00" />
+              <FontAwesome name="angle-left" size={22} color="#c4d5aa" />
             </Pressable>
             <Text style={styles.topBarTitle}>GIỎ HÀNG ({count})</Text>
           </View>
@@ -141,12 +141,12 @@ export default function CartScreen() {
             <Pressable accessibilityRole="button" disabled={saving}
               style={styles.resumePayment}
               onPress={() => resumeOrder === 0 ? router.push('/checkout') : router.push({ pathname: '/order-payment', params: { orderId: resumeOrder } })}>
-              <FontAwesome name="credit-card" size={18} color="#d9ff00" />
+              <FontAwesome name="credit-card" size={18} color="#c4d5aa" />
               <View style={{ flex: 1 }}>
                 <Text style={styles.resumeTitle}>Tiếp tục thanh toán{resumeOrder > 0 ? ` đơn #${resumeOrder}` : ''}</Text>
                 <Text style={styles.resumeSubtitle}>Mở lại thanh toán đang dang dở</Text>
               </View>
-              <FontAwesome name="angle-right" size={22} color="#d9ff00" />
+              <FontAwesome name="angle-right" size={22} color="#c4d5aa" />
             </Pressable>
           )}
           {!!resumeError && <Pressable disabled={saving} onPress={() => setReload(n => n + 1)}>
@@ -157,7 +157,7 @@ export default function CartScreen() {
               <Text style={styles.itemName}>Đăng nhập để xem giỏ hàng</Text>
             </Pressable>
           ) : loading ? (
-            <ActivityIndicator color="#d9ff00" />
+            <ActivityIndicator color="#c4d5aa" />
           ) : error ? (
             <View>
               <Text style={styles.itemName}>{error}</Text>
@@ -298,7 +298,7 @@ export default function CartScreen() {
 
 const styles = StyleSheet.create({
   resumePayment: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, marginBottom: 14, borderRadius: 12, backgroundColor: '#202b1d', borderWidth: 1, borderColor: '#52682b' },
-  resumeTitle: { color: '#d9ff00', fontSize: 14, fontWeight: '700' },
+  resumeTitle: { color: '#c4d5aa', fontSize: 14, fontWeight: '700' },
   resumeSubtitle: { color: '#a6b0a0', fontSize: 12, lineHeight: 18, marginTop: 3 },
   container: { flex: 1, minHeight: 0, backgroundColor: '#0f1213' },
   safeArea: {
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     borderRadius: 13,
-    backgroundColor: '#edf5dc',
+    backgroundColor: '#c4d5aa',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -338,8 +338,8 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   heading: { color: '#eef3e9', fontSize: 13, fontWeight: '900' },
-  itemCount: { color: '#d9ff00', fontSize: 9 },
-  clearText: { color: '#bbc500', fontSize: 9, fontWeight: '800' },
+  itemCount: { color: '#c4d5aa', fontSize: 9 },
+  clearText: { color: '#c4d5aa', fontSize: 9, fontWeight: '800' },
   shippingCard: {
     backgroundColor: '#1e2325',
     borderRadius: 8,
@@ -357,9 +357,9 @@ const styles = StyleSheet.create({
     marginRight: 7,
   },
   shippingTitle: { color: '#e9f0e6', fontSize: 10, fontWeight: '900', flex: 1 },
-  shippingPercent: { color: '#d9ff00', fontSize: 9, fontWeight: '900' },
+  shippingPercent: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
   shippingCopy: { color: '#bac2b8', fontSize: 9, marginTop: 7 },
-  highlight: { color: '#d9ff00', fontWeight: '900' },
+  highlight: { color: '#c4d5aa', fontWeight: '900' },
   progressTrack: {
     height: 5,
     backgroundColor: '#3a4041',
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
   progressFill: {
     width: '85%',
     height: 5,
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 3,
   },
   itemCard: {
@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
   checkbox: {
     width: 14,
     height: 14,
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 7,
@@ -397,14 +397,14 @@ const styles = StyleSheet.create({
   itemName: { color: '#e9eee7', fontSize: 11, fontWeight: '900' },
   itemDetail: { color: '#95a095', fontSize: 8, marginTop: 4 },
   itemPriceRow: { flexDirection: 'row', alignItems: 'center', marginTop: 5 },
-  itemPrice: { color: '#d9ff00', fontSize: 12, fontWeight: '900' },
+  itemPrice: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
   itemOldPrice: {
     color: '#717a72',
     fontSize: 8,
     textDecorationLine: 'line-through',
     marginLeft: 6,
   },
-  remove: { color: '#c4d400', fontSize: 20, lineHeight: 19, marginLeft: 6 },
+  remove: { color: '#c4d5aa', fontSize: 20, lineHeight: 19, marginLeft: 6 },
   itemBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -422,7 +422,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#292d30',
     borderRadius: 6,
   },
-  quantityAction: { color: '#d9ff00', fontSize: 16, paddingHorizontal: 5 },
+  quantityAction: { color: '#c4d5aa', fontSize: 16, paddingHorizontal: 5 },
   quantityValue: { color: '#f0f5eb', fontSize: 10, fontWeight: '900' },
   giftCard: {
     backgroundColor: '#1b2022',
@@ -431,10 +431,10 @@ const styles = StyleSheet.create({
     marginBottom: 9,
   },
   giftTop: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  giftTitle: { color: '#d9ff00', fontSize: 9, fontWeight: '900', flex: 1 },
+  giftTitle: { color: '#c4d5aa', fontSize: 9, fontWeight: '900', flex: 1 },
   giftBadge: {
     color: '#253000',
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     fontSize: 7,
     fontWeight: '900',
     paddingHorizontal: 5,
@@ -453,7 +453,7 @@ const styles = StyleSheet.create({
   giftCopy: { flex: 1, marginLeft: 8 },
   giftName: { color: '#e7eee4', fontSize: 9, fontWeight: '900' },
   giftDetail: { color: '#9ca69b', fontSize: 8, marginTop: 3 },
-  giftPrice: { color: '#d9ff00', fontSize: 8, fontWeight: '900', marginTop: 3 },
+  giftPrice: { color: '#c4d5aa', fontSize: 8, fontWeight: '900', marginTop: 3 },
   giftOldPrice: {
     color: '#879085',
     textDecorationLine: 'line-through',
@@ -479,7 +479,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   applyButton: {
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 7,
     paddingHorizontal: 13,
     justifyContent: 'center',
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
     padding: 8,
     marginTop: 7,
   },
-  appliedText: { color: '#d9ff00', fontSize: 9, fontWeight: '900', flex: 1 },
+  appliedText: { color: '#c4d5aa', fontSize: 9, fontWeight: '900', flex: 1 },
   appliedDetail: { color: '#b8c2ab', fontWeight: '400' },
   summaryCard: {
     backgroundColor: '#1b2022',
@@ -515,7 +515,7 @@ const styles = StyleSheet.create({
   },
   summaryLabel: { color: '#bdc6ba', fontSize: 9 },
   summaryValue: { color: '#e2e9df', fontSize: 9, fontWeight: '800' },
-  summaryAccent: { color: '#d9ff00' },
+  summaryAccent: { color: '#c4d5aa' },
   totalRow: {
     borderTopWidth: 1,
     borderTopColor: '#303638',
@@ -526,7 +526,7 @@ const styles = StyleSheet.create({
     paddingTop: 9,
   },
   totalLabel: { color: '#edf2e9', fontSize: 10, fontWeight: '900' },
-  totalValue: { color: '#d9ff00', fontSize: 17, fontWeight: '900' },
+  totalValue: { color: '#c4d5aa', fontSize: 17, fontWeight: '900' },
   tax: { color: '#9ba59a', fontSize: 8, textAlign: 'right', marginTop: 2 },
   bottomBar: {
     flexShrink: 0,
@@ -543,10 +543,10 @@ const styles = StyleSheet.create({
   },
   bottomSummary: { flex: 1, gap: 3 },
   bottomLabel: { color: '#b6c0b7', fontSize: 12 },
-  bottomTotal: { color: '#d9ff00', fontSize: 20, fontWeight: '900' },
+  bottomTotal: { color: '#c4d5aa', fontSize: 20, fontWeight: '900' },
   bottomNote: { color: '#89938a', fontSize: 10 },
   continueShopping: { alignItems: 'center', paddingVertical: 16 },
-  continueShoppingText: { color: '#d9ff00', fontSize: 12, fontWeight: '800' },
+  continueShoppingText: { color: '#c4d5aa', fontSize: 12, fontWeight: '800' },
   saved: { color: '#8c978c', fontSize: 7 },
   checkoutButton: {
     minHeight: 48,
@@ -555,7 +555,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 8,
   },
   checkoutText: { color: '#1b2400', fontSize: 12, fontWeight: '900' },

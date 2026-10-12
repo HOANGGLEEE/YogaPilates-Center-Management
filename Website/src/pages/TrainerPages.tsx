@@ -75,14 +75,14 @@ export default function TrainerPages({
     <div className="catalog-page trainer-api-page member-api-page">
       <header className="catalog-heading">
         <div>
-          <p className="catalog-eyebrow">VẬN HÀNH / HUẤN LUYỆN VIÊN</p>
+          <p className="catalog-eyebrow">VẬN HÀNH / HƯỚNG DẪN VIÊN</p>
           <h1>{title}</h1>
           <p>
             {mode === 'roster'
               ? 'Phân công khung giờ làm việc, mở lịch nhận khách và ngày nghỉ.'
               : mode === 'bookings'
                 ? 'Theo dõi hội viên, khung giờ tập và trạng thái lịch thuê.'
-                : 'Quản lý hồ sơ, chuyên môn, thông tin liên hệ và giá thuê PT.'}
+                : 'Quản lý hồ sơ, chuyên môn, thông tin liên hệ và giá hướng dẫn 1-1.'}
           </p>
         </div>
         <div className="catalog-actions">
@@ -114,7 +114,7 @@ export default function TrainerPages({
               ? 'Thêm HLV'
               : mode === 'roster'
                 ? 'Phân ca'
-                : 'Đặt lịch PT'}
+                : 'Đặt lịch hướng dẫn 1-1'}
           </button>
         </div>
       </header>
@@ -153,7 +153,7 @@ export default function TrainerPages({
             />
             {mode !== 'trainers' && (
               <select
-                aria-label="Huấn luyện viên"
+                aria-label="Hướng dẫn viên"
                 value={trainer}
                 onChange={(e) => changeTrainer(e.target.value)}
               >
@@ -218,7 +218,7 @@ export default function TrainerPages({
                   <tr>
                     {(mode === 'trainers'
                       ? [
-                          'Huấn luyện viên',
+                          'Hướng dẫn viên',
                           'Liên hệ',
                           'Chuyên môn',
                           'Giá thuê',
@@ -227,7 +227,7 @@ export default function TrainerPages({
                         ]
                       : mode === 'roster'
                         ? [
-                            'Huấn luyện viên',
+                            'Hướng dẫn viên',
                             'Ngày làm việc',
                             'Khung giờ',
                             'Trạng thái',
@@ -235,7 +235,7 @@ export default function TrainerPages({
                           ]
                         : [
                             'Hội viên',
-                            'Huấn luyện viên',
+                            'Hướng dẫn viên',
                             'Lịch tập',
                             'Giá thuê',
                             'Trạng thái',
@@ -435,11 +435,11 @@ export default function TrainerPages({
         <Modal
           title={
             editor.kind === 'trainer'
-              ? 'Hồ sơ huấn luyện viên'
+              ? 'Hồ sơ hướng dẫn viên'
               : editor.kind === 'shift'
-                ? 'Phân ca huấn luyện viên'
+                ? 'Phân ca hướng dẫn viên'
                 : editor.kind === 'book'
-                  ? 'Đặt lịch thuê PT'
+                  ? 'Đặt lịch hướng dẫn 1-1'
                   : 'Xác nhận thao tác'
           }
           onClose={() => { if (!uploading) close() }}
@@ -542,14 +542,14 @@ export default function TrainerPages({
               {editor.kind === 'shift' && (
                 <>
                   <label className="catalog-full">
-                    Huấn luyện viên *
+                    Hướng dẫn viên *
                     <select
                       name="PTID"
                       required
                       defaultValue={currentShift?.PTID || ''}
                     >
                       <option value="" disabled>
-                        Chọn huấn luyện viên
+                        Chọn hướng dẫn viên
                       </option>
                       {activeTrainers.map((t) => (
                         <option key={t.PTID} value={t.PTID}>
@@ -614,7 +614,7 @@ export default function TrainerPages({
                     </select>
                   </label>
                   <label className="catalog-full">
-                    Lọc huấn luyện viên
+                    Lọc hướng dẫn viên
                     <select
                       value={bookingTrainer}
                       onChange={(e) => setBookingTrainer(e.target.value)}

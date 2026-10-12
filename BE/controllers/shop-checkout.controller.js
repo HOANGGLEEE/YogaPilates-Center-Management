@@ -97,7 +97,7 @@ async function detail(connection, memberId, orderId) {
   let paymentBlockReason = null;
   let transfer = null;
   if (order.TrangThai==='PENDING' && order.TrangThaiThanhToan==='PENDING') {
-    if (order.PhuongThucThanhToan==='CHUYEN_KHOAN' && !transferInfo(order)) paymentBlockReason='Chưa cấu hình ngân hàng nhận tiền. Vui lòng liên hệ QA-Gym, không chuyển khoản cho đơn này.';
+    if (order.PhuongThucThanhToan==='CHUYEN_KHOAN' && !transferInfo(order)) paymentBlockReason='Chưa cấu hình ngân hàng nhận tiền. Vui lòng liên hệ Yoga & Pilates, không chuyển khoản cho đơn này.';
     else {
       // Recheck the assigned warehouse before offering payment; never move stock on a GET.
       const [[link]]=await connection.query('SELECT KhoID FROM shopcheckout WHERE DonHangID=?',[orderId]);
@@ -149,7 +149,7 @@ exports.create = (req, res) => transaction(res, async connection => {
   const shipping = data.delivery === 'DELIVERY' ? current.shipping : 0;
   const total = decimal(current.subtotal + shipping);
   if (data.paymentMethod==='CHUYEN_KHOAN' && !transferInfo({DonHangID:1,ThanhToanID:1,TongTien:total}))
-    throw error(409,'Chưa cấu hình ngân hàng nhận tiền. Vui lòng chọn tiền mặt hoặc liên hệ QA-Gym; giỏ hàng được giữ nguyên.');
+    throw error(409,'Chưa cấu hình ngân hàng nhận tiền. Vui lòng chọn tiền mặt hoặc liên hệ Yoga & Pilates; giỏ hàng được giữ nguyên.');
   const warehouseId = await stockWarehouse(connection,current.items,Number(process.env.SHOP_WAREHOUSE_ID || 1));
   const [order] = await connection.query(
     `INSERT INTO donhang (HoiVienID, TongTien, TrangThai, DiaChiGiaoHang, GhiChu)

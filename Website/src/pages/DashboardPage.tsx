@@ -193,7 +193,7 @@ function DashboardContent({
       ],
     },
     {
-      title: 'Lịch PT hôm nay',
+      title: 'Lịch hướng dẫn 1-1 hôm nay',
       icon: '⚡',
       value: `${number(summary.sessions.length)} buổi`,
       note: `${number(summary.activeTrainers)} HLV đang hoạt động`,
@@ -358,9 +358,9 @@ function DashboardContent({
             </button>
             <button
               className="dashboard-task"
-              onClick={() => onNavigate('Huấn luyện viên', 1)}
+              onClick={() => onNavigate('Hướng dẫn viên', 1)}
             >
-              <span>Lịch PT hôm nay chờ xác nhận</span>
+              <span>Lịch hướng dẫn 1-1 hôm nay chờ xác nhận</span>
               <b>
                 {
                   summary.sessions.filter((s) => s.TrangThai === 'PENDING')
@@ -423,8 +423,8 @@ function DashboardContent({
         <div>
           <article className="dash-card">
             <div className="dashboard-section-heading">
-              <h2>Lịch PT sắp diễn ra hôm nay</h2>
-              <button onClick={() => onNavigate('Huấn luyện viên', 1)}>
+              <h2>Lịch hướng dẫn 1-1 sắp diễn ra hôm nay</h2>
+              <button onClick={() => onNavigate('Hướng dẫn viên', 1)}>
                 Xem lịch →
               </button>
             </div>
@@ -440,7 +440,7 @@ function DashboardContent({
               ))
             ) : (
               <p className="dashboard-empty">
-                Không có lịch PT sắp diễn ra hôm nay.
+                Không có lịch hướng dẫn 1-1 sắp diễn ra hôm nay.
               </p>
             )}
           </article>

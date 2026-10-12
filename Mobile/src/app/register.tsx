@@ -14,9 +14,9 @@ import { AuthColors as C } from '@/constants/theme';
 import { useAuth } from '@/context/AuthContext';
 
 const goals = [
-  { title: 'Tăng cơ bắp', detail: 'Hypertrophy', icon: 'barbell-outline' },
-  { title: 'Giảm mỡ / Siết', detail: 'Fat Burn', icon: 'flame-outline' },
-  { title: 'Rèn thể lực', detail: 'Endurance', icon: 'fitness-outline' },
+  { title: 'Cải thiện tư thế', detail: 'Posture & Alignment', icon: 'leaf-outline' },
+  { title: 'Tăng độ linh hoạt', detail: 'Flexibility', icon: 'flame-outline' },
+  { title: 'Cân bằng thân tâm', detail: 'Mind & Body', icon: 'leaf-outline' },
   { title: 'Yoga & Phục hồi', detail: 'Mobility', icon: 'body-outline' },
 ] as const;
 export default function Register() {
@@ -108,17 +108,17 @@ export default function Register() {
       <View style={s.promo}>
         <Text style={s.promoBadge}>ϟ ĐẶC QUYỀN HỘI VIÊN MỚI</Text>
         <Text style={s.promoTitle}>
-          Gia nhập <Text style={{ color: C.lime }}>QA-Gym</Text>
+          Gia nhập <Text style={{ color: C.lime }}>Yoga & Pilates</Text>
         </Text>
         <Text style={s.promoCopy}>
-          Tạo tài khoản hội viên để nhận ngay 1 buổi tập 1-1 cùng HLV & phân
-          tích chỉ số InBody 770 miễn phí!
+          Tạo tài khoản để khám phá gói Yoga & Pilates và đặt lịch hướng dẫn
+          cá nhân phù hợp với bạn.
         </Text>
         <View style={s.benefits}>
           {[
-            ['fitness-outline', '1x HLV Pro'],
-            ['stats-chart-outline', 'InBody Scan'],
-            ['ribbon-outline', 'Pass 30 ngày'],
+            ['leaf-outline', 'Yoga'],
+            ['stats-chart-outline', 'Pilates'],
+            ['ribbon-outline', 'QR check-in'],
           ].map(([icon, title]) => (
             <View style={s.benefit} key={title}>
               <Ionicons
@@ -223,7 +223,7 @@ export default function Register() {
                 <Ionicons
                   name={goal.icon}
                   size={19}
-                  color={selected ? '#283500' : C.text}
+                  color={selected ? '#263529' : C.text}
                 />
               </View>
               <View style={{ flex: 1 }}>
@@ -244,11 +244,11 @@ export default function Register() {
         accessibilityState={{ checked: terms }}
       >
         <View style={[s.check, terms && { backgroundColor: C.lime }]}>
-          {terms && <Ionicons name="checkmark" size={18} color="#283500" />}
+          {terms && <Ionicons name="checkmark" size={18} color="#263529" />}
         </View>
         <Text style={s.termsText}>
           Tôi đồng ý với <Text style={s.underline}>Điều khoản dịch vụ</Text> &{' '}
-          <Text style={s.underline}>Chính sách bảo mật</Text> của QA-Gym.
+          <Text style={s.underline}>Chính sách bảo mật</Text> của Yoga & Pilates.
         </Text>
       </Pressable>
       {submitted && !terms ? (
@@ -276,9 +276,9 @@ export default function Register() {
       <View style={s.community}>
         <Ionicons name="trophy-outline" size={26} color={C.lime} />
         <View>
-          <Text style={s.communityTitle}>Hơn 12,400+ gymer đã tham gia</Text>
+          <Text style={s.communityTitle}>Cùng xây dựng thói quen vận động mỗi ngày</Text>
           <Text style={s.communityCopy}>
-            Cộng đồng tập luyện bứt phá giới hạn số 1
+            Cộng đồng tập luyện cân bằng thân tâm số 1
           </Text>
         </View>
       </View>
@@ -380,7 +380,7 @@ const s = StyleSheet.create({
   error: { color: C.error, fontSize: 13, marginTop: 8 },
   community: {
     marginTop: 28,
-    backgroundColor: '#0c0e11',
+    backgroundColor: '#101c18',
     borderRadius: 13,
     padding: 16,
     flexDirection: 'row',

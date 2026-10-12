@@ -151,7 +151,7 @@ export async function loadRelated(id: number, signal: AbortSignal) {
               'đăng ký gói',
               'check-in',
               'đơn hàng',
-              'đặt lịch PT',
+              'đặt lịch hướng dẫn 1-1',
               'tên gói tập',
             ][i],
           ]

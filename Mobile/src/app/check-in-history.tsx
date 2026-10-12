@@ -9,14 +9,14 @@ import { getCheckInHistory, type ApiCheckInRecord } from '@/lib/check-in-api';
 import { isCompleted, recordDurationMinutes, sessionDate, sessionDay, sessionsInMonth, summarizeCheckInHistory } from '@/lib/check-in-summary';
 
 const C = {
-  bg: '#111316',
-  card: '#1e2023',
-  high: '#282a2d',
-  text: '#e2e2e6',
+  bg: '#182521',
+  card: '#26382f',
+  high: '#30443a',
+  text: '#f2eee5',
   muted: '#aeb59e',
-  lime: '#c3f400',
-  mint: '#4edea3',
-  ink: '#161e00',
+  lime: '#c4d5aa',
+  mint: '#a8c7b5',
+  ink: '#18251d',
 };
 type MonthFilter = 'current' | 'previous' | 'all';
 const monthStart = (offset: number) => {
@@ -144,7 +144,7 @@ export default function CheckInHistoryScreen() {
               value={String(summary.activeSessions)}
               accent
             />
-            <Metric label="ĐỊA ĐIỂM" value="QA-Gym" />
+            <Metric label="ĐỊA ĐIỂM" value="Yoga & Pilates" />
           </View>
         </View>
         <ScrollView
@@ -241,7 +241,7 @@ function RecordCard({ record }: { record: ApiCheckInRecord }) {
               minute: '2-digit',
             })}
           </Text>
-          <Text style={s.cardTitle}>QA-Gym</Text>
+          <Text style={s.cardTitle}>Yoga & Pilates</Text>
         </View>
         <Text style={[s.status, !completed && s.live]}>
           {completed ? 'HOÀN THÀNH' : record.TrangThai === 'CHECKED_IN' ? 'ĐANG TẬP' : 'CHƯA CÓ GIỜ RA'}

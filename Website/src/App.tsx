@@ -82,8 +82,8 @@ function App() {
         <CheckInScanPage key="scan" onShowToday={() => setModuleTab(0)} />,
       ],
     },
-    'Huấn luyện viên': {
-      tabs: ['Danh sách HLV', 'Lịch PT', 'Phân ca'],
+    'Hướng dẫn viên': {
+      tabs: ['Danh sách HLV', 'Lịch hướng dẫn 1-1', 'Phân ca'],
       pages: [
         <TrainerPages
           key="trainers"

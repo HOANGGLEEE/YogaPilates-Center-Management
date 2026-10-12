@@ -78,7 +78,7 @@ const ICON_BY_CODE: Partial<Record<PrivilegeCode, string>> = {
   GROUP_X: 'people-circle-outline',
   YOGA: 'body-outline',
   SAUNA: 'flame-outline',
-  PT_SESSION: 'barbell-outline',
+  PT_SESSION: 'leaf-outline',
   INBODY: 'pulse-outline',
   GUEST_PASS: 'people-outline',
   SMART_LOCKER: 'lock-closed-outline',

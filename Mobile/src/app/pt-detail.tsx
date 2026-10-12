@@ -52,9 +52,9 @@ export default function PTDetailScreen() {
     <SafeAreaView style={s.safe} edges={['top']}>
       <View style={s.header}>
         <Pressable style={s.icon} onPress={back}>
-          <Ionicons name="arrow-back" color="#eef4e8" size={21} />
+          <Ionicons name="arrow-back" color="#c4d5aa" size={21} />
         </Pressable>
-        <Text style={s.headerTitle}>CHI TIẾT HUẤN LUYỆN VIÊN</Text>
+        <Text style={s.headerTitle}>CHI TIẾT HƯỚNG DẪN VIÊN</Text>
         <View style={s.icon} />
       </View>
       <ScrollView contentContainerStyle={s.content}>
@@ -100,7 +100,7 @@ export default function PTDetailScreen() {
                   })
                 }
               >
-                <Text style={s.primaryText}>ĐẶT LỊCH THUÊ PT</Text>
+                <Text style={s.primaryText}>ĐẶT LỊCH HƯỚNG DẪN 1-1</Text>
                 <Ionicons name="calendar-outline" color="#182000" size={18} />
               </Pressable>
             </View>
@@ -145,7 +145,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: { color: '#eef4e8', fontSize: 12, fontWeight: '900' },
+  headerTitle: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
   content: {
     width: '100%',
     maxWidth: 540,
@@ -164,7 +164,7 @@ const s = StyleSheet.create({
   },
   card: { backgroundColor: '#1b2022', borderRadius: 15, padding: 16, gap: 13 },
   name: { color: '#f0f5eb', fontSize: 25, fontWeight: '900' },
-  specialty: { color: '#d9ff00', fontSize: 12, fontWeight: '900' },
+  specialty: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
   info: {
     borderTopWidth: 1,
     borderTopColor: '#303638',
@@ -176,7 +176,7 @@ const s = StyleSheet.create({
   accent: { color: '#49d79e', fontSize: 17, fontWeight: '900' },
   primary: {
     minHeight: 50,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',

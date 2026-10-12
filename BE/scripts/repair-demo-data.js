@@ -55,10 +55,10 @@ async function main() {
   }
   add("UPDATE goitap SET TenGoi=TRIM(REPLACE(TenGoi,'DIAMOND TEST BACKEND','Diamond toàn diện'))");
   add("UPDATE sanpham SET TenSanPham='Pre-workout không caffeine 30 khẩu phần', MoTa='Dinh dưỡng thể thao trước buổi tập; sử dụng theo hướng dẫn trên nhãn.' WHERE TenSanPham='Pre-workout Test'");
-  add("UPDATE sanpham SET TenSanPham='Dây kéo lưng cotton' WHERE SanPhamID=5 AND TenSanPham='Dây kéo lưng'");
-  add("UPDATE sanpham SET TenSanPham='Dây kéo lưng có đệm cổ tay' WHERE SanPhamID=26 AND TenSanPham='Dây kéo lưng'");
-  add("UPDATE sanpham SET TenSanPham='Găng tay tập gym có đệm' WHERE SanPhamID=4 AND TenSanPham='Găng tay tập gym'");
-  add("UPDATE sanpham SET TenSanPham='Găng tay tập gym thoáng khí' WHERE SanPhamID=29 AND TenSanPham='Găng tay tập gym'");
+  add("UPDATE sanpham SET TenSanPham='Dây Yoga hỗ trợ cotton' WHERE SanPhamID=5 AND TenSanPham='Dây Yoga hỗ trợ'");
+  add("UPDATE sanpham SET TenSanPham='Dây Yoga hỗ trợ có đệm cổ tay' WHERE SanPhamID=26 AND TenSanPham='Dây Yoga hỗ trợ'");
+  add("UPDATE sanpham SET TenSanPham='Khăn Yoga có đệm' WHERE SanPhamID=4 AND TenSanPham='Khăn Yoga'");
+  add("UPDATE sanpham SET TenSanPham='Khăn Yoga thoáng khí' WHERE SanPhamID=29 AND TenSanPham='Khăn Yoga'");
   // Package prices are demo VND prices rounded to the nearest thousand.
   add('UPDATE goitapthoihan t JOIN goitap g USING(GoiTapID) SET t.GiaGoc=g.Gia*t.SoThang, t.GiaBan=ROUND(t.GiaBan/1000)*1000 WHERE t.GoiTapID NOT IN (1,2,3,4)');
   const demoMembers=snapshot.hoivien.filter(h=>/^demo20261007\.member/.test(h.Email||'')).sort((a,b)=>a.HoiVienID-b.HoiVienID);
@@ -90,7 +90,7 @@ async function main() {
   // A paid queued registration starts after the current subscription, not years in advance.
   add("UPDATE dangkygoitap d JOIN (SELECT HoiVienID,MAX(NgayKetThuc) lastEnd FROM (SELECT * FROM dangkygoitap) base WHERE TrangThai='ACTIVE' AND NgayBatDau<=CURDATE() AND NgayKetThuc>=CURDATE() GROUP BY HoiVienID) active USING(HoiVienID) JOIN goitapthoihan t USING(GoiTapThoiHanID) SET d.NgayBatDau=DATE_ADD(active.lastEnd,INTERVAL 1 DAY),d.NgayKetThuc=DATE_SUB(DATE_ADD(DATE_ADD(active.lastEnd,INTERVAL 1 DAY),INTERVAL (t.SoThang+t.ThangTang) MONTH),INTERVAL 1 DAY),d.TrangThai='PENDING' WHERE d.NgayBatDau>CURDATE() AND d.TrangThai='ACTIVE'");
   // Replace deleted test offerings with realistic, priced packages and benefits.
-  for(const [name,tier,price,description] of [['Fitness cuối tuần','SILVER PASS',290000,'Tập thứ Bảy và Chủ nhật, 06:00–22:00.'],['Gym và Yoga buổi tối','GOLD PASS',750000,'Tập gym 17:00–22:00 và tham gia 8 lớp Yoga mỗi tháng.']]){
+  for(const [name,tier,price,description] of [['Yoga cuối tuần','SILVER PASS',290000,'Tập thứ Bảy và Chủ nhật, 06:00–22:00.'],['Yoga & Pilates buổi tối','GOLD PASS',750000,'Thực hành Pilates 17:00–22:00 và tham gia 8 lớp Yoga mỗi tháng.']]){
    add('INSERT INTO goitap (TenGoi,Tier,MoTa,ThoiHan,Gia,TrangThai,NgayTao) VALUES (?,?,?,30,?,\'ACTIVE\',\'2026-09-01 09:00:00\')',[name,tier,description,price]);
    add('SET @new_gym_plan=LAST_INSERT_ID()');
    for(const months of [1,3,6,12])add("INSERT INTO goitapthoihan (GoiTapID,SoThang,ThangTang,GiaGoc,GiaBan,TrangThai) VALUES (@new_gym_plan,?,0,?,?,'ACTIVE')",[months,price*months,Math.round(price*months*(months===1?1:months===3?.95:.9)/1000)*1000]);
@@ -118,7 +118,7 @@ async function main() {
   add('UPDATE chitietphieunhap SET ThanhTien=SoLuong*DonGia');
   add('UPDATE hoadon h JOIN thanhtoan p USING(ThanhToanID) SET h.TongTien=p.SoTien,h.NgayLap=p.NgayThanhToan');
   add("UPDATE thongbao SET NoiDung=REPLACE(NoiDung,'DIAMOND TEST BACKEND','Diamond toàn diện') WHERE NoiDung LIKE '%DIAMOND TEST BACKEND%'");
-  add("UPDATE goitap SET MoTa=CASE GoiTapID WHEN 22 THEN 'Tập gym buổi sáng 06:00–12:00; dành cho hội viên có thẻ sinh viên còn hiệu lực.' WHEN 23 THEN 'Tập giờ trưa 11:00–15:00; phù hợp nhân viên văn phòng.' WHEN 24 THEN 'Tập gym 06:00–22:00, sử dụng khu cardio và máy tập sức mạnh.' WHEN 25 THEN 'Tập gym toàn thời gian, kèm 8 lớp nhóm mỗi tháng.' WHEN 26 THEN 'Tập toàn thời gian, kèm đánh giá thể lực và khu giãn cơ phục hồi.' WHEN 27 THEN 'Tập toàn thời gian, lớp nhóm và khu phục hồi; hỗ trợ theo dõi mục tiêu.' ELSE MoTa END WHERE GoiTapID BETWEEN 22 AND 27");
+  add("UPDATE goitap SET MoTa=CASE GoiTapID WHEN 22 THEN 'Thực hành Yoga & Pilates buổi sáng 06:00–12:00; dành cho hội viên có thẻ sinh viên còn hiệu lực.' WHEN 23 THEN 'Tập giờ trưa 11:00–15:00; phù hợp nhân viên văn phòng.' WHEN 24 THEN 'Thực hành Yoga & Pilates 06:00–22:00, sử dụng không gian Yoga và Pilates.' WHEN 25 THEN 'Thực hành Yoga & Pilates toàn thời gian, kèm 8 lớp nhóm mỗi tháng.' WHEN 26 THEN 'Tập toàn thời gian, kèm đánh giá thể lực và khu giãn cơ phục hồi.' WHEN 27 THEN 'Tập toàn thời gian, lớp nhóm và khu phục hồi; hỗ trợ theo dõi mục tiêu.' ELSE MoTa END WHERE GoiTapID BETWEEN 22 AND 27");
   add("UPDATE khuyenmai SET DieuKien='Giảm 500.000đ cho gói tập từ 3 tháng, giá trị trước giảm tối thiểu 2.000.000đ; không cộng dồn.' WHERE SoTienGiam=500000 AND DieuKien LIKE '%flow Mobile%'");
   // Spread check-in times within opening hours instead of hundreds of identical timestamps.
   const visits=snapshot.checkin.filter(v=>demoMembers.some(h=>h.HoiVienID===v.HoiVienID)&&v.TrangThai==='CHECKED_OUT'&&v.ThoiGianCheckIn.slice(0,10)<'2026-10-08');

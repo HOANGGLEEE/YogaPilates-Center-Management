@@ -14,7 +14,7 @@ export const enrollmentGifts = [
   {
     id: 'duffle',
     quantity: 1,
-    name: 'Túi trống thể thao QA-Gym Duffle Pro',
+    name: 'Túi trống thể thao Yoga & Pilates Duffle Pro',
     detail: 'Trị giá 850.000₫ · Miễn phí',
     image:
       require('../../assets/packages/diamond/enrollment/duffle-pro.jpg') as ImageSourcePropType,
@@ -22,7 +22,7 @@ export const enrollmentGifts = [
   {
     id: 'shaker',
     quantity: 1,
-    name: 'Bình lắc Shaker Pro 800ml cách nhiệt',
+    name: 'Bình nước studio 800ml',
     detail: 'Trị giá 320.000₫ · Miễn phí',
     image:
       require('../../assets/packages/diamond/enrollment/shaker-pro.jpg') as ImageSourcePropType,
@@ -30,25 +30,25 @@ export const enrollmentGifts = [
   {
     id: 'pt-gift',
     quantity: 3,
-    name: 'Buổi huấn luyện viên cá nhân 1-1 (PT)',
+    name: 'Buổi hướng dẫn Yoga & Pilates 1-1',
     detail: 'Đo InBody & xây dựng lộ trình tập',
     image:
-      require('../../assets/packages/diamond/enrollment/pt-training.jpg') as ImageSourcePropType,
+      require('../../assets/packages/diamond/classes/power-yoga.jpg') as ImageSourcePropType,
   },
 ] as const;
 export const homeClubs = [
-  { id: 'q1-vincom', name: 'QA-Gym Center - Chi nhánh Quận 1' },
-  { id: 'q7-platinum', name: 'QA-Gym Platinum - Chi nhánh Quận 7' },
-  { id: 'cau-giay', name: 'QA-Gym Center - Cầu Giấy, Hà Nội' },
-  { id: 'binh-thanh', name: 'QA-Gym Express - Bình Thạnh' },
+  { id: 'q1-vincom', name: 'Yoga & Pilates Center - Chi nhánh Quận 1' },
+  { id: 'q7-platinum', name: 'Yoga & Pilates Platinum - Chi nhánh Quận 7' },
+  { id: 'cau-giay', name: 'Yoga & Pilates Center - Cầu Giấy, Hà Nội' },
+  { id: 'binh-thanh', name: 'Yoga & Pilates Express - Bình Thạnh' },
 ] as const;
 export const diamondPackage = {
   id: 'diamond-all-access',
   name: 'Diamond All-Access Pass',
-  tier: 'QA-GYM ELITE CLUB',
+  tier: 'YOGA & PILATES ELITE CLUB',
   description:
     'Trải nghiệm huấn luyện đỉnh cao không giới hạn tại toàn bộ không gian phòng tập hạng sang.',
-  hero: require('../../assets/packages/diamond/diamond-club.jpg') as ImageSourcePropType,
+  hero: require('../../assets/packages/diamond/classes/power-yoga.jpg') as ImageSourcePropType,
   durations: diamondDurations,
   rating: 4.9,
   reviewCount: '850+ Hội viên',
@@ -59,16 +59,16 @@ export const diamondPackage = {
       title: 'Tập luyện không giới hạn 24/7',
       badge: 'ALL CLUBS',
       description:
-        'Tự do check-in bất kỳ lúc nào tại toàn bộ 14 chi nhánh QA-Gym trên toàn quốc.',
+        'Tự do check-in bất kỳ lúc nào tại toàn bộ 14 chi nhánh Yoga & Pilates trên toàn quốc.',
       accent: 'lime',
     },
     {
       id: 'pt',
-      icon: 'barbell-outline',
+      icon: 'leaf-outline',
       title: '03 Buổi tập chuyên sâu 1-1',
       badge: 'Trị giá 1.500.000₫',
       description:
-        'Huấn luyện cá nhân hoá cùng HLV Pro Master định hướng giáo án tăng cơ - giảm mỡ.',
+        'Huấn luyện cá nhân hoá cùng HLV Pro Master định hướng giáo án tư thế, hơi thở và sức mạnh cốt lõi.',
       accent: 'mint',
     },
     {
@@ -110,33 +110,33 @@ export const diamondPackage = {
     {
       id: 'shop',
       icon: 'bag-handle-outline',
-      title: 'Giảm 15% tại QA Pro Shop',
+      title: 'Giảm 15% tại Studio Shop',
       badge: '-15% MỌI ĐƠN',
       description:
-        'Ưu đãi giảm giá độc quyền cho các dòng Whey Protein, Creatine, Pre-workout và phụ kiện nâng tạ cao cấp.',
+        'Ưu đãi giảm giá độc quyền cho các dòng thảm tập, gạch Yoga, dây hỗ trợ và phụ kiện Pilates.',
       accent: 'lime',
     },
   ],
   classes: [
     {
       id: 'bodypump',
-      name: 'BodyPump™',
+      name: 'Mat Pilates',
       minutes: 55,
       kcal: 600,
-      tag: 'Les Mills',
+      tag: 'Core & Control',
       description:
-        'Đốt cháy 600 calo với các bài nâng tạ nhịp điệu nhanh toàn thân.',
-      image: require('../../assets/packages/diamond/classes/bodypump.jpg'),
+        'Thực hành Pilates trên thảm, tập trung vào kiểm soát và sức mạnh cốt lõi.',
+      image: require('../../assets/packages/diamond/classes/power-yoga.jpg'),
     },
     {
       id: 'rpm',
-      name: 'RPM™ Cycling',
+      name: 'Pilates Core',
       minutes: 45,
       kcal: 680,
-      tag: 'Cardio Peak',
+      tag: 'Alignment',
       description:
-        'Đua xe đạp trong nhà theo nhịp điệu âm nhạc điện tử tràn đầy năng lượng.',
-      image: require('../../assets/packages/diamond/classes/rpm-cycling.jpg'),
+        'Kết hợp hơi thở và các bài tập ổn định vùng trung tâm.',
+      image: require('../../assets/packages/diamond/classes/power-yoga.jpg'),
     },
     {
       id: 'yoga',
@@ -150,23 +150,23 @@ export const diamondPackage = {
     },
     {
       id: 'boxing',
-      name: 'Boxing Kickfit',
+      name: 'Hatha Yoga',
       minutes: 50,
       kcal: 720,
-      tag: 'Combat',
+      tag: 'Breath & Balance',
       description:
-        'Kỹ thuật đấm đá đối kháng kết hợp rèn luyện sức bền tốc độ cao.',
-      image: require('../../assets/packages/diamond/classes/boxing-kickfit.jpg'),
+        'Thực hành tư thế nền tảng cùng nhịp thở chậm và có chủ đích.',
+      image: require('../../assets/packages/diamond/classes/power-yoga.jpg'),
     },
     {
       id: 'zumba',
-      name: 'Zumba Neon Beats',
+      name: 'Yin Yoga',
       minutes: 50,
       kcal: 550,
-      tag: 'Dance High',
+      tag: 'Restore',
       description:
-        'Bùng nổ cùng vũ đạo latin cuồng nhiệt dưới hệ thống âm thanh vòm club.',
-      image: require('../../assets/packages/diamond/classes/zumba-neon.jpg'),
+        'Thả lỏng với chuỗi tư thế nhẹ nhàng và khoảng nghỉ thư giãn.',
+      image: require('../../assets/packages/diamond/classes/power-yoga.jpg'),
     },
   ] as PackageClass[],
   reviews: [
@@ -177,7 +177,7 @@ export const diamondPackage = {
       avatar:
         require('../../assets/packages/diamond/reviews/quoc-nam.jpg') as ImageSourcePropType,
       quote:
-        '"Gói Diamond cực kỳ đáng tiền! Cơ sở vật chất chuẩn quốc tế, phòng sauna đá muối sau mỗi buổi tập nặng giúp hồi phục cơ siêu nhanh. Mình thường dắt bạn đi tập cùng vào Chủ nhật rất vui."',
+        '"Gói Diamond cực kỳ đáng tiền! Cơ sở vật chất chuẩn quốc tế, phòng sauna đá muối sau mỗi buổi thực hành giúp hồi phục cơ siêu nhanh. Mình thường dắt bạn đi tập cùng vào Chủ nhật rất vui."',
     },
     {
       id: 'my',
@@ -186,7 +186,7 @@ export const diamondPackage = {
       avatar:
         require('../../assets/packages/diamond/reviews/thao-my.jpg') as ImageSourcePropType,
       quote:
-        '"3 buổi 1-1 với Pro Master chỉnh lại hoàn toàn form Deadlift và Squat cho mình. Lớp Yoga và RPM phòng studio âm thanh siêu đỉnh, không hề nhàm chán!"',
+        '"3 buổi 1-1 với Pro Master chỉnh lại hoàn toàn tư thế và cách kiểm soát hơi thở cho mình. Lớp Yoga và Pilates phòng studio âm thanh siêu đỉnh, không hề nhàm chán!"',
     },
   ],
   policies: [

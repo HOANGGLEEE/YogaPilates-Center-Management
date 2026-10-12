@@ -31,8 +31,8 @@ export default function Header() {
     <View style={styles.header}>
       <View style={styles.brandBlock}>
         <Text style={styles.brand}>
-          <MaterialCommunityIcons name="dumbbell" size={24} color="white" />
-          QA-GYM<Text style={styles.brandDot}>.</Text>
+          <MaterialCommunityIcons name="yoga" size={24} color="white" />
+          YOGA & PILATES<Text style={styles.brandDot}>.</Text>
         </Text>
         <Text style={styles.location}>
           <FontAwesome name="map-marker" size={12} color="#7b7c7d" /> Khoái
@@ -56,7 +56,7 @@ export default function Header() {
           onPress={() => router.push('/cart')}
           accessibilityLabel="Mở giỏ hàng"
         >
-          <FontAwesome name="shopping-cart" size={24} color="#f5f9ed" />
+          <FontAwesome name="shopping-cart" size={24} color="#c4d5aa" />
         </Pressable>
       </View>
     </View>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 1.2,
   },
-  brandDot: { color: '#d9ff00' },
+  brandDot: { color: '#c4d5aa' },
   location: { color: '#899083', fontSize: 11, marginTop: 5 },
   headerActions: {
     position: 'absolute',
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
     height: 17,
     borderRadius: 9,
     overflow: 'hidden',
-    backgroundColor: '#c3f400',
-    color: '#161e00',
+    backgroundColor: '#c4d5aa',
+    color: '#18251d',
     textAlign: 'center',
     fontSize: 11,
     fontWeight: '900',

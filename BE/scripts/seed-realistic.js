@@ -38,8 +38,8 @@ async function main() {
   const warehouses = [];
   for (let i = 0; i < 3; i++) warehouses.push(await add('kho', { TenKho: ['Kho cửa hàng Cầu Giấy', 'Kho phụ kiện Thanh Xuân', 'Kho dự trữ Long Biên'][i], DiaChi: `${35 + i * 12} ${streets[i]}`, MoTa: 'Kho mẫu phục vụ quản lý hàng hóa và đối chiếu tồn kho.' }));
   const categories = [];
-  for (const [TenDanhMuc, MoTa] of [['Dinh dưỡng trước tập', 'Đồ ăn nhẹ cung cấp năng lượng trước buổi tập.'], ['Dụng cụ phục hồi', 'Dụng cụ giãn cơ sau tập.'], ['Phụ kiện tập sức mạnh', 'Hỗ trợ tập tạ và bảo vệ khớp.'], ['Trang phục thể thao nữ', 'Trang phục thoáng khí cho tập luyện.'], ['Trang phục thể thao nam', 'Trang phục vận động hằng ngày.'], ['Đồ uống thể thao', 'Bổ sung nước sau tập.']]) categories.push(await add('danhmuc', { TenDanhMuc, MoTa }));
-  const catalog = [['Thanh protein cacao 60g', 45000, 'Thanh'], ['Bánh yến mạch 250g', 95000, 'Gói'], ['Bơ đậu phộng 340g', 125000, 'Hũ'], ['Hạt hỗn hợp 200g', 89000, 'Gói'], ['Con lăn massage 45cm', 290000, 'Cái'], ['Bóng massage cơ', 95000, 'Cái'], ['Dây giãn cơ', 120000, 'Cái'], ['Súng massage mini', 890000, 'Cái'], ['Dây kéo lưng', 180000, 'Đôi'], ['Đai lưng tập tạ', 450000, 'Cái'], ['Băng quấn cổ tay', 150000, 'Đôi'], ['Găng tay tập gym', 220000, 'Đôi'], ['Áo bra thể thao', 320000, 'Cái'], ['Quần legging dài', 390000, 'Cái'], ['Áo nữ thoáng khí', 250000, 'Cái'], ['Quần short nữ', 230000, 'Cái'], ['Áo nam thoáng khí', 280000, 'Cái'], ['Quần short nam', 260000, 'Cái'], ['Áo ba lỗ tập gym', 190000, 'Cái'], ['Quần jogger nam', 420000, 'Cái'], ['Nước điện giải 500ml', 25000, 'Chai'], ['Nước dừa 330ml', 22000, 'Chai'], ['Sữa protein 250ml', 45000, 'Hộp'], ['Nước khoáng 500ml', 12000, 'Chai']];
+  for (const [TenDanhMuc, MoTa] of [['Dinh dưỡng trước tập', 'Đồ ăn nhẹ cung cấp năng lượng trước buổi tập.'], ['Dụng cụ phục hồi', 'Dụng cụ giãn cơ sau tập.'], ['Phụ kiện Yoga & Pilates', 'Hỗ trợ tư thế và thực hành trên thảm.'], ['Trang phục thể thao nữ', 'Trang phục thoáng khí cho tập luyện.'], ['Trang phục thể thao nam', 'Trang phục vận động hằng ngày.'], ['Đồ uống thể thao', 'Bổ sung nước sau tập.']]) categories.push(await add('danhmuc', { TenDanhMuc, MoTa }));
+  const catalog = [['Thanh protein cacao 60g', 45000, 'Thanh'], ['Bánh yến mạch 250g', 95000, 'Gói'], ['Bơ đậu phộng 340g', 125000, 'Hũ'], ['Hạt hỗn hợp 200g', 89000, 'Gói'], ['Con lăn massage 45cm', 290000, 'Cái'], ['Bóng massage cơ', 95000, 'Cái'], ['Dây giãn cơ', 120000, 'Cái'], ['Súng massage mini', 890000, 'Cái'], ['Dây Yoga hỗ trợ', 180000, 'Đôi'], ['Gạch Yoga', 450000, 'Cái'], ['Vòng Pilates', 150000, 'Đôi'], ['Khăn Yoga', 220000, 'Đôi'], ['Áo bra thể thao', 320000, 'Cái'], ['Quần legging dài', 390000, 'Cái'], ['Áo nữ thoáng khí', 250000, 'Cái'], ['Quần short nữ', 230000, 'Cái'], ['Áo nam thoáng khí', 280000, 'Cái'], ['Quần short nam', 260000, 'Cái'], ['Áo tập Yoga', 190000, 'Cái'], ['Quần jogger nam', 420000, 'Cái'], ['Nước điện giải 500ml', 25000, 'Chai'], ['Nước dừa 330ml', 22000, 'Chai'], ['Sữa protein 250ml', 45000, 'Hộp'], ['Nước khoáng 500ml', 12000, 'Chai']];
   const products = [];
   for (let i = 0; i < catalog.length; i++) {
    const [TenSanPham, price, DonViTinh] = catalog[i];
@@ -54,7 +54,7 @@ async function main() {
   const plans = [];
   for (let i = 0; i < 6; i++) {
    const Gia = [390000, 450000, 590000, 690000, 890000, 990000][i];
-   const GoiTapID = await add('goitap', { TenGoi: ['Sinh viên buổi sáng', 'Văn phòng giờ trưa', 'Fitness toàn thời gian', 'Gym và lớp nhóm', 'Premium phục hồi', 'Premium toàn diện'][i], Tier: i < 2 ? 'SILVER PASS' : i < 4 ? 'GOLD PASS' : 'PLATINUM PASS', MoTa: 'Gói mẫu với thời hạn linh hoạt và quyền lợi ghi rõ bên dưới.', ThoiHan: 30, Gia, NgayTao: stamp(-30) });
+   const GoiTapID = await add('goitap', { TenGoi: ['Sinh viên buổi sáng', 'Văn phòng giờ trưa', 'Yoga toàn thời gian', 'Yoga & Pilates nhóm', 'Premium phục hồi', 'Premium toàn diện'][i], Tier: i < 2 ? 'SILVER PASS' : i < 4 ? 'GOLD PASS' : 'PLATINUM PASS', MoTa: 'Gói mẫu với thời hạn linh hoạt và quyền lợi ghi rõ bên dưới.', ThoiHan: 30, Gia, NgayTao: stamp(-30) });
    for (const months of [1, 3, 6, 12]) {
     const price = Math.round(Gia * months * (months === 1 ? 1 : months === 3 ? .95 : .9));
     const term = await add('goitapthoihan', { GoiTapID, SoThang: months, ThangTang: 0, GiaGoc: Gia * months, GiaBan: price });
@@ -65,7 +65,7 @@ async function main() {
   const trainers = [];
   for (let i = 0; i < 8; i++) {
    const price = 250000 + i * 50000;
-   const id = await add('pt', { HoTen: names[i], NgaySinh: `199${i}-06-12`, GioiTinh: i % 2 ? 'NAM' : 'NU', Email: `${batch}.pt${i + 1}@example.com`, SoDienThoai: `08970020${String(i).padStart(2, '0')}`, ChuyenMon: ['Tăng cơ, sức mạnh', 'Giảm mỡ, thể lực', 'Yoga, vận động linh hoạt', 'Kỹ thuật tập cho người mới'][i % 4], KinhNghiem: `${3 + i % 5} năm huấn luyện cá nhân; xây dựng giáo án theo mục tiêu và thể trạng.`, GiaThue: price });
+   const id = await add('pt', { HoTen: names[i], NgaySinh: `199${i}-06-12`, GioiTinh: i % 2 ? 'NAM' : 'NU', Email: `${batch}.pt${i + 1}@example.com`, SoDienThoai: `08970020${String(i).padStart(2, '0')}`, ChuyenMon: ['Sức mạnh cốt lõi, sức mạnh', 'Linh hoạt và cân bằng, thể lực', 'Yoga, vận động linh hoạt', 'Kỹ thuật tập cho người mới'][i % 4], KinhNghiem: `${3 + i % 5} năm huấn luyện cá nhân; xây dựng giáo án theo mục tiêu và thể trạng.`, GiaThue: price });
    trainers.push({ id, price });
   }
   const pay = async (member, amount, date, content, status = 'SUCCESS', registration = null) => {
@@ -80,7 +80,7 @@ async function main() {
    const TaiKhoanID = await add('taikhoan', { Email, MatKhau: password, NgayTao: stamp(i % 20), VaiTro: 'CUSTOMER' });
    const name = names[i % 20].replace(/\S+$/, ['Anh', 'Bảo', 'Hà', 'Huy', 'Linh', 'Kiệt', 'Yến', 'Khánh', 'Mai', 'Quân', 'Trúc', 'Dũng', 'Vy', 'Đạt', 'Ngọc', 'Long', 'Chi', 'Nam', 'Hạnh', 'Vinh'][(i % 20 + Math.floor(i / 20) * 7) % 20]);
    const phone = `089700${String(i + 3000).padStart(4, '0')}`; const address = `${20 + i} ${streets[i % 5]}`;
-   const id = await add('hoivien', { TaiKhoanID, HoTen: name, NgaySinh: `${1988 + i % 17}-${String(1 + i % 12).padStart(2, '0')}-${String(1 + i % 27).padStart(2, '0')}`, GioiTinh: i % 2 ? 'NAM' : 'NU', Email, SoDienThoai: phone, DiaChi: address, NgayDangKy: stamp(i % 20), ChieuCao: 155 + i % 30, CanNang: 48 + i % 38, MucTieuTheHinh: ['Giảm mỡ và tăng sức bền', 'Tăng cơ và cải thiện sức mạnh', 'Duy trì vóc dáng', 'Cải thiện độ linh hoạt'][i % 4] });
+   const id = await add('hoivien', { TaiKhoanID, HoTen: name, NgaySinh: `${1988 + i % 17}-${String(1 + i % 12).padStart(2, '0')}-${String(1 + i % 27).padStart(2, '0')}`, GioiTinh: i % 2 ? 'NAM' : 'NU', Email, SoDienThoai: phone, DiaChi: address, NgayDangKy: stamp(i % 20), ChieuCao: 155 + i % 30, CanNang: 48 + i % 38, MucTieuTheHinh: ['Linh hoạt và cân bằng và tăng sức bền', 'Sức mạnh cốt lõi và cải thiện sức mạnh', 'Duy trì vóc dáng', 'Cải thiện độ linh hoạt'][i % 4] });
    const member = { id, index: i, account: TaiKhoanID, name, phone, address }; members.push(member);
    await add('caidatthongbao', { TaiKhoanID, PushEnabled: i % 3 ? 1 : 0, SmsEnabled: 0, PromotionEnabled: i % 5 ? 1 : 0 });
    const p = plans[i % 6]; const pending = i >= 54; const discount = i % 3 === 0 ? Math.round(p.price * .1) : 0;
@@ -110,7 +110,7 @@ async function main() {
    const items = Array.from({ length: 1 + i % 3 }, (_, j) => ({ p: products[(i * 3 + j) % 24], qty: 1 + (i + j) % 2 }));
    const subtotal = items.reduce((s, d) => s + d.qty * d.p.price, 0); const discount = i % 3 === 0 ? Math.round(subtotal * .1) : 0; const shipping = i % 2 ? 30000 : 0;
    const total = subtotal - discount + shipping;
-   const order = await add('donhang', { HoiVienID: member.id, NgayDat: date, TongTien: total, TrangThai: status, DiaChiGiaoHang: shipping ? member.address : null, GhiChu: status === 'CANCELLED' ? 'Khách thay đổi nhu cầu; hủy trước thanh toán.' : shipping ? 'Giao hàng giờ hành chính.' : 'Nhận hàng tại quầy phòng gym.' });
+   const order = await add('donhang', { HoiVienID: member.id, NgayDat: date, TongTien: total, TrangThai: status, DiaChiGiaoHang: shipping ? member.address : null, GhiChu: status === 'CANCELLED' ? 'Khách thay đổi nhu cầu; hủy trước thanh toán.' : shipping ? 'Giao hàng giờ hành chính.' : 'Nhận hàng tại quầy trung tâm Yoga & Pilates.' });
    for (const { p, qty } of items) {
     await add('chitietdonhang', { DonHangID: order, SanPhamID: p.id, SoLuong: qty, DonGia: p.price, ThanhTien: qty * p.price });
     if (['COMPLETED', 'PROCESSING', 'CONFIRMED'].includes(status)) stock.set(`${warehouse}:${p.id}`, stock.get(`${warehouse}:${p.id}`) - qty);
@@ -127,7 +127,7 @@ async function main() {
    const schedule = await add('lichpt', { PTID: trainer.id, NgayLam: day(28 + d), GioBatDau: `${String(hour).padStart(2, '0')}:00:00`, GioKetThuc: `${String(hour + 1).padStart(2, '0')}:00:00`, TrangThai: booked && !cancelled ? 'BOOKED' : 'AVAILABLE' });
    if (booked) {
     const member = members[(t * 6 + slot * 2 + d % 2) % 54]; const discount = d % 4 === 0 ? Math.round(trainer.price * .05) : 0;
-    const booking = await add('thuept', { HoiVienID: member.id, PTID: trainer.id, LichPTID: schedule, NgayDat: stamp(Math.min(35, 25 + d)), GiaThue: trainer.price - discount, TrangThai: cancelled ? 'CANCELLED' : future ? 'CONFIRMED' : 'COMPLETED', GhiChu: cancelled ? 'Hội viên đổi lịch do bận công việc.' : ['Tập kỹ thuật squat và kiểm soát tư thế.', 'Giáo án tăng cơ thân trên.', 'Cardio và vận động linh hoạt.'][slot] });
+    const booking = await add('thuept', { HoiVienID: member.id, PTID: trainer.id, LichPTID: schedule, NgayDat: stamp(Math.min(35, 25 + d)), GiaThue: trainer.price - discount, TrangThai: cancelled ? 'CANCELLED' : future ? 'CONFIRMED' : 'COMPLETED', GhiChu: cancelled ? 'Hội viên đổi lịch do bận công việc.' : ['Thực hành căn chỉnh tư thế Yoga.', 'Thực hành sức mạnh cốt lõi Pilates.', 'Hơi thở và vận động linh hoạt.'][slot] });
     if (discount) await add('apdungkhuyenmaipt', { KhuyenMaiID: discounts.PT[d % 4], ThuePTID: booking, SoTienGiam: discount, NgayApDung: stamp(Math.min(35, 25 + d)) });
    }
   }

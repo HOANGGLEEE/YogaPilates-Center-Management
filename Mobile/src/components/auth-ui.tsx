@@ -57,11 +57,11 @@ export function AuthHeader() {
         <Ionicons name="arrow-back" size={26} color={C.text} />
       </Pressable>
       <View style={s.brand}>
-        <Text style={s.brandText}>QA-GYM</Text>
+        <Text style={s.brandText}>YOGA & PILATES</Text>
         <View style={s.dot} />
       </View>
       <View style={s.avatar}>
-        <Ionicons name="person-outline" size={20} color="#283500" />
+        <Ionicons name="person-outline" size={20} color="#263529" />
       </View>
     </View>
   );
@@ -129,7 +129,7 @@ export function AuthButton({
       disabled={disabled}
     >
       <Text style={s.buttonText}>{title}</Text>
-      <Ionicons name={icon} size={22} color="#283500" />
+      <Ionicons name={icon} size={22} color="#263529" />
     </Pressable>
   );
 }
@@ -149,7 +149,7 @@ export function SocialButtons() {
   return (
     <View style={s.socialRow}>
       <Pressable style={s.social} onPress={() => handleSocialLogin('google')}>
-        <Text style={[s.socialIcon, { color: '#c3f400' }]}>G</Text>
+        <Text style={[s.socialIcon, { color: '#c4d5aa' }]}>G</Text>
         <Text style={s.socialText}>Google</Text>
       </Pressable>
       <Pressable style={s.social} onPress={() => handleSocialLogin('apple')}>
@@ -258,7 +258,7 @@ const s = StyleSheet.create({
   },
   disabled: { opacity: 0.55 },
   buttonText: {
-    color: '#283500',
+    color: '#263529',
     fontSize: 15,
     fontWeight: '800',
     letterSpacing: 1.2,
@@ -269,7 +269,7 @@ const s = StyleSheet.create({
     gap: 12,
     marginVertical: 26,
   },
-  line: { height: 1, backgroundColor: '#333538', flex: 1 },
+  line: { height: 1, backgroundColor: '#3c5045', flex: 1 },
   dividerText: {
     color: C.muted,
     fontSize: 11,

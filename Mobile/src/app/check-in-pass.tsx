@@ -21,15 +21,15 @@ import {
 } from '@/lib/check-in-api';
 
 const C = {
-  bg: '#111316',
-  card: '#1e2023',
-  low: '#1a1c1f',
-  high: '#282a2d',
-  text: '#e2e2e6',
+  bg: '#182521',
+  card: '#26382f',
+  low: '#20312b',
+  high: '#30443a',
+  text: '#f2eee5',
   muted: '#aeb59e',
-  lime: '#c3f400',
-  mint: '#4edea3',
-  ink: '#161e00',
+  lime: '#c4d5aa',
+  mint: '#a8c7b5',
+  ink: '#18251d',
 };
 const club = {
   ...homeClubs[0],
@@ -253,13 +253,13 @@ export default function CheckInPassScreen() {
                   value={token.token}
                   size={qrSize}
                   backgroundColor="#fff"
-                  color="#0c0e11"
+                  color="#101c18"
                   ecl="M"
                 />
                 <Text style={s.qrLabel}>♢ MÃ QR ĐƯỢC BACKEND KÝ</Text>
                 {token.shortCode ? <>
                   <Text style={s.qrLabel}>MÃ NHẬP TAY</Text>
-                  <Text selectable style={{ color: '#111316', fontSize: 20, fontWeight: '900', letterSpacing: 1 }}>{token.shortCode}</Text>
+                  <Text selectable style={{ color: '#182521', fontSize: 20, fontWeight: '900', letterSpacing: 1 }}>{token.shortCode}</Text>
                 </> : null}
               </View>
             ) : <Text style={s.center}>Đang làm mới mã QR...</Text>}
@@ -467,7 +467,7 @@ const s = StyleSheet.create({
   },
   timer: {
     width: '100%',
-    backgroundColor: '#0c0e11',
+    backgroundColor: '#101c18',
     padding: 10,
     borderRadius: 10,
     flexDirection: 'row',
@@ -492,7 +492,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     gap: 9,
   },
-  qrLabel: { color: '#111316', fontSize: 9, fontWeight: '900' },
+  qrLabel: { color: '#182521', fontSize: 9, fontWeight: '900' },
   barcodeHint: { color: C.muted, fontSize: 9, fontWeight: '800' },
   barcode: {
     maxWidth: 286,

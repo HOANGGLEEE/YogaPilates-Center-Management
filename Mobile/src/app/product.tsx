@@ -111,13 +111,13 @@ export default function ProductsScreen() {
             <RefreshControl
               refreshing={loading}
               onRefresh={() => setReload((n) => n + 1)}
-              tintColor="#d9ff00"
+              tintColor="#c4d5aa"
             />
           }
         >
           <Header />
           <View style={styles.intro}>
-            <Text style={styles.kicker}>QA-GYM PRO SHOP</Text>
+            <Text style={styles.kicker}>YOGA & PILATES STUDIO SHOP</Text>
             <Text style={styles.title}>Cửa hàng & Dinh dưỡng</Text>
             <Text style={styles.subtitle}>
               Thực phẩm bổ sung và phụ kiện tập luyện
@@ -182,7 +182,7 @@ export default function ProductsScreen() {
             </Text>
           )}
           {loading ? (
-            <ActivityIndicator color="#d9ff00" />
+            <ActivityIndicator color="#c4d5aa" />
           ) : error ? (
             <View>
               <Text style={styles.subtitle}>{error}</Text>
@@ -267,13 +267,13 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: 16, paddingBottom: 24 },
   intro: { marginBottom: 14 },
   kicker: {
-    color: '#c1da00',
+    color: '#c4d5aa',
     fontSize: 10,
     fontWeight: '900',
     letterSpacing: 0.5,
   },
   title: {
-    color: '#f4f7ee',
+    color: '#c4d5aa',
     fontSize: 24,
     lineHeight: 27,
     fontWeight: '900',
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
   },
   cartBadge: {
     position: 'absolute',
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     minWidth: 17,
     height: 17,
     borderRadius: 9,
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     color: '#182000',
     fontSize: 10,
     fontWeight: '900',
@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 13,
     paddingVertical: 8,
   },
-  categoryChipActive: { backgroundColor: '#d9ff00' },
+  categoryChipActive: { backgroundColor: '#c4d5aa' },
   categoryText: { color: '#bdc5b8', fontSize: 10, fontWeight: '800' },
   categoryTextActive: { color: '#172000' },
   promoCard: {
@@ -348,9 +348,9 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   promoCopy: { flex: 1 },
-  promoTitle: { color: '#d9ff00', fontSize: 9, fontWeight: '900' },
+  promoTitle: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
   promoDiscount: {
-    color: '#d9ff00',
+    color: '#c4d5aa',
     backgroundColor: '#385500',
     fontSize: 8,
     paddingHorizontal: 3,
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
     top: 8,
     left: 8,
     color: '#182000',
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 3,
     paddingHorizontal: 5,
     paddingVertical: 4,
@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
   },
   favoriteText: { color: '#e6eee2', fontSize: 21, lineHeight: 22 },
   productInfo: { padding: 9 },
-  rating: { color: '#d9ff00', fontSize: 10, fontWeight: '800' },
+  rating: { color: '#c4d5aa', fontSize: 10, fontWeight: '800' },
   reviewCount: { color: '#8e998d', fontWeight: '400' },
   productName: {
     color: '#edf2e8',
@@ -437,12 +437,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginTop: 2,
   },
-  productPrice: { color: '#d9ff00', fontSize: 16, fontWeight: '900' },
+  productPrice: { color: '#c4d5aa', fontSize: 16, fontWeight: '900' },
   addButton: {
     width: 30,
     height: 30,
     borderRadius: 9,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 'auto',

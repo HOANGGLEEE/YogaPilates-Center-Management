@@ -57,7 +57,7 @@ export default function ShopOrdersPage() {
     <div className="catalog-page orders-api-page member-api-page">
       <header className="catalog-heading">
         <div>
-          <p className="catalog-eyebrow">QA PRO SHOP / ĐƠN HÀNG</p>
+          <p className="catalog-eyebrow">QA STUDIO SHOP / ĐƠN HÀNG</p>
           <h1>Quản lý đơn hàng & điều phối vận chuyển</h1>
           <p>Theo dõi đơn hàng, thông tin giao nhận và tiến độ xử lý.</p>
         </div>

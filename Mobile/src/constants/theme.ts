@@ -9,17 +9,17 @@ import { Platform } from 'react-native';
 
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
+    text: '#26382f',
+    background: '#f2eee5',
+    backgroundElement: '#e8e2d4',
+    backgroundSelected: '#d7e3c6',
     textSecondary: '#60646C',
   },
   dark: {
     text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
+    background: '#182521',
+    backgroundElement: '#26382f',
+    backgroundSelected: '#3c5045',
     textSecondary: '#B0B4BA',
   },
 } as const;
@@ -65,18 +65,18 @@ export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
 
 export const AuthColors = {
-  background: '#111316',
-  surfaceLowest: '#0c0e11',
-  surfaceLow: '#1a1c1f',
-  surface: '#1e2023',
-  surfaceHigh: '#282a2d',
-  surfaceHighest: '#333538',
-  lime: '#c3f400',
-  text: '#e2e2e6',
-  muted: '#c4c9ac',
-  border: '#444933',
-  mint: '#4edea3',
-  cyan: '#7bd0ff',
+  background: '#182521',
+  surfaceLowest: '#101c18',
+  surfaceLow: '#20312b',
+  surface: '#26382f',
+  surfaceHigh: '#30443a',
+  surfaceHighest: '#3c5045',
+  lime: '#c4d5aa',
+  text: '#f2eee5',
+  muted: '#b8c4b4',
+  border: '#526252',
+  mint: '#a8c7b5',
+  cyan: '#c7b899',
   success: '#00a572',
   error: '#ffb4ab',
 } as const;

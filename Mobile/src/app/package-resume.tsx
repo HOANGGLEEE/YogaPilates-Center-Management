@@ -83,12 +83,12 @@ export default function PackageResumeScreen() {
   </ScrollView></SafeAreaView>;
 }
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#111316' }, content: { padding: 20, paddingBottom: 40, gap: 16, width: '100%', maxWidth: 560, alignSelf: 'center' },
-  back: { color: '#c3f400', paddingVertical: 8, fontWeight: '600' }, title: { color: '#e2e2e6', fontSize: 25, fontWeight: '800' },
-  note: { color: '#aeb59e', fontSize: 13, lineHeight: 20 }, text: { color: '#e2e2e6', fontSize: 14 },
-  card: { padding: 18, borderRadius: 12, borderWidth: 1, borderColor: '#343b36', backgroundColor: '#1a1c1f', gap: 12 },
-  package: { color: '#e2e2e6', fontSize: 19, fontWeight: '700' }, heading: { color: '#e2e2e6', fontSize: 15, fontWeight: '700' }, amount: { color: '#c3f400', fontSize: 24, fontWeight: '700' },
-  choice: { padding: 14, borderWidth: 1, borderColor: '#343b36', borderRadius: 8, backgroundColor: '#282a2d' }, selected: { borderColor: '#c3f400', backgroundColor: '#29321f' },
-  primary: { padding: 16, borderRadius: 10, backgroundColor: '#c3f400', alignItems: 'center' }, primaryText: { color: '#161e00', fontSize: 14, fontWeight: '700' }, disabled: { opacity: .45 },
+  safe: { flex: 1, backgroundColor: '#182521' }, content: { padding: 20, paddingBottom: 40, gap: 16, width: '100%', maxWidth: 560, alignSelf: 'center' },
+  back: { color: '#c4d5aa', paddingVertical: 8, fontWeight: '600' }, title: { color: '#f2eee5', fontSize: 25, fontWeight: '800' },
+  note: { color: '#aeb59e', fontSize: 13, lineHeight: 20 }, text: { color: '#f2eee5', fontSize: 14 },
+  card: { padding: 18, borderRadius: 12, borderWidth: 1, borderColor: '#343b36', backgroundColor: '#20312b', gap: 12 },
+  package: { color: '#f2eee5', fontSize: 19, fontWeight: '700' }, heading: { color: '#f2eee5', fontSize: 15, fontWeight: '700' }, amount: { color: '#c4d5aa', fontSize: 24, fontWeight: '700' },
+  choice: { padding: 14, borderWidth: 1, borderColor: '#343b36', borderRadius: 8, backgroundColor: '#30443a' }, selected: { borderColor: '#c4d5aa', backgroundColor: '#29321f' },
+  primary: { padding: 16, borderRadius: 10, backgroundColor: '#c4d5aa', alignItems: 'center' }, primaryText: { color: '#18251d', fontSize: 14, fontWeight: '700' }, disabled: { opacity: .45 },
   errorBox: { padding: 14, borderRadius: 10, backgroundColor: '#3a2323', gap: 8 }, error: { color: '#ffb4ab', lineHeight: 20 },
 });

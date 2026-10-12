@@ -33,7 +33,7 @@ export default function PTScreen() {
             setError(
               loadError instanceof Error
                 ? loadError.message
-                : 'Không tải được danh sách PT.'
+                : 'Không tải được danh sách hướng dẫn viên.'
             );
           }
         });
@@ -69,8 +69,8 @@ export default function PTScreen() {
           <Header />
           <View style={s.heading}>
             <View>
-              <Text style={s.kicker}>HUẤN LUYỆN VIÊN QA-GYM</Text>
-              <Text style={s.title}>CHỌN PT PHÙ HỢP</Text>
+              <Text style={s.kicker}>HƯỚNG DẪN VIÊN YOGA & PILATES</Text>
+              <Text style={s.title}>CHỌN NGƯỜI HƯỚNG DẪN</Text>
             </View>
             <Pressable
               style={s.schedule}
@@ -100,11 +100,11 @@ export default function PTScreen() {
           </ScrollView>
 
           {trainers === undefined ? (
-            <Text style={s.center}>Đang tải danh sách PT...</Text>
+            <Text style={s.center}>Đang tải danh sách hướng dẫn viên...</Text>
           ) : null}
           {error ? <Text style={s.error}>{error}</Text> : null}
           {trainers !== undefined && !visible.length && !error ? (
-            <Text style={s.center}>Database chưa có PT ACTIVE phù hợp.</Text>
+            <Text style={s.center}>Database chưa có hướng dẫn viên đang hoạt động phù hợp.</Text>
           ) : null}
 
           {visible.map((trainer) => (
@@ -134,7 +134,7 @@ export default function PTScreen() {
                 </Text>
                 <Text style={s.price}>{money(trainer.GiaThue)} / buổi</Text>
               </View>
-              <FontAwesome name="chevron-right" size={13} color="#d9ff00" />
+              <FontAwesome name="chevron-right" size={13} color="#c4d5aa" />
             </Pressable>
           ))}
         </ScrollView>
@@ -153,12 +153,12 @@ const s = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
   },
-  kicker: { color: '#d9ff00', fontSize: 9, fontWeight: '900' },
+  kicker: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
   title: { color: '#f0f5eb', fontSize: 20, fontWeight: '900', marginTop: 3 },
   schedule: {
     flexDirection: 'row',
     gap: 6,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 8,
     padding: 10,
     alignItems: 'center',
@@ -171,7 +171,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 13,
     paddingVertical: 9,
   },
-  chipActive: { backgroundColor: '#caff00' },
+  chipActive: { backgroundColor: '#c4d5aa' },
   chipText: { color: '#aeb9ad', fontSize: 10, fontWeight: '800' },
   chipTextActive: { color: '#182000' },
   center: { color: '#aeb9ad', textAlign: 'center', padding: 30 },
@@ -187,7 +187,7 @@ const s = StyleSheet.create({
   image: { width: 82, height: 96, borderRadius: 9, backgroundColor: '#282d2f' },
   copy: { flex: 1, gap: 5 },
   name: { color: '#f0f5eb', fontSize: 16, fontWeight: '900' },
-  specialty: { color: '#d9ff00', fontSize: 10, fontWeight: '800' },
+  specialty: { color: '#c4d5aa', fontSize: 10, fontWeight: '800' },
   experience: { color: '#aeb9ad', fontSize: 10, lineHeight: 14 },
   price: { color: '#49d79e', fontSize: 12, fontWeight: '900' },
 });

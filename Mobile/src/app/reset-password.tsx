@@ -54,7 +54,7 @@ export default function ResetPassword() {
       <Text style={authStyles.title}>Đặt lại mật khẩu</Text>
       <Text style={s.copy}>
         {recovery?.verified
-          ? 'Tạo mật khẩu mới cho tài khoản QA-Gym. Phiên xác thực có hiệu lực trong 5 phút.'
+          ? 'Tạo mật khẩu mới cho tài khoản Yoga & Pilates. Phiên xác thực có hiệu lực trong 5 phút.'
           : 'Hãy yêu cầu mã xác nhận trước khi đặt lại mật khẩu.'}
       </Text>
       <AuthField

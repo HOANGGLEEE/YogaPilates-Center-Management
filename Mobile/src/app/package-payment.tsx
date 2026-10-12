@@ -212,7 +212,7 @@ export default function PackagePaymentScreen() {
                   </Pressable>
                 </View>
                 <Text style={s.qrNote}>
-                  Vui lòng nhập đúng số tiền và nội dung để phòng gym đối soát
+                  Vui lòng nhập đúng số tiền và nội dung để trung tâm Yoga & Pilates đối soát
                   thanh toán.
                 </Text>
               </View>
@@ -235,7 +235,7 @@ export default function PackagePaymentScreen() {
                     : cancelled
                       ? 'Thanh toán đã hủy'
                       : order.PhuongThucThanhToan === 'TIEN_MAT'
-                        ? 'Thanh toán tại lễ tân QA-Gym'
+                        ? 'Thanh toán tại lễ tân Yoga & Pilates'
                         : success
                           ? 'Đã xác nhận thanh toán'
                           : 'Chưa xác nhận thanh toán'}

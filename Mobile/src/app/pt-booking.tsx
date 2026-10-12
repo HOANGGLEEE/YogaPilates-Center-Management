@@ -65,7 +65,7 @@ export default function PTBookingScreen() {
       setError(
         loadError instanceof Error
           ? loadError.message
-          : 'Không tải được lịch PT.'
+          : 'Không tải được lịch hướng dẫn 1-1.'
       );
     }
   }, [ptId]);
@@ -88,7 +88,7 @@ export default function PTBookingScreen() {
     setLoading(true);
     try {
       await bookPT({ accountId: user.accountId, scheduleId: selected, note });
-      Alert.alert('Thành công', 'Đăng ký lịch PT thành công', [
+      Alert.alert('Thành công', 'Đăng ký lịch hướng dẫn 1-1 thành công', [
         { text: 'Xem lịch', onPress: () => router.replace('/pt-schedule') },
       ]);
     } catch (submitError) {
@@ -116,9 +116,9 @@ export default function PTBookingScreen() {
     <SafeAreaView style={s.safe} edges={['top']}>
       <View style={s.header}>
         <Pressable style={s.icon} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" color="#eef4e8" size={21} />
+          <Ionicons name="arrow-back" color="#c4d5aa" size={21} />
         </Pressable>
-        <Text style={s.headerTitle}>ĐĂNG KÝ LỊCH PT</Text>
+        <Text style={s.headerTitle}>ĐĂNG KÝ LỊCH HƯỚNG DẪN 1-1</Text>
         <View style={s.icon} />
       </View>
       <ScrollView contentContainerStyle={s.content}>
@@ -129,7 +129,7 @@ export default function PTBookingScreen() {
         {trainer ? (
           <>
             <View style={s.card}>
-              <Text style={s.label}>HUẤN LUYỆN VIÊN</Text>
+              <Text style={s.label}>HƯỚNG DẪN VIÊN</Text>
               <Text style={s.name}>{trainer.HoTen}</Text>
               <Text style={s.specialty}>
                 {trainer.ChuyenMon || 'Chưa cập nhật chuyên môn'}
@@ -193,13 +193,13 @@ export default function PTBookingScreen() {
               ) : null}
             </View>
 
-            <Text style={s.section}>GHI CHÚ CHO PT</Text>
+            <Text style={s.section}>GHI CHÚ CHO NGƯỜI HƯỚNG DẪN</Text>
             <TextInput
               value={note}
               onChangeText={setNote}
               maxLength={500}
               multiline
-              placeholder="Ví dụ: Muốn tập trung tăng cơ"
+              placeholder="Ví dụ: Muốn cải thiện tư thế và độ linh hoạt"
               placeholderTextColor="#727d73"
               style={s.input}
             />
@@ -212,7 +212,7 @@ export default function PTBookingScreen() {
               ]}
             >
               <Text style={s.primaryText}>
-                {loading ? 'ĐANG ĐĂNG KÝ...' : 'ĐĂNG KÝ LỊCH PT'}
+                {loading ? 'ĐANG ĐĂNG KÝ...' : 'ĐĂNG KÝ LỊCH HƯỚNG DẪN 1-1'}
               </Text>
             </Pressable>
           </>
@@ -239,7 +239,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: { color: '#eef4e8', fontSize: 12, fontWeight: '900' },
+  headerTitle: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
   content: {
     width: '100%',
     maxWidth: 540,
@@ -253,7 +253,7 @@ const s = StyleSheet.create({
   card: { backgroundColor: '#1b2022', borderRadius: 13, padding: 15, gap: 6 },
   label: { color: '#8e998d', fontSize: 9, fontWeight: '900' },
   name: { color: '#f0f5eb', fontSize: 21, fontWeight: '900' },
-  specialty: { color: '#d9ff00', fontSize: 10, fontWeight: '800' },
+  specialty: { color: '#c4d5aa', fontSize: 10, fontWeight: '800' },
   price: { color: '#49d79e', fontSize: 15, fontWeight: '900', marginTop: 5 },
   section: { color: '#e8efe4', fontSize: 11, fontWeight: '900', marginTop: 6 },
   row: { gap: 8 },
@@ -263,24 +263,24 @@ const s = StyleSheet.create({
     paddingHorizontal: 13,
     paddingVertical: 11,
   },
-  choiceActive: { backgroundColor: '#caff00' },
+  choiceActive: { backgroundColor: '#c4d5aa' },
   choiceText: { color: '#aeb9ad', fontSize: 10, fontWeight: '900' },
   choiceTextActive: { color: '#182000' },
   slots: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   slot: { backgroundColor: '#242829', borderRadius: 9, padding: 12 },
-  slotText: { color: '#eef4e8', fontSize: 11, fontWeight: '800' },
+  slotText: { color: '#c4d5aa', fontSize: 11, fontWeight: '800' },
   muted: { color: '#aeb9ad', fontSize: 11 },
   input: {
     minHeight: 90,
     backgroundColor: '#1b2022',
-    color: '#eef4e8',
+    color: '#c4d5aa',
     borderRadius: 10,
     padding: 12,
     textAlignVertical: 'top',
   },
   primary: {
     minHeight: 52,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

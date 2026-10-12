@@ -80,7 +80,7 @@ export default function OrdersScreen() {
             </Pressable>)}
           </View>
           {loading ? (
-            <ActivityIndicator color="#d9ff00" />
+            <ActivityIndicator color="#c4d5aa" />
           ) : error ? (
             <Text style={s.error}>{error}</Text>
           ) : (
@@ -152,14 +152,14 @@ export default function OrdersScreen() {
 const styles=StyleSheet.create({
   filters:{flexDirection:'row',gap:10},
   filter:{flex:1,paddingVertical:11,borderRadius:20,alignItems:'center',backgroundColor:'#222a2c',borderWidth:1,borderColor:'#394346'},
-  filterSelected:{backgroundColor:'#d9ff00',borderColor:'#d9ff00'},
+  filterSelected:{backgroundColor:'#c4d5aa',borderColor:'#c4d5aa'},
   filterText:{color:'#c4cec4',fontSize:13,fontWeight:'600'},filterTextSelected:{color:'#182000'},
   topRow:{flexDirection:'row',alignItems:'center',gap:10,paddingBottom:12,borderBottomWidth:1,borderBottomColor:'#313a3d'},
-  orderId:{color:'#eff5e8',fontSize:15,fontWeight:'700'},date:{color:'#94a29a',fontSize:11,marginTop:4},
+  orderId:{color:'#c4d5aa',fontSize:15,fontWeight:'700'},date:{color:'#94a29a',fontSize:11,marginTop:4},
   badge:{fontSize:11,fontWeight:'600',paddingHorizontal:9,paddingVertical:6,borderRadius:8,overflow:'hidden'},
   done:{color:'#54dca5',backgroundColor:'#1f3c31'},waiting:{color:'#e8d88c',backgroundColor:'#393521'},cancelled:{color:'#b6bfba',backgroundColor:'#33393b'},
   productRow:{flexDirection:'row',gap:12,alignItems:'center'},productImage:{width:72,height:72,borderRadius:10,backgroundColor:'#141a1c'},
-  productName:{fontSize:14,fontWeight:'600',color:'#eff5e8',lineHeight:20},lineAmount:{color:'#d8e3d8',fontSize:13,fontWeight:'600'},
+  productName:{fontSize:14,fontWeight:'600',color:'#c4d5aa',lineHeight:20},lineAmount:{color:'#d8e3d8',fontSize:13,fontWeight:'600'},
   summary:{flexDirection:'row',alignItems:'center',gap:12,paddingTop:12,borderTopWidth:1,borderTopColor:'#313a3d'},
-  payment:{fontSize:12,color:'#b9c3bb'},paid:{color:'#54dca5'},total:{fontSize:19,fontWeight:'700',color:'#d9ff00'},
+  payment:{fontSize:12,color:'#b9c3bb'},paid:{color:'#54dca5'},total:{fontSize:19,fontWeight:'700',color:'#c4d5aa'},
 });

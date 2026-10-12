@@ -93,7 +93,7 @@ const privilege = (
   accent: 'lime',
 });
 const shared = {
-  hero: require('../../assets/auth/login/gym-hero.jpg') as typeof diamondPackage.hero,
+  hero: require('../../assets/packages/diamond/classes/power-yoga.jpg') as typeof diamondPackage.hero,
   rating: 0,
   reviewCount: 'Chưa có đánh giá',
   classes: [],
@@ -113,7 +113,7 @@ export const packages: readonly GymPackage[] = [
     accessHours: { from: '08:00', to: '16:00' },
     privileges: [
       privilege('hours', undefined, 'Tập 08:00 - 16:00'),
-      privilege('gym', undefined, 'Phòng tập tạ máy & cardio'),
+      privilege('gym', undefined, 'Không gian Yoga & Pilates'),
       privilege('locker', 'SMART_LOCKER', 'Tủ đồ cá nhân'),
       privilege('shower', undefined, 'Phòng tắm'),
     ],
@@ -131,7 +131,7 @@ export const packages: readonly GymPackage[] = [
     accessHours: { from: '06:00', to: '22:00' },
     privileges: [
       privilege('hours', undefined, 'Tập 06:00 - 22:00'),
-      privilege('group', 'GROUP_X', 'Group-X'),
+      privilege('group', 'GROUP_X', 'Pilates nhóm'),
       privilege('yoga', 'YOGA', 'Yoga'),
       privilege('sauna', 'SAUNA', 'Sauna'),
       privilege('inbody', 'INBODY', 'InBody'),
@@ -173,7 +173,7 @@ export const packages: readonly GymPackage[] = [
         resetPeriod:
           p.id === 'companion' ? ('month' as const) : ('membership' as const),
       })),
-      privilege('group', 'GROUP_X', 'Group-X & Yoga'),
+      privilege('group', 'GROUP_X', 'Yoga & Pilates nhóm'),
       privilege('yoga', 'YOGA', 'Yoga'),
       privilege('locker', 'SMART_LOCKER', 'Smart Locker'),
     ],
@@ -191,7 +191,7 @@ export const packages: readonly GymPackage[] = [
     accessHours: { from: '08:00', to: '17:00' },
     privileges: [
       privilege('hours', undefined, 'Tập 08:00 - 17:00'),
-      privilege('gym', undefined, 'Phòng tập tạ máy & cardio'),
+      privilege('gym', undefined, 'Không gian Yoga & Pilates'),
       privilege('locker', 'SMART_LOCKER', 'Tủ đồ cá nhân'),
     ],
   },
@@ -204,7 +204,7 @@ export const getPackagePresentation = (apiId: number): GymPackage =>
     id: String(apiId),
     apiId,
     name: '',
-    tier: 'QA-GYM',
+    tier: 'YOGA & PILATES',
     description: '',
     durations: [],
     privileges: [],

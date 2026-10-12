@@ -25,7 +25,7 @@ import { type GymPackage, type PrivilegeCode } from '@/lib/packages';
 const comparison: { label: string; code?: PrivilegeCode; hours?: true }[] = [
   { label: 'Khung giờ tập', hours: true },
   { label: 'Yoga', code: 'YOGA' },
-  { label: 'Group-X', code: 'GROUP_X' },
+  { label: 'Pilates nhóm', code: 'GROUP_X' },
   { label: 'Sauna', code: 'SAUNA' },
   { label: 'PT 1-1', code: 'PT_SESSION' },
   { label: 'Lounge & Detox', code: 'DETOX' },
@@ -163,8 +163,8 @@ export default function PackagesScreen() {
           <Header />
           <PendingPackageNotice />
           <View style={s.intro}>
-            <Text style={s.eyebrow}>✦ ĐĂNG KÝ TẬP THỂ HÌNH 5 SAO</Text>
-            <Text style={s.title}>Các Gói Tập & Thẻ Hội Viên{'\n'}QA-Gym</Text>
+            <Text style={s.eyebrow}>✦ ĐĂNG KÝ TẬP LUYỆN TẬP 5 SAO</Text>
+            <Text style={s.title}>Các Gói Tập & Thẻ Hội Viên{'\n'}Yoga & Pilates</Text>
             <Text style={s.subtitle}>
               Lựa chọn gói tập phù hợp với mục tiêu của bạn
             </Text>
@@ -207,7 +207,7 @@ export default function PackagesScreen() {
                 accessibilityRole="button"
               >
                 <View style={s.cardTop}>
-                  <Text style={s.tag}>QA-GYM</Text>
+                  <Text style={s.tag}>YOGA & PILATES</Text>
                   <Pressable
                     hitSlop={12}
                     onPress={(event) => {
@@ -355,7 +355,7 @@ const s = StyleSheet.create({
   content: { paddingHorizontal: 16, paddingBottom: 32 },
   intro: { alignItems: 'center', paddingTop: 22, paddingBottom: 17 },
   eyebrow: {
-    color: '#cbed00',
+    color: '#c4d5aa',
     backgroundColor: '#253500',
     borderRadius: 7,
     padding: 6,
@@ -390,7 +390,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
   },
-  selected: { backgroundColor: '#d9ff00' },
+  selected: { backgroundColor: '#c4d5aa' },
   durationText: { color: '#c3c9c0', fontSize: 10, fontWeight: '800' },
   selectedText: { color: '#1d2700' },
   error: { color: '#ff6b6b', marginBottom: 10 },
@@ -409,7 +409,7 @@ const s = StyleSheet.create({
   },
   tag: {
     color: '#263100',
-    backgroundColor: '#c9f000',
+    backgroundColor: '#c4d5aa',
     fontSize: 9,
     fontWeight: '900',
     paddingHorizontal: 7,
@@ -417,7 +417,7 @@ const s = StyleSheet.create({
     borderRadius: 5,
     overflow: 'hidden',
   },
-  star: { color: '#d9ff00', fontSize: 26 },
+  star: { color: '#c4d5aa', fontSize: 26 },
   name: { color: '#e5e8e3', fontSize: 15, fontWeight: '900', marginTop: 8 },
   priceRow: { flexDirection: 'row', alignItems: 'baseline', marginTop: 2 },
   price: { color: '#e0e4df', fontSize: 28, fontWeight: '900' },
@@ -525,7 +525,7 @@ const s = StyleSheet.create({
   buttonText: { color: '#e1e4df', fontSize: 11, fontWeight: '900' },
   arrow: { color: '#e1e4df', marginLeft: 6 },
   tableKicker: {
-    color: '#cbed00',
+    color: '#c4d5aa',
     textAlign: 'center',
     fontSize: 9,
     fontWeight: '900',
@@ -546,10 +546,10 @@ const s = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#2d3234',
   },
-  cell: { color: '#cbed00', fontSize: 9, flex: 1, textAlign: 'center' },
+  cell: { color: '#c4d5aa', fontSize: 9, flex: 1, textAlign: 'center' },
   label: { color: '#d7dbd6', textAlign: 'left', paddingLeft: 6, flex: 1.3 },
   headingCell: {
-    color: '#cbed00',
+    color: '#c4d5aa',
     fontSize: 9,
     fontWeight: '800',
     textAlign: 'center',

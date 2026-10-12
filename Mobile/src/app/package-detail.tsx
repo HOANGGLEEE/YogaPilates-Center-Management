@@ -61,7 +61,7 @@ function Action({
       style={[s.action, muted && s.actionMuted, disabled && { opacity: 0.55 }]}
     >
       <Text style={[s.actionText, muted && { color: C.text }]}>{title}</Text>
-      <Icon name="arrow-forward" color={muted ? C.text : '#283500'} size={19} />
+      <Icon name="arrow-forward" color={muted ? C.text : '#263529'} size={19} />
     </Pressable>
   );
 }
@@ -201,8 +201,8 @@ export default function PackageDetailScreen() {
     if (!option) return showToast('Gói tập chưa cấu hình thời hạn đăng ký.');
     try {
       await Share.share({
-        title: `${item!.name} | QA-Gym`,
-        message: `${item!.name} | QA-Gym\n${option.months} tháng${option.bonusMonths ? ` + ${option.bonusMonths} tháng tặng` : ''}\n${formatVND(option.monthlyPrice)}/tháng\nTổng ${formatVND(option.totalPrice)}`,
+        title: `${item!.name} | Yoga & Pilates`,
+        message: `${item!.name} | Yoga & Pilates\n${option.months} tháng${option.bonusMonths ? ` + ${option.bonusMonths} tháng tặng` : ''}\n${formatVND(option.monthlyPrice)}/tháng\nTổng ${formatVND(option.totalPrice)}`,
       });
     } catch {
       showToast('Không thể mở chia sẻ trên thiết bị này.');
@@ -222,7 +222,7 @@ export default function PackageDetailScreen() {
         <View style={s.headerRight}>
           <Pressable
             accessibilityLabel="Trợ giúp"
-            onPress={() => showToast('Lễ tân QA-Gym: 1900 8899')}
+            onPress={() => showToast('Lễ tân Yoga & Pilates: 1900 8899')}
           >
             <Icon name="help-circle-outline" color={C.muted} size={19} />
           </Pressable>
@@ -231,7 +231,7 @@ export default function PackageDetailScreen() {
             onPress={() => router.push('/profile')}
             style={s.avatar}
           >
-            <Icon name="person-outline" color="#283500" size={17} />
+            <Icon name="person-outline" color="#263529" size={17} />
           </Pressable>
         </View>
       </View>
@@ -281,7 +281,7 @@ export default function PackageDetailScreen() {
         <View style={s.heroCard}>
           <View style={s.heroTop}>
             <View style={s.bestBadge}>
-              <Icon name="star-outline" color="#283500" size={12} />
+              <Icon name="star-outline" color="#263529" size={12} />
               <Text style={s.bestText}>
                 {item.popular ? 'PHỔ BIẾN NHẤT' : item.tier}
               </Text>
@@ -392,8 +392,8 @@ export default function PackageDetailScreen() {
         ) : null}
         <>
             <SectionHeading
-              title="LỚP GROUP-X & YOGA ĐI KÈM"
-              badge="100% Free"
+              title="KHÁM PHÁ YOGA & PILATES"
+              badge="MINH HỌA"
             />
             <ScrollView
               horizontal
@@ -501,7 +501,7 @@ export default function PackageDetailScreen() {
                   ? 'XÁC MINH HSSV'
                   : 'ĐĂNG KÝ NGAY'}
           </Text>
-          <Icon name="arrow-forward" color="#283500" size={17} />
+          <Icon name="arrow-forward" color="#263529" size={17} />
         </Pressable>
       </View>
       <Modal
@@ -614,7 +614,7 @@ const s = StyleSheet.create({
     paddingVertical: 5,
   },
   bestText: {
-    color: '#283500',
+    color: '#263529',
     fontSize: 10,
     fontWeight: '900',
     letterSpacing: 0.7,
@@ -743,13 +743,13 @@ const s = StyleSheet.create({
     marginTop: 3,
     textAlign: 'center',
   },
-  durationTextActive: { color: '#283500' },
+  durationTextActive: { color: '#263529' },
   hotDeal: {
     position: 'absolute',
     top: 2,
     right: 2,
     color: C.lime,
-    backgroundColor: '#333538',
+    backgroundColor: '#3c5045',
     fontSize: 9,
     fontWeight: '800',
     paddingHorizontal: 5,
@@ -871,7 +871,7 @@ const s = StyleSheet.create({
   policyName: { color: C.text, fontSize: 12, fontWeight: '800' },
   policyCopy: { color: C.muted, fontSize: 11, lineHeight: 15, marginTop: 3 },
   checkout: {
-    backgroundColor: '#0c0e11',
+    backgroundColor: '#101c18',
     borderTopWidth: 1,
     borderTopColor: C.surfaceHigh,
     paddingHorizontal: 16,
@@ -894,7 +894,7 @@ const s = StyleSheet.create({
     justifyContent: 'center',
     gap: 5,
   },
-  checkoutButtonText: { color: '#283500', fontSize: 12, fontWeight: '800' },
+  checkoutButtonText: { color: '#263529', fontSize: 12, fontWeight: '800' },
   toast: {
     position: 'absolute',
     bottom: 92,
@@ -971,7 +971,7 @@ const s = StyleSheet.create({
     marginTop: 19,
   },
   actionMuted: { backgroundColor: C.surfaceHigh },
-  actionText: { color: '#283500', fontSize: 13, fontWeight: '800' },
+  actionText: { color: '#263529', fontSize: 13, fontWeight: '800' },
   cancel: { alignItems: 'center', padding: 13 },
   cancelText: { color: C.muted, fontSize: 13, fontWeight: '700' },
   modalClassImage: { height: 170, width: '100%', borderRadius: 10 },

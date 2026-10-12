@@ -94,7 +94,7 @@ async function main() {
       const address = `${18 + (i * 7) % 180} ${streets[i % streets.length]}`;
       const height = female ? 154 + i % 17 : 166 + i % 19;
       const weight = Math.round(height * height / 10000 * (20 + i % 9) * 10) / 10;
-      const id = await add('hoivien', { TaiKhoanID: account, HoTen, NgaySinh: `${1985 + i % 23}-${String(1 + i % 12).padStart(2, '0')}-${String(1 + i % 27).padStart(2, '0')}`, GioiTinh: female ? 'NU' : 'NAM', SoDienThoai: phone, Email, DiaChi: address, NgayDangKy: time(signup), ChieuCao: height, CanNang: weight, MucTieuTheHinh: ['Giảm mỡ, duy trì thói quen tập 3 buổi mỗi tuần', 'Tăng cơ, cải thiện sức mạnh thân trên', 'Duy trì vóc dáng và tăng sức bền', 'Cải thiện tư thế và độ linh hoạt'][i % 4] });
+      const id = await add('hoivien', { TaiKhoanID: account, HoTen, NgaySinh: `${1985 + i % 23}-${String(1 + i % 12).padStart(2, '0')}-${String(1 + i % 27).padStart(2, '0')}`, GioiTinh: female ? 'NU' : 'NAM', SoDienThoai: phone, Email, DiaChi: address, NgayDangKy: time(signup), ChieuCao: height, CanNang: weight, MucTieuTheHinh: ['Linh hoạt và cân bằng, duy trì thói quen tập 3 buổi mỗi tuần', 'Sức mạnh cốt lõi, cải thiện sức mạnh thân trên', 'Duy trì vóc dáng và tăng sức bền', 'Cải thiện tư thế và độ linh hoạt'][i % 4] });
       const m = { id, account, index: i, name: HoTen, phone, address }; members.push(m);
       await add('caidatthongbao', { TaiKhoanID: account, PushEnabled: 1, SmsEnabled: 0, PromotionEnabled: i % 4 ? 1 : 0 });
       const status = i < activeCount ? 'ACTIVE' : i < activeCount + 10 ? 'EXPIRED' : i < activeCount + 15 ? 'PENDING' : 'CANCELLED';
@@ -124,26 +124,26 @@ async function main() {
     const catalog = [
       ['Bình nước thể thao 750ml', 145000, 'Cái', 35], ['Khăn tập microfiber 40x80cm', 85000, 'Cái', 50],
       ['Dây kháng lực mức nhẹ', 95000, 'Cái', 40], ['Dây kháng lực mức vừa', 115000, 'Cái', 40],
-      ['Dây nhảy điều chỉnh độ dài', 125000, 'Cái', 30], ['Băng quấn cổ tay tập tạ', 155000, 'Đôi', 30],
+      ['Dây nhảy điều chỉnh độ dài', 125000, 'Cái', 30], ['Vòng Pilates Pilates', 155000, 'Đôi', 30],
       ['Bóng massage cơ 8cm', 75000, 'Cái', 35], ['Thảm tập yoga TPE 6mm', 290000, 'Cái', 25],
       ['Nước điện giải không đường 500ml', 25000, 'Chai', 120], ['Nước khoáng 500ml tại quầy', 10000, 'Chai', 180],
       ['Thanh protein vị cacao 60g', 45000, 'Thanh', 100], ['Sữa protein ít đường 250ml', 39000, 'Hộp', 90],
     ];
     const products = [];
-    const variants = ['Bình nước thể thao 1000ml', 'Khăn tập microfiber 50x100cm', 'Dây kháng lực vòng mức nhẹ', 'Dây kháng lực vòng mức nặng', 'Dây nhảy có đếm số vòng', 'Băng quấn cổ tay bản 8cm', 'Bóng massage đôi', 'Thảm tập yoga TPE 8mm', 'Nước điện giải vị chanh 500ml', 'Nước khoáng 350ml tại quầy', 'Thanh protein vị đậu phộng 60g', 'Sữa protein vị cacao 250ml'];
+    const variants = ['Bình nước thể thao 1000ml', 'Khăn tập microfiber 50x100cm', 'Dây kháng lực vòng mức nhẹ', 'Dây kháng lực vòng mức nặng', 'Dây nhảy có đếm số vòng', 'Vòng Pilates bản 8cm', 'Bóng massage đôi', 'Thảm tập yoga TPE 8mm', 'Nước điện giải vị chanh 500ml', 'Nước khoáng 350ml tại quầy', 'Thanh protein vị đậu phộng 60g', 'Sữa protein vị cacao 250ml'];
     const variantPrices = [175000, 105000, 85000, 145000, 165000, 185000, 110000, 350000, 25000, 8000, 45000, 39000];
     for (const [index, item] of catalog.entries()) {
       const [originalName, originalPrice, unit, qty] = item;
       const name = operations ? variants[index] : originalName;
       const price = operations ? variantPrices[index] : originalPrice;
-      const id = await add('sanpham', { DanhMucID: category, TenSanPham: name, GiaBan: price, DonViTinh: unit, MoTa: `${name}, bán tại quầy phòng gym; phù hợp nhu cầu tập luyện hằng ngày.` });
+      const id = await add('sanpham', { DanhMucID: category, TenSanPham: name, GiaBan: price, DonViTinh: unit, MoTa: `${name}, bán tại quầy trung tâm Yoga & Pilates; phù hợp nhu cầu tập luyện hằng ngày.` });
       products.push({ id, price, qty, cost: Math.round(price * 0.62 / 1000) * 1000 });
     }
     if (operations) {
       warehouses.length = 0;
       for (const [TenKho, DiaChi, MoTa] of [
-        ['Kho phụ kiện bán tại quầy QA-Gym', 'Khu lưu hàng phía sau quầy lễ tân QA-Gym, Hà Nội', 'Lưu bình nước, khăn tập, dây kháng lực và dụng cụ nhỏ; tách khỏi thiết bị tập của phòng gym.'],
-        ['Kho đồ uống và dinh dưỡng QA-Gym', 'Khu bảo quản hàng đóng gói QA-Gym, Hà Nội', 'Bảo quản đồ uống và thanh protein theo hướng dẫn trên bao bì; xuất hàng theo hạn sử dụng.'],
+        ['Kho phụ kiện bán tại quầy Yoga & Pilates', 'Khu lưu hàng phía sau quầy lễ tân Yoga & Pilates, Hà Nội', 'Lưu bình nước, khăn tập, dây kháng lực và dụng cụ nhỏ; tách khỏi thiết bị tập của trung tâm Yoga & Pilates.'],
+        ['Kho đồ uống và dinh dưỡng Yoga & Pilates', 'Khu bảo quản hàng đóng gói Yoga & Pilates, Hà Nội', 'Bảo quản đồ uống và thanh protein theo hướng dẫn trên bao bì; xuất hàng theo hạn sử dụng.'],
       ]) warehouses.push({ KhoID: await add('kho', { TenKho, DiaChi, MoTa }) });
     }
     for (let chunk = 0; chunk < 3; chunk++) {
@@ -180,8 +180,8 @@ async function main() {
     }
     for (let i = 0; i < 24; i++) await add('chitietgiohang', { GioHangID: members[i].cart, SanPhamID: products[i % 12].id, SoLuong: 1 });
     const trainerProfiles = [
-      ['Nguyễn Đức Thành', 'NAM', '1992-04-16', 'Tăng cơ, kỹ thuật tập sức mạnh', 320000, 7],
-      ['Trần Ngọc Hân', 'NU', '1995-08-21', 'Giảm mỡ, thể lực cho người mới', 280000, 5],
+      ['Nguyễn Đức Thành', 'NAM', '1992-04-16', 'Pilates, sức mạnh cốt lõi và tư thế', 320000, 7],
+      ['Trần Ngọc Hân', 'NU', '1995-08-21', 'Hatha Yoga cho người mới', 280000, 5],
       ['Lê Quang Minh', 'NAM', '1990-11-08', 'Sức bền, cải thiện tư thế tập', 350000, 9],
       ['Phạm Thảo Nguyên', 'NU', '1994-02-12', 'Yoga, vận động linh hoạt', 300000, 6],
     ];

@@ -94,11 +94,11 @@ export default function ProductDetailScreen() {
               onPress={() => router.push('/cart')}
               accessibilityLabel="Mở giỏ hàng"
             >
-              <FontAwesome name="shopping-cart" size={17} color="#d9ff00" />
+              <FontAwesome name="shopping-cart" size={17} color="#c4d5aa" />
             </Pressable>
           </View>
           {loading ? (
-            <ActivityIndicator color="#d9ff00" />
+            <ActivityIndicator color="#c4d5aa" />
           ) : error ? (
             <View>
               <Text style={styles.productDetail}>{error}</Text>
@@ -158,7 +158,7 @@ export default function ProductDetailScreen() {
                     accessibilityLiveRegion="polite"
                     style={[
                       styles.productDetail,
-                      { color: '#d9ff00', marginTop: 16 },
+                      { color: '#c4d5aa', marginTop: 16 },
                     ]}
                   >
                     {notice}
@@ -176,7 +176,7 @@ export default function ProductDetailScreen() {
               style={[styles.cartButton, !canBuy && { opacity: 0.4 }]}
               accessibilityLabel="Thêm vào giỏ hàng"
             >
-              <FontAwesome name="cart-plus" size={19} color="#d9ff00" />
+              <FontAwesome name="cart-plus" size={19} color="#c4d5aa" />
             </Pressable>
             <View style={styles.quantityControl}>
               <Pressable
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
     top: 10,
     left: 10,
     color: '#182000',
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 3,
     paddingHorizontal: 6,
     paddingVertical: 4,
@@ -266,13 +266,13 @@ const styles = StyleSheet.create({
   },
   heroCopy: { position: 'absolute', left: 12, bottom: 11 },
   heroKicker: {
-    color: '#d9ff00',
+    color: '#c4d5aa',
     fontSize: 8,
     fontWeight: '900',
     letterSpacing: 1,
   },
   heroTitle: {
-    color: '#f5f9ef',
+    color: '#c4d5aa',
     fontSize: 18,
     fontWeight: '900',
     marginTop: 3,
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#272d28',
   },
-  thumbnailActive: { borderColor: '#d9ff00' },
+  thumbnailActive: { borderColor: '#c4d5aa' },
   thumbnailImage: { width: '100%', height: '100%' },
   productHeader: { paddingHorizontal: 4, paddingTop: 4 },
   ratingRow: {
@@ -295,9 +295,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  rating: { color: '#d9ff00', fontSize: 10, fontWeight: '900' },
+  rating: { color: '#c4d5aa', fontSize: 10, fontWeight: '900' },
   reviewCount: { color: '#8e998d', fontWeight: '400' },
-  stock: { color: '#b9cf00', fontSize: 8, fontWeight: '900' },
+  stock: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
   productName: {
     color: '#f1f5eb',
     fontSize: 18,
@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
   },
   productDetail: { color: '#96a095', fontSize: 10, marginTop: 5 },
   priceLine: { flexDirection: 'row', alignItems: 'center', marginTop: 8 },
-  price: { color: '#d9ff00', fontSize: 22, fontWeight: '900' },
+  price: { color: '#c4d5aa', fontSize: 22, fontWeight: '900' },
   oldPrice: {
     color: '#6d776d',
     fontSize: 10,
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
   },
   discount: {
     color: '#172000',
-    backgroundColor: '#bfe000',
+    backgroundColor: '#c4d5aa',
     fontSize: 8,
     fontWeight: '900',
     paddingHorizontal: 5,
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 3,
   },
-  factValue: { color: '#eff5e8', fontSize: 17, fontWeight: '900' },
+  factValue: { color: '#c4d5aa', fontSize: 17, fontWeight: '900' },
   factDetail: { color: '#9ca79a', fontSize: 8, marginTop: 2 },
   sectionHeading: {
     flexDirection: 'row',
@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 0.4,
   },
-  sectionKicker: { color: '#b9cf00', fontSize: 8, fontWeight: '900' },
+  sectionKicker: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
   memberCard: {
     backgroundColor: '#202521',
     borderRadius: 7,
@@ -400,9 +400,9 @@ const styles = StyleSheet.create({
   },
   nutritionLastRow: { borderBottomWidth: 0 },
   nutritionLabel: { color: '#d3dbcf', fontSize: 8 },
-  nutritionValue: { color: '#eff5e8', fontSize: 8, fontWeight: '900' },
-  proteinLabel: { color: '#d9ff00', fontWeight: '900' },
-  proteinValue: { color: '#d9ff00' },
+  nutritionValue: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
+  proteinLabel: { color: '#c4d5aa', fontWeight: '900' },
+  proteinValue: { color: '#c4d5aa' },
   featurePills: { flexDirection: 'row', gap: 4, marginTop: 5 },
   featurePill: {
     flex: 1,
@@ -423,8 +423,8 @@ const styles = StyleSheet.create({
     padding: 9,
     gap: 8,
   },
-  reviewScore: { color: '#eff5e8', fontSize: 13, fontWeight: '900' },
-  reviewStars: { color: '#d9ff00', fontSize: 11, letterSpacing: 1 },
+  reviewScore: { color: '#c4d5aa', fontSize: 13, fontWeight: '900' },
+  reviewStars: { color: '#c4d5aa', fontSize: 11, letterSpacing: 1 },
   reviewCaption: { color: '#8d988c', fontSize: 8, marginLeft: 'auto' },
   reviewCard: {
     backgroundColor: '#202521',
@@ -441,7 +441,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  avatarText: { color: '#d9ff00', fontSize: 12, fontWeight: '900' },
+  avatarText: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
   reviewIdentity: { flex: 1, marginLeft: 8 },
   reviewer: { color: '#e4ebe0', fontSize: 9, fontWeight: '900' },
   reviewDate: { color: '#7f897e', fontSize: 8, marginTop: 2 },
@@ -480,7 +480,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   quantityAction: {
-    color: '#d9ff00',
+    color: '#c4d5aa',
     fontSize: 19,
     lineHeight: 22,
     paddingHorizontal: 5,
@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 5,
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 7,
   },
   buyButtonText: { color: '#182000', fontSize: 9, fontWeight: '900' },

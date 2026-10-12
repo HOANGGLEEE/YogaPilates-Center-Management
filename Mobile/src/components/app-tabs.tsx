@@ -37,7 +37,7 @@ export default function AppTabs() {
 
       <NativeTabs.Trigger name="pt">
         <NativeTabs.Trigger.Label>HLV</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon md="fitness_center" />
+        <NativeTabs.Trigger.Icon md="self_improvement" />
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="profile">

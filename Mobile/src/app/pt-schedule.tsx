@@ -50,7 +50,7 @@ export default function PTScheduleScreen() {
       setError(
         loadError instanceof Error
           ? loadError.message
-          : 'Không tải được lịch thuê PT.'
+          : 'Không tải được lịch hướng dẫn 1-1.'
       );
     }
   }, [accountId]);
@@ -62,7 +62,7 @@ export default function PTScheduleScreen() {
   );
 
   function askCancel(booking: ApiPTBooking) {
-    Alert.alert('Hủy lịch PT', `Bạn muốn hủy lịch với ${booking.HoTenPT}?`, [
+    Alert.alert('Hủy lịch hướng dẫn 1-1', `Bạn muốn hủy lịch với ${booking.HoTenPT}?`, [
       { text: 'Không', style: 'cancel' },
       {
         text: 'Hủy lịch',
@@ -100,26 +100,26 @@ export default function PTScheduleScreen() {
             router.canGoBack() ? router.back() : router.replace('/profile')
           }
         >
-          <Ionicons name="arrow-back" color="#eef4e8" size={21} />
+          <Ionicons name="arrow-back" color="#c4d5aa" size={21} />
         </Pressable>
-        <Text style={s.headerTitle}>LỊCH THUÊ PT</Text>
+        <Text style={s.headerTitle}>LỊCH HƯỚNG DẪN 1-1</Text>
         <Pressable style={s.add} onPress={() => router.push('/pt')}>
           <Ionicons name="add" color="#182000" size={22} />
         </Pressable>
       </View>
       <ScrollView contentContainerStyle={s.content}>
         <Text style={s.kicker}>DỮ LIỆU TỪ HỆ THỐNG</Text>
-        <Text style={s.title}>LỊCH PT CỦA TÔI</Text>
+        <Text style={s.title}>LỊCH HƯỚNG DẪN 1-1 CỦA TÔI</Text>
         {bookings === undefined ? (
-          <Text style={s.center}>Đang tải lịch PT...</Text>
+          <Text style={s.center}>Đang tải lịch hướng dẫn 1-1...</Text>
         ) : null}
         {error ? <Text style={s.error}>{error}</Text> : null}
         {bookings && !bookings.length && !error ? (
           <View style={s.empty}>
-            <Ionicons name="calendar-outline" color="#d9ff00" size={36} />
-            <Text style={s.cardTitle}>Bạn chưa có lịch thuê PT</Text>
+            <Ionicons name="calendar-outline" color="#c4d5aa" size={36} />
+            <Text style={s.cardTitle}>Bạn chưa có lịch hướng dẫn 1-1</Text>
             <Pressable style={s.primary} onPress={() => router.push('/pt')}>
-              <Text style={s.primaryText}>CHỌN HUẤN LUYỆN VIÊN</Text>
+              <Text style={s.primaryText}>CHỌN HƯỚNG DẪN VIÊN</Text>
             </Pressable>
           </View>
         ) : null}
@@ -211,11 +211,11 @@ const s = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: { color: '#eef4e8', fontSize: 12, fontWeight: '900' },
+  headerTitle: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
   content: {
     width: '100%',
     maxWidth: 540,
@@ -224,7 +224,7 @@ const s = StyleSheet.create({
     gap: 12,
     paddingBottom: 35,
   },
-  kicker: { color: '#d9ff00', fontSize: 9, fontWeight: '900' },
+  kicker: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
   title: { color: '#f0f5eb', fontSize: 22, fontWeight: '900' },
   center: { color: '#aeb9ad', textAlign: 'center', padding: 30 },
   error: { color: '#ff8d82', textAlign: 'center', padding: 15 },
@@ -237,11 +237,11 @@ const s = StyleSheet.create({
   },
   card: { backgroundColor: '#1b2022', borderRadius: 13, padding: 14, gap: 10 },
   cardHead: { flexDirection: 'row', gap: 10, alignItems: 'flex-start' },
-  cardTitle: { color: '#eef4e8', fontSize: 17, fontWeight: '900' },
-  specialty: { color: '#d9ff00', fontSize: 9, marginTop: 3 },
+  cardTitle: { color: '#c4d5aa', fontSize: 17, fontWeight: '900' },
+  specialty: { color: '#c4d5aa', fontSize: 9, marginTop: 3 },
   status: {
     color: '#182000',
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 10,
     paddingHorizontal: 8,
     paddingVertical: 5,
@@ -275,7 +275,7 @@ const s = StyleSheet.create({
   cancelText: { color: '#ff9f96', fontSize: 10, fontWeight: '900' },
   primary: {
     minHeight: 44,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 9,
     paddingHorizontal: 18,
     alignItems: 'center',

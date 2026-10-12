@@ -1,4 +1,4 @@
--- QA-Gym package detail seed
+-- Yoga & Pilates package detail seed
 -- Assumes current test DB uses GoiTapID:
 -- 1 Silver, 2 Gold, 3 Diamond, 4 Student.
 -- Safe to run repeatedly because both tables have unique keys.
@@ -42,32 +42,32 @@ INSERT INTO QuyenLoiGoiTap
 VALUES
 -- Silver
 (1, 'ACCESS_HOURS', 'Tập 08:00 - 16:00', 'Khung giờ truy cập tiêu chuẩn dành cho Silver Pass.', NULL, 1, 'ACTIVE'),
-(1, 'GYM_FLOOR', 'Phòng tập tạ máy & cardio', 'Sử dụng khu tạ máy và cardio.', NULL, 2, 'ACTIVE'),
+(1, 'GYM_FLOOR', 'Không gian Yoga & Pilates', 'Sử dụng không gian thực hành Yoga & Pilates.', NULL, 2, 'ACTIVE'),
 (1, 'SMART_LOCKER', 'Tủ đồ cá nhân', 'Sử dụng tủ đồ trong thời gian tập.', NULL, 3, 'ACTIVE'),
 (1, 'SHOWER', 'Phòng tắm', 'Sử dụng khu phòng tắm của câu lạc bộ.', NULL, 4, 'ACTIVE'),
 
 -- Gold
 (2, 'ACCESS_HOURS', 'Tập 06:00 - 22:00', 'Khung giờ truy cập mở rộng dành cho Gold VIP.', NULL, 1, 'ACTIVE'),
-(2, 'GROUP_X', 'Group-X', 'Tham gia các lớp Group-X theo lịch.', NULL, 2, 'ACTIVE'),
+(2, 'GROUP_X', 'Pilates nhóm', 'Tham gia các lớp Pilates nhóm theo lịch.', NULL, 2, 'ACTIVE'),
 (2, 'YOGA', 'Yoga', 'Tham gia các lớp Yoga theo lịch.', NULL, 3, 'ACTIVE'),
 (2, 'SAUNA', 'Sauna', 'Sử dụng khu Sauna.', NULL, 4, 'ACTIVE'),
 (2, 'INBODY', 'InBody', 'Theo dõi chỉ số cơ thể bằng InBody.', NULL, 5, 'ACTIVE'),
 
 -- Diamond
-(3, 'CHECKIN_24_7', 'Tập luyện không giới hạn 24/7', 'Tự do check-in bất kỳ lúc nào tại toàn bộ chi nhánh QA-Gym.', NULL, 1, 'ACTIVE'),
+(3, 'CHECKIN_24_7', 'Tập luyện không giới hạn 24/7', 'Tự do check-in bất kỳ lúc nào tại toàn bộ chi nhánh Yoga & Pilates.', NULL, 1, 'ACTIVE'),
 (3, 'PT_SESSION', '03 Buổi tập chuyên sâu 1-1', 'Huấn luyện cá nhân hoá cùng HLV Pro Master.', 3, 2, 'ACTIVE'),
 (3, 'INBODY', 'Phân tích InBody 770 miễn phí', 'Theo dõi tỷ lệ mỡ, cơ nạc và các chỉ số cơ thể.', NULL, 3, 'ACTIVE'),
 (3, 'GUEST_PASS', 'Đi cùng 01 bạn đồng hành', 'Quyền lợi khách đi cùng theo chính sách Diamond.', 4, 4, 'ACTIVE'),
 (3, 'SAUNA', 'Tổ hợp Sauna Đá Muối Himalaya', 'Sử dụng khu Sauna và tiện ích phục hồi.', NULL, 5, 'ACTIVE'),
 (3, 'DETOX', 'Nước Detox, Khăn tập & tiện ích hằng ngày', 'Quyền lợi phục vụ hằng ngày cho hội viên Diamond.', NULL, 6, 'ACTIVE'),
-(3, 'PRO_SHOP_DISCOUNT', 'Giảm 15% tại QA Pro Shop', 'Ưu đãi dành cho sản phẩm tại QA Pro Shop.', NULL, 7, 'ACTIVE'),
-(3, 'GROUP_X', 'Group-X', 'Tham gia các lớp Group-X theo lịch.', NULL, 8, 'ACTIVE'),
+(3, 'PRO_SHOP_DISCOUNT', 'Giảm 15% tại Studio Shop', 'Ưu đãi dành cho sản phẩm tại Studio Shop.', NULL, 7, 'ACTIVE'),
+(3, 'GROUP_X', 'Pilates nhóm', 'Tham gia các lớp Pilates nhóm theo lịch.', NULL, 8, 'ACTIVE'),
 (3, 'YOGA', 'Yoga', 'Tham gia các lớp Yoga theo lịch.', NULL, 9, 'ACTIVE'),
 (3, 'SMART_LOCKER', 'Smart Locker', 'Sử dụng tủ locker thông minh.', NULL, 10, 'ACTIVE'),
 
 -- Student
 (4, 'ACCESS_HOURS', 'Tập 08:00 - 17:00', 'Khung giờ dành cho gói Student / HSSV.', NULL, 1, 'ACTIVE'),
-(4, 'GYM_FLOOR', 'Phòng tập tạ máy & cardio', 'Sử dụng khu tạ máy và cardio.', NULL, 2, 'ACTIVE'),
+(4, 'GYM_FLOOR', 'Không gian Yoga & Pilates', 'Sử dụng không gian thực hành Yoga & Pilates.', NULL, 2, 'ACTIVE'),
 (4, 'SMART_LOCKER', 'Tủ đồ cá nhân', 'Sử dụng tủ đồ trong thời gian tập.', NULL, 3, 'ACTIVE')
 ON DUPLICATE KEY UPDATE
 TenQuyenLoi = VALUES(TenQuyenLoi),

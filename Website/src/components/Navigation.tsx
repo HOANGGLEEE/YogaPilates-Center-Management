@@ -17,7 +17,7 @@ const navigation: { group: string; items: NavigationItem[] }[] = [
       { label: 'Hội viên', icon: '♙' },
       { label: 'Gói tập', icon: '◇' },
       { label: 'Check-In', icon: '✓' },
-      { label: 'Huấn luyện viên', icon: '♟' },
+      { label: 'Hướng dẫn viên', icon: '♟' },
     ],
   },
   {
@@ -48,10 +48,10 @@ export default function Navigation({
   return (
     <aside className="sidebar">
       <div className="brand">
-        <span className="brand-mark">QA</span>
+        <span className="brand-mark" aria-hidden="true">❧</span>
         <div>
-          <b>QA-GYM</b>
-          <small>PERFORMANCE CLUB</small>
+          <b>YOGA & PILATES</b>
+          <small>MINDFUL MOVEMENT</small>
         </div>
       </div>
       <nav aria-label="Điều hướng chính">

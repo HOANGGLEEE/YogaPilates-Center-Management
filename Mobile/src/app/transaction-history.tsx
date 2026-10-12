@@ -128,7 +128,7 @@ const s = StyleSheet.create({
     padding: 16,
     gap: 12,
   },
-  back: { color: '#d9ff00', fontWeight: '900' },
+  back: { color: '#c4d5aa', fontWeight: '900' },
   title: { color: '#e9f0e5', fontSize: 20, fontWeight: '900' },
   filters: { flexDirection: 'row', gap: 8 },
   filter: { padding: 10, backgroundColor: '#282d2a', borderRadius: 8 },
@@ -137,7 +137,7 @@ const s = StyleSheet.create({
   card: { backgroundColor: '#1b2022', borderRadius: 9, padding: 13, gap: 8 },
   row: { flexDirection: 'row', justifyContent: 'space-between', gap: 8 },
   name: { color: '#e9f0e5', fontSize: 13, fontWeight: '800', flex: 1 },
-  amount: { color: '#d9ff00', fontSize: 13, fontWeight: '900' },
+  amount: { color: '#c4d5aa', fontSize: 13, fontWeight: '900' },
   muted: { color: '#929d92', fontSize: 11 },
-  status: { color: '#d9ff00', fontSize: 11, fontWeight: '700' },
+  status: { color: '#c4d5aa', fontSize: 11, fontWeight: '700' },
 });

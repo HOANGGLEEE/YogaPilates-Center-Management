@@ -114,7 +114,7 @@ export default function Reports() {
     {error && <div className="rp-message rp-error" role="alert">{error}</div>}
     {loading && <div className="rp-message" role="status"><span className="rp-loading-dot" />Đang tải báo cáo…</div>}
     {data && !loading && !error && <>
-      <div className="rp-overview-label"><h2>Phòng gym trong tầm mắt</h2><span>{dateLabel(data.range.from)} — {dateLabel(data.range.to)} · Doanh thu đã thanh toán</span></div>
+      <div className="rp-overview-label"><h2>Trung tâm Yoga & Pilates trong tầm mắt</h2><span>{dateLabel(data.range.from)} — {dateLabel(data.range.to)} · Doanh thu đã thanh toán</span></div>
       <section className="rp-kpis" aria-label="Chỉ số tổng quan">
         <SummaryCard featured label="Tổng doanh thu" value={money(n(data.revenue.total))} note="Tổng tiền đã thanh toán trong kỳ" icon="revenue" />
         <SummaryCard label="Doanh thu gói tập" value={money(n(data.revenue.package))} note="Từ đăng ký và gia hạn gói" icon="package" />
@@ -122,7 +122,7 @@ export default function Reports() {
         <SummaryCard label="Hội viên đang hoạt động" value={count(n(data.members.active))} note="Hội viên có trạng thái hoạt động" icon="members" />
         <SummaryCard label="Tổng lượt check-in" value={count(n(data.checkins.total))} note="Lượt vào phòng trong kỳ" icon="checkin" />
         <SummaryCard label="Số đơn shop" value={count(n(data.shop.total))} note="Đơn hàng được tạo trong kỳ" icon="shop" />
-        <SummaryCard label="Lượt thuê PT" value={count(n(data.pt.total))} note="Lịch thuê huấn luyện viên trong kỳ" icon="pt" />
+        <SummaryCard label="Lượt hướng dẫn 1-1" value={count(n(data.pt.total))} note="Lịch thuê hướng dẫn viên trong kỳ" icon="pt" />
       </section>
       <nav className="rp-section-nav" aria-label="Các mục báo cáo">{[['revenue', 'Doanh thu'], ['members', 'Hội viên'], ['checkins', 'Check-in'], ['shop', 'Shop'], ['trainers', 'PT']].map(([id, label]) => <a key={id} href={`#rp-${id}`}>{label}<span>↗</span></a>)}</nav>
       <ReportSection id="rp-revenue" number="01" title="Doanh thu" description="Nhìn rõ nguồn thu và xu hướng qua từng ngày.">
@@ -149,9 +149,9 @@ export default function Reports() {
             ['Tổng đơn shop', n(data.shop.total)], ['COMPLETED', n(data.shop.completed)], ['CANCELLED', n(data.shop.cancelled)], ['Doanh thu đã thanh toán', money(n(data.shop.revenue))],
           ]} /></div>
       </ReportSection>
-      <ReportSection id="rp-trainers" number="05" title="Hoạt động PT" description="Theo dõi lịch thuê và những huấn luyện viên được chọn nhiều.">
+      <ReportSection id="rp-trainers" number="05" title="Hoạt động PT" description="Theo dõi lịch thuê và những hướng dẫn viên được chọn nhiều.">
         <div className="rp-grid"><SimpleBarChart horizontal title="Top PT được thuê nhiều" description="Xếp hạng theo lượt thuê trong kỳ" items={[...data.topTrainers].sort((a, b) => n(b.rentals) - n(a.rentals)).map(item => ({ label: item.HoTen, value: n(item.rentals) }))} format={value => `${count(value)} lượt`} />
-          <ReportTable title="Tình hình lịch thuê PT" heads={['Trạng thái', 'Số lượt']} rows={[
+          <ReportTable title="Tình hình lịch hướng dẫn 1-1" heads={['Trạng thái', 'Số lượt']} rows={[
             ['Tổng lượt thuê', n(data.pt.total)], ['PENDING', n(data.pt.pending)], ['CONFIRMED', n(data.pt.confirmed)], ['COMPLETED', n(data.pt.completed)], ['CANCELLED', n(data.pt.cancelled)],
           ]} /></div>
         <p className="rp-footnote">Doanh thu PT chưa có dữ liệu trong báo cáo hiện tại.</p>

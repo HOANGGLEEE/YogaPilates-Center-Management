@@ -239,10 +239,10 @@ export default function ProfileScreen() {
                 </View>
               </View>
               <Text style={styles.memberName}>
-                {user?.name ?? 'Hội viên QA-Gym'}
+                {user?.name ?? 'Hội viên Yoga & Pilates'}
               </Text>
               <Text style={styles.memberTier}>
-                ✦ {activePackage?.tier ?? 'HỘI VIÊN QA-GYM'}
+                ✦ {activePackage?.tier ?? 'HỘI VIÊN YOGA & PILATES'}
               </Text>
               <Text style={styles.contact}>
                 ✉ {user?.email} ☎ {user?.phone}
@@ -254,7 +254,7 @@ export default function ProfileScreen() {
                 </View>
                 <View>
                   <Text style={styles.statNumber}>0</Text>
-                  <Text style={styles.statLabel}>BUỔI PT</Text>
+                  <Text style={styles.statLabel}>BUỔI 1-1</Text>
                 </View>
                 <View>
                   <Text style={styles.statNumber}>
@@ -284,7 +284,7 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.passCard}>
               <Text style={styles.passKicker}>
-                {activePackage?.tier ?? 'QA-GYM MEMBERSHIP'}
+                {activePackage?.tier ?? 'YOGA & PILATES MEMBERSHIP'}
               </Text>
               <Text style={styles.passName}>
                 {activeMembership?.TenGoi.toUpperCase() ??
@@ -363,10 +363,10 @@ export default function ProfileScreen() {
             <Pressable
               style={styles.ptBookingButton}
               onPress={() => router.push('/pt-schedule')}
-              accessibilityLabel="Xem lịch thuê PT"
+              accessibilityLabel="Xem lịch hướng dẫn 1-1"
             >
               <FontAwesome name="calendar" size={12} color="#182000" />
-              <Text style={styles.ptBookingButtonText}>LỊCH THUÊ PT</Text>
+              <Text style={styles.ptBookingButtonText}>LỊCH HƯỚNG DẪN 1-1</Text>
               <FontAwesome name="arrow-right" size={11} color="#182000" />
             </Pressable>
             <View style={styles.actionDivider} />
@@ -390,7 +390,7 @@ export default function ProfileScreen() {
               accessibilityLabel="Xem tất cả giao dịch"
             >
               <Text style={styles.viewAllOrdersText}>XEM TẤT CẢ</Text>
-              <FontAwesome name="arrow-right" size={11} color="#d9ff00" />
+              <FontAwesome name="arrow-right" size={11} color="#c4d5aa" />
             </Pressable>
           </>
           <View style={styles.pageIntro}>
@@ -443,7 +443,7 @@ export default function ProfileScreen() {
               />
             </View>
             <Field
-              label="MỤC TIÊU THỂ HÌNH"
+              label="MỤC TIÊU LUYỆN TẬP"
               value={form.MucTieuTheHinh}
               onChangeText={setField('MucTieuTheHinh')}
             />
@@ -483,7 +483,7 @@ export default function ProfileScreen() {
                     : undefined
                 }
               >
-                <FontAwesome name={icon as never} size={14} color="#d9ff00" />
+                <FontAwesome name={icon as never} size={14} color="#c4d5aa" />
                 <Text style={styles.menuText}>{label}</Text>
                 <Text style={styles.menuArrow}>›</Text>
               </Pressable>
@@ -499,7 +499,7 @@ export default function ProfileScreen() {
             <Text style={styles.logoutText}>Đăng xuất tài khoản</Text>
           </Pressable>
           <Text style={styles.version}>
-            QA-GYM APP V2.4.0 • BUILD FOR CHAMPIONS
+            YOGA & PILATES APP V2.4.0 • MOVE WITH BALANCE
           </Text>
         </ScrollView>
       </SafeAreaView>
@@ -518,7 +518,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   personalDivider: { marginTop: 0, paddingTop: 0, marginBottom: 2 },
-  kicker: { color: '#d9ff00', fontSize: 11, fontWeight: '900' },
+  kicker: { color: '#c4d5aa', fontSize: 11, fontWeight: '900' },
   formCard: { backgroundColor: '#1d221f', borderRadius: 10, padding: 11 },
   field: { flex: 1, marginBottom: 10 },
   fieldLabel: {
@@ -546,10 +546,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   selectText: { color: '#e5ece0', fontSize: 10 },
-  chevron: { color: '#d9ff00', fontSize: 19 },
+  chevron: { color: '#c4d5aa', fontSize: 19 },
   primaryButton: {
     minHeight: 34,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 7,
     marginTop: 9,
     alignItems: 'center',
@@ -573,7 +573,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   menuText: { color: '#e0e7de', fontSize: 10, flex: 1 },
-  menuArrow: { color: '#d9ff00', fontSize: 21 },
+  menuArrow: { color: '#c4d5aa', fontSize: 21 },
   logout: {
     minHeight: 34,
     borderRadius: 7,
@@ -603,7 +603,7 @@ const styles = StyleSheet.create({
     height: 76,
     borderRadius: 38,
     borderWidth: 2,
-    borderColor: '#d9ff00',
+    borderColor: '#c4d5aa',
     padding: 2,
     position: 'relative',
   },
@@ -615,19 +615,19 @@ const styles = StyleSheet.create({
     width: 21,
     height: 21,
     borderRadius: 11,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     alignItems: 'center',
     justifyContent: 'center',
   },
   memberName: {
-    color: '#f1f6eb',
+    color: '#c4d5aa',
     fontSize: 18,
     fontWeight: '900',
     marginTop: 7,
   },
-  verified: { color: '#d9ff00', fontSize: 11 },
+  verified: { color: '#c4d5aa', fontSize: 11 },
   memberTier: {
-    color: '#d9ff00',
+    color: '#c4d5aa',
     fontSize: 8,
     fontWeight: '900',
     marginTop: 3,
@@ -644,7 +644,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   statNumber: {
-    color: '#d9ff00',
+    color: '#c4d5aa',
     fontSize: 17,
     fontWeight: '900',
     textAlign: 'center',
@@ -663,11 +663,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   sectionTitle: { color: '#dce7d6', fontSize: 10, fontWeight: '900' },
-  sectionAction: { color: '#d9ff00', fontSize: 8, fontWeight: '900' },
+  sectionAction: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
   ptBookingButton: {
     minHeight: 34,
     borderRadius: 7,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     marginTop: 16,
     paddingHorizontal: 12,
     flexDirection: 'row',
@@ -680,7 +680,7 @@ const styles = StyleSheet.create({
   ordersButton: {
     minHeight: 34,
     borderRadius: 7,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     marginTop: 7,
     paddingHorizontal: 12,
     flexDirection: 'row',
@@ -690,15 +690,15 @@ const styles = StyleSheet.create({
   },
   ordersButtonText: { color: '#182000', fontSize: 9, fontWeight: '900' },
   passCard: { backgroundColor: '#252c24', borderRadius: 9, padding: 12 },
-  passKicker: { color: '#d9ff00', fontSize: 8, fontWeight: '900' },
-  passName: { color: '#f1f6eb', fontSize: 15, fontWeight: '900', marginTop: 3 },
+  passKicker: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
+  passName: { color: '#c4d5aa', fontSize: 15, fontWeight: '900', marginTop: 3 },
   passInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 14,
   },
   passLabel: { color: '#dce5d8', fontSize: 9, lineHeight: 13 },
-  passGreen: { color: '#d9ff00' },
+  passGreen: { color: '#c4d5aa' },
   passMutedText: { color: '#aeb9aa', fontSize: 8 },
   progressLabel: {
     flexDirection: 'row',
@@ -715,7 +715,7 @@ const styles = StyleSheet.create({
     width: '68%',
     height: 5,
     borderRadius: 3,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
   },
   passBenefits: {
     color: '#b9c8b5',
@@ -748,7 +748,7 @@ const styles = StyleSheet.create({
   darkButtonText: { color: '#e6eee1', fontSize: 9, fontWeight: '800' },
   primaryButtonSmall: {
     flex: 1,
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 7,
     minHeight: 31,
     alignItems: 'center',
@@ -768,7 +768,7 @@ const styles = StyleSheet.create({
     height: 28,
     borderRadius: 14,
     backgroundColor: '#29372a',
-    color: '#d9ff00',
+    color: '#c4d5aa',
     textAlign: 'center',
     paddingTop: 6,
     marginRight: 8,
@@ -777,7 +777,7 @@ const styles = StyleSheet.create({
   transactionTitle: { color: '#e5ede2', fontSize: 9, fontWeight: '900' },
   success: {
     color: '#172000',
-    backgroundColor: '#caff00',
+    backgroundColor: '#c4d5aa',
     fontSize: 7,
     paddingHorizontal: 3,
   },
@@ -794,9 +794,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 7,
   },
-  viewAllOrdersText: { color: '#d9ff00', fontSize: 9, fontWeight: '900' },
+  viewAllOrdersText: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
   transactionDate: { color: '#778378', fontSize: 8, marginTop: 3 },
   transactionAmount: { alignItems: 'flex-end' },
-  transactionAmountText: { color: '#d9ff00', fontSize: 9, fontWeight: '900' },
+  transactionAmountText: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
   transactionDetail: { color: '#9ba89a', fontSize: 8, marginTop: 4 },
 });

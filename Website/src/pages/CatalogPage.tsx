@@ -53,7 +53,7 @@ export default function CatalogPage({ products }: { products: boolean }) {
     <div className="catalog-page member-api-page">
       <header className="catalog-heading">
         <div>
-          <p className="catalog-eyebrow">QA PRO SHOP / QUẢN LÝ KINH DOANH</p>
+          <p className="catalog-eyebrow">QA STUDIO SHOP / QUẢN LÝ KINH DOANH</p>
           <h1>{products ? 'Danh sách sản phẩm' : 'Danh mục sản phẩm'}</h1>
           <p>
             {products

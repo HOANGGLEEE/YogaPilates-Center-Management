@@ -84,7 +84,7 @@ export default function OrderPaymentScreen() {
   const pending = !error && order?.TrangThai === 'PENDING' && order?.TrangThaiThanhToan === 'PENDING';
   return (
     <ShopPage title="THANH TOÁN ĐƠN HÀNG">
-      {loading && <ActivityIndicator color="#d9ff00" />}
+      {loading && <ActivityIndicator color="#c4d5aa" />}
       {!!error && <Text style={s.error}>{error}</Text>}
       {order && (
         <>
@@ -117,7 +117,7 @@ export default function OrderPaymentScreen() {
               label="Nhận hàng"
               value={
                 order.CachNhan === 'PICKUP'
-                  ? 'Tại QA-Gym'
+                  ? 'Tại Yoga & Pilates'
                   : order.DiaChiGiaoHang || ''
               }
             />
@@ -142,14 +142,14 @@ export default function OrderPaymentScreen() {
             !order.paymentBlockReason &&
             order.PhuongThucThanhToan === 'CHUYEN_KHOAN' && (
               <View style={s.card}>
-                <Text style={s.heading}>Chuyển khoản cho QA-Gym</Text>
+                <Text style={s.heading}>Chuyển khoản cho Yoga & Pilates</Text>
                 {order.transfer ? <>
                   <View style={{ alignItems:'center',paddingVertical:12 }}>
                     <QRCode value={order.transfer.qrPayload} size={240} backgroundColor="white" color="black" quietZone={12} />
                   </View>
                   <ShopRow label="Số tài khoản" value={order.transfer.accountNo} />
                   <ShopRow label="Người nhận" value={order.transfer.accountName} />
-                </> : <Text style={s.error}>Chưa cấu hình tài khoản nhận tiền. Vui lòng liên hệ nhân viên QA-Gym trước khi chuyển khoản.</Text>}
+                </> : <Text style={s.error}>Chưa cấu hình tài khoản nhận tiền. Vui lòng liên hệ nhân viên Yoga & Pilates trước khi chuyển khoản.</Text>}
                 <Text style={s.muted}>
                   Nhập đúng số tiền {formatPrice(Number(order.TongTien))} và nội
                   dung:
@@ -164,7 +164,7 @@ export default function OrderPaymentScreen() {
                 />
                 {!!notice && <Text style={s.muted}>{notice}</Text>}
                 <Text style={s.muted}>
-                  Sau khi chuyển khoản, vui lòng chờ phòng gym đối soát. Trang
+                  Sau khi chuyển khoản, vui lòng chờ trung tâm Yoga & Pilates đối soát. Trang
                   tự cập nhật trạng thái thanh toán.
                 </Text>
               </View>
@@ -173,7 +173,7 @@ export default function OrderPaymentScreen() {
           {pending && !order.paymentBlockReason && order.PhuongThucThanhToan === 'TIEN_MAT' && (
             <Text style={s.text}>
               {order.CachNhan === 'PICKUP'
-                ? 'Thanh toán tại quầy QA-Gym và cung cấp mã đơn hàng.'
+                ? 'Thanh toán tại quầy Yoga & Pilates và cung cấp mã đơn hàng.'
                 : 'Thanh toán bằng tiền mặt khi nhận hàng. Nhân viên sẽ xác nhận sau khi thu tiền.'}
             </Text>
           )}

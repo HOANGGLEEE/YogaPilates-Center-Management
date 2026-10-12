@@ -59,7 +59,7 @@ export default function ForgotPassword() {
       </View>
       <Text style={[authStyles.title, s.title]}>Khôi phục mật khẩu</Text>
       <Text style={[authStyles.description, s.description]}>
-        Đừng lo lắng! Hãy nhập email đã đăng ký tài khoản QA-Gym, chúng tôi sẽ
+        Đừng lo lắng! Hãy nhập email đã đăng ký tài khoản Yoga & Pilates, chúng tôi sẽ
         gửi mã OTP xác thực tức thì.
       </Text>
       <View style={s.methods}>
@@ -143,7 +143,7 @@ export default function ForgotPassword() {
           <Text style={{ color: C.lime, fontWeight: '700' }}>Lưu ý:</Text> Mã
           OTP sẽ hết hạn sau <Text style={{ fontWeight: '700' }}>2 phút</Text>.
           Tuyệt đối không cung cấp mã cho bất kỳ ai kể cả HLV hay nhân viên
-          phòng gym.
+          trung tâm Yoga & Pilates.
         </Text>
       </View>
       <AuthButton
@@ -212,7 +212,7 @@ const s = StyleSheet.create({
     width: 68,
     height: 68,
     borderRadius: 34,
-    backgroundColor: '#0c0e11',
+    backgroundColor: '#101c18',
     alignItems: 'center',
     justifyContent: 'center',
   },

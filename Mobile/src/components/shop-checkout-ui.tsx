@@ -30,7 +30,7 @@ export function ShopPage({
             }
             style={{ padding: 10 }}
           >
-            <FontAwesome name="arrow-left" size={18} color="#d9ff00" />
+            <FontAwesome name="arrow-left" size={18} color="#c4d5aa" />
           </Pressable>
           <Text style={checkoutStyles.heading}>{title}</Text>
           <Pressable
@@ -38,7 +38,7 @@ export function ShopPage({
             onPress={() => router.push('/orders')}
             style={{ padding: 10 }}
           >
-            <FontAwesome name="list-alt" size={20} color="#d9ff00" />
+            <FontAwesome name="list-alt" size={20} color="#c4d5aa" />
           </Pressable>
         </View>
         <ScrollView
@@ -79,7 +79,7 @@ export function ShopButton({
       ]}
     >
       <Text
-        style={[checkoutStyles.buttonText, secondary && { color: '#e7eee5' }, choice && { color: !secondary ? '#d9ff00' : '#e7eee5' }]}
+        style={[checkoutStyles.buttonText, secondary && { color: '#e7eee5' }, choice && { color: !secondary ? '#c4d5aa' : '#e7eee5' }]}
       >
         {choice ? `${!secondary ? '●' : '○'}  ${title}` : title}
       </Text>
@@ -123,10 +123,10 @@ export const checkoutStyles = StyleSheet.create({
     minHeight: 56,
   },
   content: { padding: 16, gap: 16, paddingBottom: 32 },
-  heading: { fontSize: 17, fontWeight: '800', color: '#eff5e8' },
-  text: { color: '#eff5e8', fontSize: 14, lineHeight: 21 },
+  heading: { fontSize: 17, fontWeight: '800', color: '#c4d5aa' },
+  text: { color: '#c4d5aa', fontSize: 14, lineHeight: 21 },
   muted: { color: '#a6b0a0', fontSize: 13, lineHeight: 20 },
-  accent: { color: '#d9ff00', fontSize: 23, fontWeight: '800' },
+  accent: { color: '#c4d5aa', fontSize: 23, fontWeight: '800' },
   error: { color: '#ffaaa0', fontSize: 14, lineHeight: 21 },
   card: { backgroundColor: '#1c2224', borderRadius: 16, padding: 16, gap: 14, borderWidth: 1, borderColor: '#293134' },
   row: {
@@ -140,7 +140,7 @@ export const checkoutStyles = StyleSheet.create({
     borderColor: '#394346',
     backgroundColor: '#141a1c',
     borderRadius: 10,
-    color: '#eff5e8',
+    color: '#c4d5aa',
     padding: 12,
     fontSize: 15,
     minHeight: 46,
@@ -151,7 +151,7 @@ export const checkoutStyles = StyleSheet.create({
     borderRadius: 9,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
   },
   secondary: {
     backgroundColor: '#242c2f',
@@ -159,7 +159,7 @@ export const checkoutStyles = StyleSheet.create({
     borderColor: '#3a464a',
   },
   choice: { backgroundColor: '#161d1f', borderWidth: 1, borderColor: '#3a464a', alignItems: 'flex-start', paddingHorizontal: 16 },
-  choiceSelected: { backgroundColor: '#242e1d', borderColor: '#d9ff00' },
+  choiceSelected: { backgroundColor: '#242e1d', borderColor: '#c4d5aa' },
   buttonText: {
     color: '#182000',
     fontSize: 14,

@@ -80,8 +80,8 @@ export default function ActivityHistory({
           id: `pt-${b.ThuePTID}`,
           type: 'pt',
           date: b.NgayDat,
-          title: `Đặt lịch PT #${b.ThuePTID}`,
-          detail: `Huấn luyện viên #${b.PTID}`,
+          title: `Đặt lịch hướng dẫn 1-1 #${b.ThuePTID}`,
+          detail: `Hướng dẫn viên #${b.PTID}`,
           status: b.TrangThai,
         })),
       ]
@@ -156,7 +156,7 @@ export default function ActivityHistory({
             {[
               ['CHECK-IN', data.checkins.length, 'check-in'],
               ['ĐĂNG KÝ GÓI', data.registrations.length, 'đăng ký gói'],
-              ['ĐẶT LỊCH PT', data.bookings.length, 'đặt lịch PT'],
+              ['ĐẶT LỊCH HƯỚNG DẪN 1-1', data.bookings.length, 'đặt lịch hướng dẫn 1-1'],
               ['ĐƠN HÀNG', data.orders.length, 'đơn hàng'],
             ].map(([label, count, source]) => (
               <article key={label}>
@@ -192,7 +192,7 @@ export default function ActivityHistory({
                 <option value="">Tất cả hoạt động</option>
                 <option value="checkin">Check-in / Check-out</option>
                 <option value="package">Đăng ký gói</option>
-                <option value="pt">Đặt lịch PT</option>
+                <option value="pt">Đặt lịch hướng dẫn 1-1</option>
                 <option value="order">Đơn hàng</option>
               </select>
               <label>

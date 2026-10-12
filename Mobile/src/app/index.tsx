@@ -17,37 +17,37 @@ import PendingPackageNotice from '@/components/pending-package-notice';
 import GymCrowdingCard from '@/components/gym-crowding';
 
 const images = {
-  hero: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=85',
+  hero: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1200&q=85',
   strength:
-    'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700&q=85',
-  hiit: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=85',
+    'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=85',
+  hiit: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=85',
   yoga: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=700&q=85',
 };
 
 const workouts = [
   {
     icon: <MaterialCommunityIcons name="check-circle" />,
-    value: '100+',
-    label: 'Thiết bị tối tân',
-    color: '#d9ff00',
+    value: 'Yoga',
+    label: 'Hơi thở & chuyển động',
+    color: '#c4d5aa',
   },
   {
     icon: <MaterialCommunityIcons name="hot-tub" />,
-    value: 'Sauna & Spa',
-    label: 'Không gian thư giãn',
+    value: 'Pilates',
+    label: 'Sức mạnh cốt lõi',
     color: '#8cebd2',
   },
   {
     icon: <Ionicons name="body" />,
-    value: 'InBody 770',
-    label: 'Đo cơ thể miễn phí',
+    value: 'Mindfulness',
+    label: 'Chú tâm từng khoảnh khắc',
     color: '#8fb7ff',
   },
   {
     icon: <Ionicons name="fast-food" />,
-    value: 'Free Bar',
-    label: 'Nạp năng lượng lành mạnh',
-    color: '#d9ff00',
+    value: 'Balance',
+    label: 'Cân bằng & linh hoạt',
+    color: '#c4d5aa',
   },
 ];
 
@@ -117,8 +117,8 @@ export default function HomeScreen() {
           <PendingPackageNotice />
 
           <View style={styles.greeting}>
-            <Text style={styles.kicker}>Wellcome</Text>
-            <Text style={styles.greetingTitle}>Sẵn sàng bứt phá?</Text>
+            <Text style={styles.kicker}>Chào mừng</Text>
+            <Text style={styles.greetingTitle}>Sẵn sàng tìm lại cân bằng?</Text>
             <Text style={styles.greetingCopy}>
               Hôm nay là một ngày tuyệt vời để chăm sóc cơ thể.
             </Text>
@@ -139,7 +139,7 @@ export default function HomeScreen() {
                 Tập luyện{`\n`}không giới hạn
               </Text>
               <Text style={styles.heroDetail}>
-                Trải nghiệm toàn bộ tiện ích cao cấp
+                Khám phá gói Yoga & Pilates phù hợp với bạn
               </Text>
               <TouchableOpacity onPress={packages} style={styles.heroButton}>
                 <Text style={styles.heroButtonText}>Xem gói hội viên →</Text>
@@ -163,15 +163,15 @@ export default function HomeScreen() {
           >
             <WorkoutCard
               image={images.hiit}
-              title="Cardio Hi-Tech Zone"
-              detail="Máy chạy bộ và thiết bị tập tim mạch"
-              tag="NHIỆT ĐỘ 24°C"
+              title="Pilates Studio"
+              detail="Thực hành sức mạnh cốt lõi và kiểm soát chuyển động"
+              tag="PILATES"
             />
             <WorkoutCard
               image={images.strength}
-              title="Free Weights"
-              detail="Khu vực tạ tự do chuyên nghiệp"
-              tag="TẦNG 2"
+              title="Yoga Flow"
+              detail="Kết nối hơi thở cùng chuyển động"
+              tag="YOGA"
             />
             <WorkoutCard
               image={images.yoga}
@@ -181,12 +181,12 @@ export default function HomeScreen() {
             />
           </ScrollView>
 
-          <SectionTitle title="Lớp Group-X hôm nay" />
+          <SectionTitle title="Lớp Yoga & Pilates · lịch minh họa" />
           <View style={styles.schedule}>
             {[
-              ['17:30', 'Les Mills BodyPump™', 'Phòng tập GX1', 'Còn 12 chỗ'],
-              ['18:45', 'RPM Cycling Party', 'Phòng Cycling', 'Còn 8 chỗ'],
-              ['19:30', 'Zumba Fitness', 'Studio 3', 'Còn 6 chỗ'],
+              ['17:30', 'Hatha Yoga', 'Yoga Studio', 'Minh họa'],
+              ['18:45', 'Mat Pilates', 'Pilates Studio', 'Minh họa'],
+              ['19:30', 'Yin Yoga', 'Studio 3', 'Minh họa'],
             ].map(([time, title, room, seats]) => (
               <View style={styles.scheduleRow} key={title}>
                 <Text style={styles.scheduleTime}>{time}</Text>
@@ -226,9 +226,9 @@ export default function HomeScreen() {
         accessibilityHint="Mở màn hình mã QR để vào phòng tập"
       >
         <View style={styles.checkInBot}>
-          <MaterialCommunityIcons name="robot-outline" size={30} color="#161e00" />
+          <MaterialCommunityIcons name="robot-outline" size={30} color="#18251d" />
           <View style={styles.checkInQrBadge}>
-            <Ionicons name="qr-code" size={13} color="#161e00" />
+            <Ionicons name="qr-code" size={13} color="#18251d" />
           </View>
         </View>
         <Text style={styles.checkInShortcutLabel}>QR check-in</Text>
@@ -250,8 +250,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 18,
     borderWidth: 1,
-    borderColor: '#c3f40055',
-    backgroundColor: '#1e2023',
+    borderColor: '#c4d5aa55',
+    backgroundColor: '#26382f',
     elevation: 6,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 24,
-    backgroundColor: '#c3f400',
+    backgroundColor: '#c4d5aa',
   },
   checkInQrBadge: {
     position: 'absolute',
@@ -276,19 +276,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 7,
     borderWidth: 2,
-    borderColor: '#1e2023',
-    backgroundColor: '#f0f5e9',
+    borderColor: '#26382f',
+    backgroundColor: '#c4d5aa',
   },
-  checkInShortcutLabel: { color: '#e2e2e6', fontSize: 11, fontWeight: '700' },
+  checkInShortcutLabel: { color: '#f2eee5', fontSize: 11, fontWeight: '700' },
   greeting: { marginBottom: 18 },
   kicker: {
-    color: '#c1da00',
+    color: '#c4d5aa',
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 1.4,
   },
   greetingTitle: {
-    color: '#f4f7ee',
+    color: '#c4d5aa',
     fontSize: 26,
     fontWeight: '800',
     marginTop: 6,
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   heroCopy: { flex: 1, padding: 18, justifyContent: 'center' },
   pill: {
     alignSelf: 'flex-start',
-    backgroundColor: '#c8ed00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 4,
     paddingHorizontal: 8,
     paddingVertical: 5,
@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
   heroTitle: { color: '#fff', fontSize: 25, fontWeight: '900', lineHeight: 26 },
   heroDetail: { color: '#d4dbcf', fontSize: 12, marginTop: 7 },
   heroButton: {
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     paddingHorizontal: 13,
     paddingVertical: 9,
     borderRadius: 4,
@@ -332,8 +332,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
   },
-  sectionHeading: { color: '#f2f6ea', fontSize: 16, fontWeight: '800' },
-  sectionAction: { color: '#c9ed00', fontSize: 10, fontWeight: '900' },
+  sectionHeading: { color: '#c4d5aa', fontSize: 16, fontWeight: '800' },
+  sectionAction: { color: '#c4d5aa', fontSize: 10, fontWeight: '900' },
   statsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
     borderColor: '#2c322c',
   },
   statIcon: { fontSize: 17, fontWeight: '900', marginBottom: 4 },
-  statValue: { color: '#f0f4e8', fontSize: 13, fontWeight: '800' },
+  statValue: { color: '#c4d5aa', fontSize: 13, fontWeight: '800' },
   statLabel: { color: '#8e978d', fontSize: 10, marginTop: 3 },
   horizontalList: { gap: 10, paddingBottom: 26 },
   workoutCard: {
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     left: 10,
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     paddingHorizontal: 6,
     paddingVertical: 4,
     borderRadius: 3,
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
     gap: 11,
   },
   scheduleTime: {
-    color: '#d9ff00',
+    color: '#c4d5aa',
     fontSize: 12,
     fontWeight: '900',
     width: 39,
@@ -412,14 +412,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 7,
     paddingVertical: 5,
   },
-  seatText: { color: '#bde000', fontSize: 9, fontWeight: '800' },
+  seatText: { color: '#c4d5aa', fontSize: 9, fontWeight: '800' },
   reviewCard: {
     backgroundColor: '#1d231e',
     borderRadius: 9,
     padding: 14,
     marginBottom: 24,
   },
-  stars: { color: '#d9ff00', fontSize: 14, letterSpacing: 1 },
+  stars: { color: '#c4d5aa', fontSize: 14, letterSpacing: 1 },
   rating: { color: '#e8eee2', fontSize: 12, letterSpacing: 0 },
   reviewQuote: { color: '#d9ded5', fontSize: 12, lineHeight: 17, marginTop: 8 },
   reviewAuthor: { color: '#899288', fontSize: 10, marginTop: 7 },
@@ -431,15 +431,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#35412e',
   },
-  ctaIcon: { color: '#d9ff00', fontSize: 23, marginBottom: 8 },
+  ctaIcon: { color: '#c4d5aa', fontSize: 23, marginBottom: 8 },
   ctaKicker: {
-    color: '#b8cf00',
+    color: '#c4d5aa',
     fontSize: 9,
     fontWeight: '900',
     letterSpacing: 1.1,
   },
   ctaTitle: {
-    color: '#f6faef',
+    color: '#c4d5aa',
     textAlign: 'center',
     fontSize: 20,
     lineHeight: 23,
@@ -454,7 +454,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   ctaButton: {
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     alignSelf: 'stretch',
     alignItems: 'center',
     paddingVertical: 11,

@@ -135,7 +135,7 @@ export default function MemberDetail({
                 <div className="member-overview">
                   {[
                     ['Lượt check-in', data.checkins.length, 'check-in', 'Ra vào phòng tập'],
-                    ['Lịch thuê PT', data.bookings.length, 'đặt lịch PT', 'Huấn luyện cá nhân'],
+                    ['Lịch hướng dẫn 1-1', data.bookings.length, 'đặt lịch hướng dẫn 1-1', 'Huấn luyện cá nhân'],
                     ['Đơn hàng', data.orders.length, 'đơn hàng', 'Mua sắm tại câu lạc bộ'],
                   ].map(([label, count, source, note]) => (
                     <div key={label}>
@@ -181,7 +181,7 @@ export default function MemberDetail({
                 ) : <div className="member-detail-empty"><strong>{data.warnings.includes('đăng ký gói') ? 'Chưa tải được gói tập' : 'Chưa có đăng ký gói tập'}</strong><p>{data.warnings.includes('đăng ký gói') ? 'Bấm Thử lại để tải thông tin đăng ký.' : 'Các gói hội viên đăng ký sẽ được hiển thị tại đây.'}</p></div>}
               </section>
               <div className="member-history-callout">
-                <div><h3>Theo dõi hoạt động chi tiết</h3><p>Tra cứu các lần check-in, lịch PT và đơn hàng của hội viên.</p></div>
+                <div><h3>Theo dõi hoạt động chi tiết</h3><p>Tra cứu các lần check-in, lịch hướng dẫn 1-1 và đơn hàng của hội viên.</p></div>
                 <button className="member-activity-link" type="button" onClick={onActivityHistory}>Xem lịch sử hoạt động</button>
               </div>
             </div>

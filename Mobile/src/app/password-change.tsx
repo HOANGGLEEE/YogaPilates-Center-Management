@@ -110,10 +110,10 @@ const s = StyleSheet.create({
     padding: 20,
     gap: 16,
   },
-  back: { color: '#d9ff00', fontWeight: '800' },
+  back: { color: '#c4d5aa', fontWeight: '800' },
   title: { color: '#f0f4ec', fontSize: 25, fontWeight: '900' },
   hint: { color: '#aeb9aa', lineHeight: 21 },
-  label: { color: '#d9ff00', marginBottom: 7, fontWeight: '700' },
+  label: { color: '#c4d5aa', marginBottom: 7, fontWeight: '700' },
   input: {
     backgroundColor: '#232826',
     borderRadius: 9,
@@ -122,7 +122,7 @@ const s = StyleSheet.create({
   },
   error: { color: '#ff9f9f' },
   button: {
-    backgroundColor: '#d9ff00',
+    backgroundColor: '#c4d5aa',
     borderRadius: 10,
     padding: 16,
     alignItems: 'center',
