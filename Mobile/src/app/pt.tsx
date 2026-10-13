@@ -104,7 +104,7 @@ export default function PTScreen() {
           ) : null}
           {error ? <Text style={s.error}>{error}</Text> : null}
           {trainers !== undefined && !visible.length && !error ? (
-            <Text style={s.center}>Database chưa có hướng dẫn viên đang hoạt động phù hợp.</Text>
+            <Text style={s.center}>Hiện chưa có hướng dẫn viên phù hợp.</Text>
           ) : null}
 
           {visible.map((trainer) => (
