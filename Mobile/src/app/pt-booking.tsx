@@ -188,7 +188,7 @@ export default function PTBookingScreen() {
               ))}
               {!visibleSlots.length ? (
                 <Text style={s.muted}>
-                  Không có lịch AVAILABLE trong ngày này.
+                  Không có khung giờ trống trong ngày này.
                 </Text>
               ) : null}
             </View>
