@@ -763,6 +763,25 @@ select {
   letter-spacing: 0.8px;
 }
 
+/* Give Yoga & Pilates daily operations their own visual identity. */
+.sidebar .nav-group:first-child {
+  padding: 10px 6px;
+  border: 1px solid #344b3d;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #1e3327, #14241d);
+}
+.sidebar .nav-group:first-child > p {
+  color: #c4d5aa;
+  letter-spacing: 1.1px;
+}
+.sidebar .nav-group:first-child .nav-item:hover {
+  background: #304636;
+}
+.sidebar .nav-item:focus-visible {
+  outline: 2px solid #c4d5aa;
+  outline-offset: 2px;
+}
+
 .nav-item {
   cursor: pointer;
   border: 0;
