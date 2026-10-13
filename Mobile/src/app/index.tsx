@@ -100,6 +100,14 @@ function WorkoutCard({
   );
 }
 
+// All shortcuts open existing screens; no new booking or payment flow is added.
+const quickActions = [
+  { label: 'Hướng dẫn 1-1', detail: 'Chọn giáo viên', icon: 'leaf-outline', route: '/pt' },
+  { label: 'Gói hội viên', detail: 'Xem gói Yoga', icon: 'card-outline', route: '/packages' },
+  { label: 'QR check-in', detail: 'Vào phòng tập', icon: 'qr-code-outline', route: '/check-in-pass' },
+  { label: 'Cửa hàng', detail: 'Phụ kiện tập', icon: 'bag-handle-outline', route: '/product' },
+] as const;
+
 const packages = () => {
   router.replace('/packages');
 };
@@ -122,6 +130,27 @@ export default function HomeScreen() {
             <Text style={styles.greetingCopy}>
               Hôm nay là một ngày tuyệt vời để chăm sóc cơ thể.
             </Text>
+          </View>
+
+          <SectionTitle title="Lối tắt của bạn" />
+          <View style={styles.quickActions}>
+            {quickActions.map((item) => (
+              <TouchableOpacity
+                key={item.route}
+                style={styles.quickAction}
+                onPress={() => router.push(item.route)}
+                accessibilityRole="button"
+                accessibilityLabel={item.label}
+                activeOpacity={0.8}
+              >
+                <Ionicons name={item.icon} size={22} color="#c4d5aa" />
+                <View style={styles.quickActionCopy}>
+                  <Text style={styles.quickActionTitle}>{item.label}</Text>
+                  <Text style={styles.quickActionDetail}>{item.detail}</Text>
+                </View>
+                <Ionicons name="arrow-forward" size={16} color="#9cae95" />
+              </TouchableOpacity>
+            ))}
           </View>
 
           <View style={styles.heroCard}>
@@ -226,7 +255,7 @@ export default function HomeScreen() {
         accessibilityHint="Mở màn hình mã QR để vào phòng tập"
       >
         <View style={styles.checkInBot}>
-          <MaterialCommunityIcons name="robot-outline" size={30} color="#18251d" />
+          <Ionicons name="flower-outline" size={28} color="#18251d" />
           <View style={styles.checkInQrBadge}>
             <Ionicons name="qr-code" size={13} color="#18251d" />
           </View>
@@ -294,6 +323,28 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   greetingCopy: { color: '#9ca599', fontSize: 13, marginTop: 6 },
+  quickActions: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    marginBottom: 24,
+  },
+  quickAction: {
+    flexBasis: '47%',
+    flexGrow: 1,
+    minWidth: 0,
+    minHeight: 98,
+    padding: 13,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#3c4b3b',
+    backgroundColor: '#1e2a21',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
+  quickActionCopy: { gap: 4 },
+  quickActionTitle: { color: '#f1f5eb', fontSize: 13, fontWeight: '800' },
+  quickActionDetail: { color: '#9fae9d', fontSize: 11 },
   heroCard: {
     height: 204,
     borderRadius: 14,
