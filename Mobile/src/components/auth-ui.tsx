@@ -50,7 +50,7 @@ export function AuthHeader() {
       <Pressable
         accessibilityLabel="Quay lại"
         onPress={() =>
-          router.canGoBack() ? router.back() : router.replace('/(tabs)')
+          router.canGoBack() ? router.back() : router.replace('/login')
         }
         hitSlop={12}
       >
