@@ -11,31 +11,31 @@ type NavigationProps = {
 
 const navigation: { group: string; items: NavigationItem[] }[] = [
   {
-    group: 'Vận hành chính',
+    group: 'Yoga & Pilates',
     items: [
       { label: 'Dashboard', icon: '▦' },
-      { label: 'Hội viên', icon: '♙' },
+      { label: 'Hướng dẫn viên', icon: '❧' },
       { label: 'Gói tập', icon: '◇' },
       { label: 'Check-In', icon: '✓' },
-      { label: 'Hướng dẫn viên', icon: '♟' },
+      { label: 'Hội viên', icon: '♙' },
     ],
   },
   {
-    group: 'Kinh doanh & thương mại',
-    items: [
-      { label: 'Sản phẩm', icon: '▣' },
-      { label: 'Danh mục', icon: '☷' },
-      { label: 'Đơn hàng', icon: '▤' },
-      { label: 'Kho hàng', icon: '□' },
-      { label: 'Hóa đơn', icon: '▧' },
-      { label: 'Khuyến mãi', icon: '%' },
-    ],
-  },
-  {
-    group: 'Hệ thống',
+    group: 'Vận hành trung tâm',
     items: [
       { label: 'Báo cáo thống kê', icon: '◔' },
-      { label: 'Nhân viên', icon: '♙' },
+      { label: 'Hóa đơn', icon: '▧' },
+      { label: 'Khuyến mãi', icon: '%' },
+      { label: 'Nhân viên', icon: '♟' },
+    ],
+  },
+  {
+    group: 'Cửa hàng & kho',
+    items: [
+      { label: 'Đơn hàng', icon: '▤' },
+      { label: 'Sản phẩm', icon: '▣' },
+      { label: 'Danh mục', icon: '☷' },
+      { label: 'Kho hàng', icon: '□' },
     ],
   },
 ]
