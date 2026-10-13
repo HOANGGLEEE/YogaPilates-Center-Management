@@ -116,16 +116,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const account = session?.account;
     if (!session || !account || !isActiveCustomer(account)) return false;
     try {
+      // Only persist the remembered identity after the authenticated profile loads.
       await writeLocal(API_TOKEN, session.token);
+      const profile = await profileIdentity(account);
       await writeLocal(REMEMBERED, remember ? credential.trim() : null);
+      setSavedCredential(remember ? credential.trim() : '');
+      setUser(profile);
+      return true;
     } catch (error) {
-      throw new Error(
-        `Không lưu được phiên đăng nhập: ${error instanceof Error ? error.message : String(error)}`
-      );
+      // Do not leave a half-signed-in account with a persisted bearer token.
+      await writeLocal(API_TOKEN, null).catch(() => null);
+      throw error;
     }
-    setSavedCredential(remember ? credential.trim() : '');
-    setUser(await profileIdentity(account));
-    return true;
   }
   async function refreshUser() {
     if (!user?.accountId) return;
