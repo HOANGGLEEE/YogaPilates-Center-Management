@@ -11944,7 +11944,7 @@ input[type='range'] {
   justify-content: space-between;
   gap: 8px;
 }
-.admin-password-label a {
+.admin-password-label .admin-support-note {
   font-size: 8px;
   color: var(--lime);
   text-decoration: none;
@@ -12136,7 +12136,7 @@ input[type='range'] {
   .admin-access h2 {
     font-size: 23px;
   }
-  .admin-password-label a {
+  .admin-password-label .admin-support-note {
     letter-spacing: 0;
   }
   .admin-submit {
