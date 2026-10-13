@@ -61,7 +61,9 @@ export default function Navigation({
             {items.map(({ label, icon }) => (
               <button
                 key={label}
+                type="button"
                 className={`nav-item ${activeItem === label ? 'active' : ''}`}
+                aria-current={activeItem === label ? 'page' : undefined}
                 onClick={() => onNavigate(label)}
               >
                 <span className="nav-icon">{icon}</span>
