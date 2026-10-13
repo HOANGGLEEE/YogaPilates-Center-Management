@@ -110,9 +110,9 @@ export default function Login({
           </div>
           <div className="admin-password-label">
             <label htmlFor="admin-password">Mật khẩu truy cập hệ thống</label>
-            <a href="tel:19008899" title="Liên hệ IT để đặt lại mật khẩu">
-              Yêu cầu IT reset
-            </a>
+            <span className="admin-support-note">
+              Liên hệ quản trị viên để được hỗ trợ
+            </span>
           </div>
           <div className="admin-field">
             <Icon name="lock" />
@@ -164,7 +164,7 @@ export default function Login({
           </div>
           <footer className="admin-support">
             <span>
-              Hỗ trợ trung tâm: <a href="tel:19008899">1900 8899</a>
+              Hỗ trợ: liên hệ quản trị viên của trung tâm
             </span>
             <span>
               <i /> Yoga & Pilates
