@@ -11942,14 +11942,17 @@ input[type='range'] {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 8px;
 }
 .admin-password-label .admin-support-note {
-  font-size: 8px;
+  font-size: 11px;
+  line-height: 1.4;
+  max-width: 190px;
+  text-align: right;
   color: var(--lime);
-  text-decoration: none;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.2px;
 }
 .admin-access .admin-remember {
   display: flex;
@@ -12036,7 +12039,7 @@ input[type='range'] {
   gap: 12px;
   margin-top: 38px;
   color: #c5c8ae;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.4px;
 }
 .admin-support a {
