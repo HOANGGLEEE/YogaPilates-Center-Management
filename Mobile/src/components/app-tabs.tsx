@@ -22,22 +22,22 @@ export default function AppTabs() {
         />
       </NativeTabs.Trigger>
 
+      <NativeTabs.Trigger name="pt">
+        <NativeTabs.Trigger.Label>Hướng dẫn</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon md="self_improvement" />
+      </NativeTabs.Trigger>
+
       <NativeTabs.Trigger name="packages">
         <NativeTabs.Trigger.Label>Gói tập</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon md="card_membership" />
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="product">
-        <NativeTabs.Trigger.Label>Sản phẩm</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>Cửa hàng</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
           src={require('@/assets/images/tabIcons/explore.png')}
           renderingMode="template"
         />
-      </NativeTabs.Trigger>
-
-      <NativeTabs.Trigger name="pt">
-        <NativeTabs.Trigger.Label>HLV</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon md="self_improvement" />
       </NativeTabs.Trigger>
 
       <NativeTabs.Trigger name="profile">
