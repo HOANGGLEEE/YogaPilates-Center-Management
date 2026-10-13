@@ -125,7 +125,11 @@ export default function PTBookingScreen() {
         {trainer === undefined ? (
           <Text style={s.center}>Đang tải lịch trống...</Text>
         ) : null}
-        {error ? <Text style={s.error}>{error}</Text> : null}
+        {error ? (
+          <Pressable accessibilityRole="button" onPress={() => void load()}>
+            <Text style={s.error}>{error} · Chạm để thử lại</Text>
+          </Pressable>
+        ) : null}
         {trainer ? (
           <>
             <View style={s.card}>
@@ -188,7 +192,7 @@ export default function PTBookingScreen() {
               ))}
               {!visibleSlots.length ? (
                 <Text style={s.muted}>
-                  Không có lịch AVAILABLE trong ngày này.
+                  Không có khung giờ trống trong ngày này.
                 </Text>
               ) : null}
             </View>

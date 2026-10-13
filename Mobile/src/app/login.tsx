@@ -4,11 +4,9 @@ import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   AuthButton,
-  AuthDivider,
   AuthField,
   AuthLink,
   AuthScreen,
-  SocialButtons,
   authStyles,
 } from '@/components/auth-ui';
 import { AuthColors as C } from '@/constants/theme';
@@ -46,9 +44,6 @@ export default function Login() {
     } finally {
       setSubmitting(false);
     }
-  }
-  function handleBiometricLogin() {
-    /* TODO: connect native biometric authentication. */
   }
   return (
     <AuthScreen showHeader={false}>
@@ -117,20 +112,6 @@ export default function Login() {
         onPress={handleLogin}
         disabled={submitting}
       />
-      <View style={[authStyles.card, s.bio]}>
-        <View style={s.iconBox}>
-          <Ionicons name="finger-print" size={27} color={C.lime} />
-        </View>
-        <View style={s.bioCopy}>
-          <Text style={s.bioTitle}>Xác thực sinh trắc học</Text>
-          <Text style={s.muted}>Face ID / Touch ID cho hội viên</Text>
-        </View>
-        <Pressable style={s.scan} onPress={handleBiometricLogin} disabled accessibilityState={{ disabled: true }}>
-          <Text style={s.scanText}>CHƯA HỖ TRỢ</Text>
-        </Pressable>
-      </View>
-      <AuthDivider title="HOẶC ĐĂNG NHẬP NHANH BẰNG" />
-      <SocialButtons />
       <View style={s.status}>
         <View style={s.mintDot} />
         <Text style={s.statusText}>
@@ -233,22 +214,6 @@ const s = StyleSheet.create({
   muted: { color: C.muted, fontSize: 14, lineHeight: 19 },
   link: { color: C.lime, fontSize: 13, fontWeight: '700' },
   error: { color: C.error, marginTop: 10, fontSize: 13 },
-  bio: { marginTop: 26, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  bioCopy: { flex: 1 },
-  bioTitle: { color: C.text, fontSize: 14, fontWeight: '700' },
-  scan: {
-    backgroundColor: C.surfaceHigh,
-    borderRadius: 9,
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    maxWidth: 80,
-  },
-  scanText: {
-    color: C.text,
-    fontSize: 11,
-    fontWeight: '700',
-    textAlign: 'center',
-  },
   status: {
     backgroundColor: C.surfaceLow,
     borderRadius: 10,

@@ -16,6 +16,7 @@ export default function PTScreen() {
   const [trainers, setTrainers] = useState<ApiPT[]>();
   const [filter, setFilter] = useState('Tất cả');
   const [error, setError] = useState('');
+  const [reload, setReload] = useState(0);
 
   useFocusEffect(
     useCallback(() => {
@@ -40,7 +41,7 @@ export default function PTScreen() {
       return () => {
         active = false;
       };
-    }, [])
+    }, [reload])
   );
 
   const specialties = useMemo(
@@ -102,9 +103,20 @@ export default function PTScreen() {
           {trainers === undefined ? (
             <Text style={s.center}>Đang tải danh sách hướng dẫn viên...</Text>
           ) : null}
-          {error ? <Text style={s.error}>{error}</Text> : null}
+          {error ? (
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => {
+                setTrainers(undefined);
+                setError('');
+                setReload((value) => value + 1);
+              }}
+            >
+              <Text style={s.error}>{error} · Chạm để thử lại</Text>
+            </Pressable>
+          ) : null}
           {trainers !== undefined && !visible.length && !error ? (
-            <Text style={s.center}>Database chưa có hướng dẫn viên đang hoạt động phù hợp.</Text>
+            <Text style={s.center}>Hiện chưa có hướng dẫn viên phù hợp.</Text>
           ) : null}
 
           {visible.map((trainer) => (

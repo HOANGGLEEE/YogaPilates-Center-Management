@@ -1,5 +1,5 @@
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import {
   Alert,
   Pressable,
@@ -39,25 +39,41 @@ export default function NotificationsScreen() {
   const [prefs, setPrefs] = useState<NotificationPreferences | null>(null);
   const [error, setError] = useState('');
   const [showSettings, setShowSettings] = useState(false);
+  const [loadedAccountId, setLoadedAccountId] = useState<number | null>(null);
+  const requestId = useRef(0);
   const load = useCallback(async () => {
-    if (!user?.accountId) return;
+    const currentRequest = ++requestId.current;
+    const accountId = user?.accountId;
+    if (!accountId) {
+      setRows(null);
+      setPrefs(null);
+      setLoadedAccountId(null);
+      return;
+    }
+    setError('');
     try {
       const [items, options] = await Promise.all([
-        getNotifications(user.accountId),
-        getNotificationPreferences(user.accountId),
+        getNotifications(accountId),
+        getNotificationPreferences(accountId),
       ]);
+      if (currentRequest !== requestId.current) return;
       setRows(items);
       setPrefs(options);
-      setError('');
+      setLoadedAccountId(accountId);
     } catch (e) {
+      if (currentRequest !== requestId.current) return;
       setError(e instanceof Error ? e.message : 'Không tải được thông báo');
     }
   }, [user?.accountId]);
   useFocusEffect(
     useCallback(() => {
       void load();
+      return () => { requestId.current += 1; };
     }, [load])
   );
+  // Never display the previous member's notifications while another account loads.
+  const visibleRows = loadedAccountId === user?.accountId ? rows : null;
+  const visiblePrefs = loadedAccountId === user?.accountId ? prefs : null;
   async function read(row: Notification) {
     try {
       await markNotificationRead(row.ThongBaoID);
@@ -125,13 +141,13 @@ export default function NotificationsScreen() {
             <Text style={s.link}>Cài đặt</Text>
           </Pressable>
         </View>
-        {showSettings && prefs ? (
+        {showSettings && visiblePrefs ? (
           <View style={s.card}>
             {settings.map(([key, label]) => (
               <View key={key} style={s.setting}>
                 <Text style={s.body}>{label}</Text>
                 <Switch
-                  value={!!prefs[key]}
+                  value={!!visiblePrefs[key]}
                   onValueChange={(value) => toggle(key, value)}
                 />
               </View>
@@ -142,12 +158,12 @@ export default function NotificationsScreen() {
           <Pressable onPress={load}>
             <Text style={s.error}>{error} · Chạm để thử lại</Text>
           </Pressable>
-        ) : rows === null ? (
+        ) : visibleRows === null ? (
           <Text style={s.muted}>Đang tải...</Text>
-        ) : rows.length === 0 ? (
+        ) : visibleRows.length === 0 ? (
           <Text style={s.muted}>Chưa có thông báo.</Text>
         ) : (
-          rows.map((row) => (
+          visibleRows.map((row) => (
             <Pressable
               key={row.ThongBaoID}
               style={[s.card, !row.NgayDoc && s.unread]}
