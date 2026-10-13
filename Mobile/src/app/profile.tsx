@@ -336,12 +336,6 @@ export default function ProfileScreen() {
               )}
               <View style={styles.passActions}>
                 <Pressable
-                  style={styles.darkButton}
-                  onPress={() => router.push('/check-in-pass')}
-                >
-                  <Text style={styles.darkButtonText}>▧ MÃ QR CHECK-IN</Text>
-                </Pressable>
-                <Pressable
                   style={styles.primaryButtonSmall}
                   onPress={() => router.push('/membership-detail')}
                 >
@@ -349,17 +343,14 @@ export default function ProfileScreen() {
                     GÓI TẬP CỦA TÔI
                   </Text>
                 </Pressable>
+                <Pressable
+                  style={styles.darkButton}
+                  onPress={() => router.push('/check-in-pass')}
+                >
+                  <Text style={styles.darkButtonText}>▧ MÃ QR CHECK-IN</Text>
+                </Pressable>
               </View>
             </View>
-            <Pressable
-              style={styles.ordersButton}
-              onPress={() => router.push('/check-in-history')}
-              accessibilityLabel="Xem lịch sử check-in"
-            >
-              <FontAwesome name="history" size={12} color="#182000" />
-              <Text style={styles.ordersButtonText}>LỊCH SỬ CHECK-IN</Text>
-              <FontAwesome name="arrow-right" size={11} color="#182000" />
-            </Pressable>
             <Pressable
               style={styles.ptBookingButton}
               onPress={() => router.push('/pt-schedule')}
@@ -367,6 +358,15 @@ export default function ProfileScreen() {
             >
               <FontAwesome name="calendar" size={12} color="#182000" />
               <Text style={styles.ptBookingButtonText}>LỊCH HƯỚNG DẪN 1-1</Text>
+              <FontAwesome name="arrow-right" size={11} color="#182000" />
+            </Pressable>
+            <Pressable
+              style={styles.ordersButton}
+              onPress={() => router.push('/check-in-history')}
+              accessibilityLabel="Xem lịch sử check-in"
+            >
+              <FontAwesome name="history" size={12} color="#182000" />
+              <Text style={styles.ordersButtonText}>LỊCH SỬ CHECK-IN</Text>
               <FontAwesome name="arrow-right" size={11} color="#182000" />
             </Pressable>
             <View style={styles.actionDivider} />
