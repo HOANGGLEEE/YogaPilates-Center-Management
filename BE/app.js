@@ -52,11 +52,12 @@ app.get('/', (req, res) => {
 app.get('/health', (req, res) => {
   db.query('SELECT 1 AS ok', (err) => {
     if (err) {
+      console.error('Database health check failed:', err);
       return res.status(503).json({
         status: 'degraded',
         api: 'ok',
         database: 'error',
-        message: err.message
+        ...(process.env.NODE_ENV !== 'production' && { message: err.message })
       });
     }
 
