@@ -75,17 +75,17 @@ export default function DashboardPage({
           <p>Tự động cập nhật mỗi 60 giây · Giờ Việt Nam (UTC+7).</p>
         </div>
         <div className="hero-actions">
-          <button className="primary" onClick={() => onNavigate('Hội viên')}>
-            Quản lý hội viên
+          <button className="primary" onClick={() => onNavigate('Hướng dẫn viên', 1)}>
+            Lịch hướng dẫn 1-1
+          </button>
+          <button onClick={() => onNavigate('Gói tập')}>
+            Quản lý gói tập
           </button>
           <button onClick={() => onNavigate('Check-In')}>
             Giám sát check-in
           </button>
-          <button onClick={() => onNavigate('Đơn hàng')}>
-            Quản lý đơn hàng
-          </button>
-          <button onClick={() => onNavigate('Báo cáo thống kê')}>
-            Xem báo cáo
+          <button onClick={() => onNavigate('Hội viên')}>
+            Quản lý hội viên
           </button>
         </div>
         <div className="hero-status">
