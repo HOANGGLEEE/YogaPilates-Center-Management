@@ -142,23 +142,6 @@ export function AuthDivider({ title }: { title: string }) {
     </View>
   );
 }
-export function SocialButtons() {
-  const handleSocialLogin = (_provider: 'google' | 'apple') => {
-    /* TODO: connect OAuth when configured. */
-  };
-  return (
-    <View style={s.socialRow}>
-      <Pressable style={s.social} onPress={() => handleSocialLogin('google')}>
-        <Text style={[s.socialIcon, { color: '#c4d5aa' }]}>G</Text>
-        <Text style={s.socialText}>Google</Text>
-      </Pressable>
-      <Pressable style={s.social} onPress={() => handleSocialLogin('apple')}>
-        <Ionicons name="logo-apple" size={21} color={C.text} />
-        <Text style={s.socialText}>Apple ID</Text>
-      </Pressable>
-    </View>
-  );
-}
 export function AuthLink({
   text,
   action,
@@ -276,19 +259,6 @@ const s = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 1.1,
   },
-  socialRow: { flexDirection: 'row', gap: 12 },
-  social: {
-    flex: 1,
-    height: 52,
-    borderRadius: 12,
-    backgroundColor: C.surface,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 9,
-  },
-  socialIcon: { fontSize: 23, fontWeight: '800' },
-  socialText: { color: C.text, fontSize: 15, fontWeight: '700' },
   footer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
