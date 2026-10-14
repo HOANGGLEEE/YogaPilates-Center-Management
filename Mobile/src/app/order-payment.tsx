@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import BackendImage from '@/components/backend-image';
 import QRCode from 'react-native-qrcode-svg';
 import * as Clipboard from 'expo-clipboard';
@@ -84,7 +85,7 @@ export default function OrderPaymentScreen() {
   const pending = !error && order?.TrangThai === 'PENDING' && order?.TrangThaiThanhToan === 'PENDING';
   return (
     <ShopPage title="THANH TOÁN ĐƠN HÀNG">
-      {loading && <ActivityIndicator color="#c4d5aa" />}
+      {loading && <ActivityIndicator color={Palette.accentInk} />}
       {!!error && <Text style={s.error}>{error}</Text>}
       {order && (
         <>

@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
@@ -9,14 +10,14 @@ import { getCheckInHistory, type ApiCheckInRecord } from '@/lib/check-in-api';
 import { isCompleted, recordDurationMinutes, sessionDate, sessionDay, sessionsInMonth, summarizeCheckInHistory } from '@/lib/check-in-summary';
 
 const C = {
-  bg: '#182521',
-  card: '#26382f',
-  high: '#30443a',
-  text: '#f2eee5',
-  muted: '#aeb59e',
-  lime: '#c4d5aa',
-  mint: '#a8c7b5',
-  ink: '#18251d',
+  bg: Palette.background,
+  card: Palette.text,
+  high: Palette.surface,
+  text: Palette.text,
+  muted: Palette.muted,
+  lime: Palette.accentInk,
+  mint: Palette.accentInk,
+  ink: Palette.text,
 };
 type MonthFilter = 'current' | 'previous' | 'all';
 const monthStart = (offset: number) => {
@@ -76,7 +77,7 @@ export default function CheckInHistoryScreen() {
     <SafeAreaView style={s.safe} edges={['top']}>
       <View style={s.top}>
         <View style={s.brand}>
-          <Ionicons name="flash" color={C.lime} size={19} />
+          <Ionicons name="flash" color={Palette.accentInk} size={19} />
           <Text style={s.brandText}>SCHEDULE HISTORY</Text>
         </View>
         <Ionicons name="person-circle-outline" color={C.text} size={28} />
@@ -175,7 +176,7 @@ export default function CheckInHistoryScreen() {
         </Text>
         {!filtered.length ? (
           <View style={s.empty}>
-            <Ionicons name="calendar-outline" color={C.lime} size={35} />
+            <Ionicons name="calendar-outline" color={Palette.accentInk} size={35} />
             <Text style={s.cardTitle}>Chưa có lịch sử check-in</Text>
             <Text style={s.muted}>
               {error ||
@@ -286,7 +287,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderBottomColor: '#24272a',
+    borderBottomColor: Palette.border,
   },
   brand: { flexDirection: 'row', alignItems: 'center', gap: 9 },
   brandText: { color: C.text, fontSize: 17, fontWeight: '900' },
@@ -307,7 +308,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  kicker: { color: C.lime, fontSize: 10, fontWeight: '900' },
+  kicker: { color: Palette.accentInk, fontSize: 10, fontWeight: '900' },
   title: { color: C.text, fontSize: 19, fontWeight: '900' },
   summary: { backgroundColor: C.card, borderRadius: 15, padding: 14, gap: 13 },
   summaryHead: {
@@ -318,7 +319,7 @@ const s = StyleSheet.create({
   },
   label: { color: C.muted, fontSize: 9, fontWeight: '900' },
   big: { color: C.text, fontSize: 35, fontWeight: '900', marginTop: 2 },
-  bigAccent: { color: C.lime, fontSize: 16 },
+  bigAccent: { color: Palette.accentInk, fontSize: 16 },
   streak: {
     color: C.text,
     backgroundColor: C.high,
@@ -345,7 +346,7 @@ const s = StyleSheet.create({
   metric: {
     flex: 1,
     minHeight: 66,
-    backgroundColor: '#191b1e',
+    backgroundColor: Palette.background,
     borderRadius: 9,
     padding: 9,
     justifyContent: 'space-between',
@@ -363,7 +364,7 @@ const s = StyleSheet.create({
   chipActive: { backgroundColor: C.lime },
   chipText: { color: C.muted, fontSize: 10, fontWeight: '900' },
   chipTextActive: { color: C.ink },
-  section: { color: C.lime, fontSize: 11, fontWeight: '900', marginTop: 4 },
+  section: { color: Palette.accentInk, fontSize: 11, fontWeight: '900', marginTop: 4 },
   empty: {
     minHeight: 190,
     backgroundColor: C.card,
@@ -379,14 +380,14 @@ const s = StyleSheet.create({
   liveRecord: { borderLeftWidth: 3, borderLeftColor: C.lime },
   recordHead: { flexDirection: 'row', alignItems: 'flex-start', gap: 8 },
   recordDate: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 10,
     fontWeight: '900',
     marginBottom: 4,
   },
   status: {
     color: C.mint,
-    backgroundColor: '#26312e',
+    backgroundColor: Palette.surface,
     borderRadius: 11,
     paddingHorizontal: 7,
     paddingVertical: 4,
@@ -404,7 +405,7 @@ const s = StyleSheet.create({
   activity: {
     color: C.text,
     fontSize: 11,
-    backgroundColor: '#191b1e',
+    backgroundColor: Palette.background,
     borderRadius: 8,
     padding: 9,
   },

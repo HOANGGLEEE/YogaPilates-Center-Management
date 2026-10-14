@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C, AuthRadius as R, AuthSpacing as S } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { ReactNode, useState } from 'react';
@@ -13,11 +14,7 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-  AuthColors as C,
-  AuthRadius as R,
-  AuthSpacing as S,
-} from '@/constants/theme';
+
 
 export function AuthScreen({
   children,
@@ -61,7 +58,7 @@ export function AuthHeader() {
         <View style={s.dot} />
       </View>
       <View style={s.avatar}>
-        <Ionicons name="person-outline" size={20} color="#263529" />
+        <Ionicons name="person-outline" size={20} color={Palette.text} />
       </View>
     </View>
   );
@@ -88,7 +85,7 @@ export function AuthField({
         <Ionicons name={icon} size={21} color={C.muted} />
         <TextInput
           {...props}
-          placeholderTextColor="#777b70"
+          placeholderTextColor={Palette.muted}
           style={s.input}
           secureTextEntry={password && !visible}
         />
@@ -129,7 +126,7 @@ export function AuthButton({
       disabled={disabled}
     >
       <Text style={s.buttonText}>{title}</Text>
-      <Ionicons name={icon} size={22} color="#263529" />
+      <Ionicons name={icon} size={22} color={Palette.text} />
     </Pressable>
   );
 }
@@ -149,7 +146,7 @@ export function SocialButtons() {
   return (
     <View style={s.socialRow}>
       <Pressable style={s.social} onPress={() => handleSocialLogin('google')}>
-        <Text style={[s.socialIcon, { color: '#c4d5aa' }]}>G</Text>
+        <Text style={[s.socialIcon, { color: Palette.accentInk }]}>G</Text>
         <Text style={s.socialText}>Google</Text>
       </Pressable>
       <Pressable style={s.social} onPress={() => handleSocialLogin('apple')}>
@@ -188,7 +185,7 @@ export const authStyles = StyleSheet.create({
   card: { backgroundColor: C.surface, borderRadius: R.xl, padding: S.md },
   row: { flexDirection: 'row', alignItems: 'center' },
   kicker: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 13,
     fontWeight: '700',
     letterSpacing: 1.5,
@@ -213,7 +210,7 @@ const s = StyleSheet.create({
   },
   brand: { flexDirection: 'row', alignItems: 'center', gap: 9 },
   brandText: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 18,
     fontWeight: '700',
     letterSpacing: 2,
@@ -223,7 +220,7 @@ const s = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    backgroundColor: '#fff',
+    backgroundColor: Palette.soft,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -258,7 +255,7 @@ const s = StyleSheet.create({
   },
   disabled: { opacity: 0.55 },
   buttonText: {
-    color: '#263529',
+    color: Palette.text,
     fontSize: 15,
     fontWeight: '800',
     letterSpacing: 1.2,
@@ -269,7 +266,7 @@ const s = StyleSheet.create({
     gap: 12,
     marginVertical: 26,
   },
-  line: { height: 1, backgroundColor: '#3c5045', flex: 1 },
+  line: { height: 1, backgroundColor: Palette.surface, flex: 1 },
   dividerText: {
     color: C.muted,
     fontSize: 11,
@@ -297,7 +294,7 @@ const s = StyleSheet.create({
   },
   muted: { color: C.muted, fontSize: 15 },
   link: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 15,
     fontWeight: '700',
     textDecorationLine: 'underline',

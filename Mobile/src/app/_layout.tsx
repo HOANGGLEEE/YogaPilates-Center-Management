@@ -1,6 +1,6 @@
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+import { DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Palette } from '@/constants/theme';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
@@ -53,9 +53,8 @@ function AuthStack() {
   );
 }
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={{ ...DefaultTheme, colors: { ...DefaultTheme.colors, primary: Palette.accentInk, background: Palette.background, card: Palette.surface, text: Palette.text, border: Palette.border, notification: Palette.error } }}>
       <AuthProvider>
         <AuthStack />
       </AuthProvider>

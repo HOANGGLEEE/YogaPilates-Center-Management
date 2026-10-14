@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { useCallback, useState } from 'react';
 import { useFocusEffect } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -36,7 +37,7 @@ export default function GymCrowdingCard() {
   const busy = canCompare ? observed.filter(h => h.averageCount === observed[0].averageCount).slice(0,3) : [];
   const quiet = canCompare ? [...observed].reverse().filter(h => h.averageCount === observed[observed.length-1].averageCount).slice(0,3).sort((a,b)=>a.hour-b.hour) : [];
   return <View style={s.card}>
-    <View style={s.heading}><Ionicons name="people-outline" size={22} color="#c4d5aa" /><Text style={s.title}>Chọn giờ tập thoải mái</Text></View>
+    <View style={s.heading}><Ionicons name="people-outline" size={22} color={Palette.accentInk} /><Text style={s.title}>Chọn giờ tập thoải mái</Text></View>
     {error ? <View style={s.errorRow}><Text style={s.note}>{error}</Text><Pressable accessibilityRole="button" onPress={() => setReload(v=>v+1)}><Text style={s.retry}>Thử lại</Text></Pressable></View> : null}
     {!data && !error ? <Text style={s.note}>Đang tải tình hình phòng tập…</Text> : null}
     {data && <>
@@ -50,13 +51,13 @@ export default function GymCrowdingCard() {
   </View>;
 }
 const s = StyleSheet.create({
-  card: { marginBottom: 24, padding: 18, borderWidth: 1, borderColor: '#343b36', borderRadius: 14, backgroundColor: '#20312b', gap: 14 },
-  heading: { flexDirection: 'row', alignItems: 'center', gap: 10 }, title: { flex: 1, color: '#f2eee5', fontSize: 16, fontWeight: '700' },
-  note: { color: '#aeb59e', fontSize: 12, lineHeight: 18 }, current: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8, paddingBottom: 14, borderBottomWidth: 1, borderBottomColor: '#343b36' },
-  count: { color: '#c4d5aa', fontSize: 25, fontWeight: '700' }, unit: { color: '#aeb59e', fontSize: 12, fontWeight: '400' },
+  card: { marginBottom: 24, padding: 18, borderWidth: 1, borderColor: Palette.border, borderRadius: 14, backgroundColor: Palette.surface, gap: 14 },
+  heading: { flexDirection: 'row', alignItems: 'center', gap: 10 }, title: { flex: 1, color: Palette.text, fontSize: 16, fontWeight: '700' },
+  note: { color: Palette.muted, fontSize: 12, lineHeight: 18 }, current: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8, paddingBottom: 14, borderBottomWidth: 1, borderBottomColor: Palette.border },
+  count: { color: Palette.accentInk, fontSize: 25, fontWeight: '700' }, unit: { color: Palette.muted, fontSize: 12, fontWeight: '400' },
   periods: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 }, period: { flexGrow: 1, flexBasis: 145, padding: 12, borderWidth: 1, borderRadius: 10, gap: 8 },
-  quiet: { backgroundColor: '#1e3025', borderColor: '#335340' }, busy: { backgroundColor: '#302a1d', borderColor: '#55452b' },
-  quietLabel: { color: '#85dfad', fontSize: 12, fontWeight: '700' }, busyLabel: { color: '#e8cd84', fontSize: 12, fontWeight: '700' },
-  time: { color: '#f2eee5', fontSize: 13, fontWeight: '600' }, source: { color: '#8f9b92', fontSize: 11, lineHeight: 17 },
-  errorRow: { gap: 8 }, retry: { color: '#c4d5aa', paddingVertical: 8, fontSize: 12, fontWeight: '600' },
+  quiet: { backgroundColor: Palette.surface, borderColor: Palette.border }, busy: { backgroundColor: Palette.surface, borderColor: Palette.border },
+  quietLabel: { color: Palette.muted, fontSize: 12, fontWeight: '700' }, busyLabel: { color: Palette.muted, fontSize: 12, fontWeight: '700' },
+  time: { color: Palette.text, fontSize: 13, fontWeight: '600' }, source: { color: Palette.muted, fontSize: 11, lineHeight: 17 },
+  errorRow: { gap: 8 }, retry: { color: Palette.accentInk, paddingVertical: 8, fontSize: 12, fontWeight: '600' },
 });

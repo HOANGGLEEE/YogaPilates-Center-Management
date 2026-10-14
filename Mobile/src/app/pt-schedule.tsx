@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
@@ -100,11 +101,11 @@ export default function PTScheduleScreen() {
             router.canGoBack() ? router.back() : router.replace('/profile')
           }
         >
-          <Ionicons name="arrow-back" color="#c4d5aa" size={21} />
+          <Ionicons name="arrow-back" color={Palette.accentInk} size={21} />
         </Pressable>
         <Text style={s.headerTitle}>LỊCH HƯỚNG DẪN 1-1</Text>
         <Pressable style={s.add} onPress={() => router.push('/pt')}>
-          <Ionicons name="add" color="#182000" size={22} />
+          <Ionicons name="add" color={Palette.text} size={22} />
         </Pressable>
       </View>
       <ScrollView contentContainerStyle={s.content}>
@@ -116,7 +117,7 @@ export default function PTScheduleScreen() {
         {error ? <Text style={s.error}>{error}</Text> : null}
         {bookings && !bookings.length && !error ? (
           <View style={s.empty}>
-            <Ionicons name="calendar-outline" color="#c4d5aa" size={36} />
+            <Ionicons name="calendar-outline" color={Palette.accentInk} size={36} />
             <Text style={s.cardTitle}>Bạn chưa có lịch hướng dẫn 1-1</Text>
             <Pressable style={s.primary} onPress={() => router.push('/pt')}>
               <Text style={s.primaryText}>CHỌN HƯỚNG DẪN VIÊN</Text>
@@ -191,7 +192,7 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#0d1011' },
+  safe: { flex: 1, backgroundColor: Palette.background },
   header: {
     height: 54,
     paddingHorizontal: 14,
@@ -203,7 +204,7 @@ const s = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#242829',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -211,11 +212,11 @@ const s = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
+  headerTitle: { color: Palette.accentInk, fontSize: 12, fontWeight: '900' },
   content: {
     width: '100%',
     maxWidth: 540,
@@ -224,42 +225,42 @@ const s = StyleSheet.create({
     gap: 12,
     paddingBottom: 35,
   },
-  kicker: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
-  title: { color: '#f0f5eb', fontSize: 22, fontWeight: '900' },
-  center: { color: '#aeb9ad', textAlign: 'center', padding: 30 },
-  error: { color: '#ff8d82', textAlign: 'center', padding: 15 },
+  kicker: { color: Palette.accentInk, fontSize: 9, fontWeight: '900' },
+  title: { color: Palette.text, fontSize: 22, fontWeight: '900' },
+  center: { color: Palette.muted, textAlign: 'center', padding: 30 },
+  error: { color: Palette.error, textAlign: 'center', padding: 15 },
   empty: {
-    backgroundColor: '#1b2022',
+    backgroundColor: Palette.surface,
     borderRadius: 14,
     padding: 25,
     alignItems: 'center',
     gap: 12,
   },
-  card: { backgroundColor: '#1b2022', borderRadius: 13, padding: 14, gap: 10 },
+  card: { backgroundColor: Palette.surface, borderRadius: 13, padding: 14, gap: 10 },
   cardHead: { flexDirection: 'row', gap: 10, alignItems: 'flex-start' },
-  cardTitle: { color: '#c4d5aa', fontSize: 17, fontWeight: '900' },
-  specialty: { color: '#c4d5aa', fontSize: 9, marginTop: 3 },
+  cardTitle: { color: Palette.accentInk, fontSize: 17, fontWeight: '900' },
+  specialty: { color: Palette.accentInk, fontSize: 9, marginTop: 3 },
   status: {
-    color: '#182000',
-    backgroundColor: '#c4d5aa',
+    color: Palette.text,
+    backgroundColor: Palette.accent,
     borderRadius: 10,
     paddingHorizontal: 8,
     paddingVertical: 5,
     fontSize: 8,
     fontWeight: '900',
   },
-  cancelled: { color: '#ffaaa1', backgroundColor: '#442b2b' },
+  cancelled: { color: Palette.error, backgroundColor: Palette.errorSurface },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 12,
     borderTopWidth: 1,
-    borderTopColor: '#303638',
+    borderTopColor: Palette.border,
     paddingTop: 9,
   },
-  muted: { color: '#8e998d', fontSize: 10 },
+  muted: { color: Palette.muted, fontSize: 10 },
   value: {
-    color: '#e8efe4',
+    color: Palette.text,
     fontSize: 11,
     fontWeight: '700',
     textAlign: 'right',
@@ -267,19 +268,19 @@ const s = StyleSheet.create({
   },
   cancelButton: {
     minHeight: 40,
-    backgroundColor: '#3a2a2a',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  cancelText: { color: '#ff9f96', fontSize: 10, fontWeight: '900' },
+  cancelText: { color: Palette.muted, fontSize: 10, fontWeight: '900' },
   primary: {
     minHeight: 44,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 9,
     paddingHorizontal: 18,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  primaryText: { color: '#182000', fontSize: 10, fontWeight: '900' },
+  primaryText: { color: Palette.text, fontSize: 10, fontWeight: '900' },
 });

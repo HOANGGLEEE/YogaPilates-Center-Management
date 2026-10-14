@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Clipboard from 'expo-clipboard';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -13,7 +14,7 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AuthColors as C } from '@/constants/theme';
+
 import { formatVND } from '@/lib/package-logic';
 import {
   backendPaymentMethodNames,
@@ -113,7 +114,7 @@ export default function PackagePaymentScreen() {
                         ? 'ban-outline'
                         : 'time-outline'
                 }
-                color={failed || cancelled ? C.error : C.lime}
+                color={failed || cancelled ? C.error : Palette.accentInk}
                 size={38}
               />
             </View>
@@ -186,7 +187,7 @@ export default function PackagePaymentScreen() {
                       )
                     }
                   >
-                    <Ionicons name="copy-outline" color={C.lime} size={18} />
+                    <Ionicons name="copy-outline" color={Palette.accentInk} size={18} />
                     <Text style={s.copyText}>SAO CHÉP</Text>
                   </Pressable>
                 </View>
@@ -207,7 +208,7 @@ export default function PackagePaymentScreen() {
                       )
                     }
                   >
-                    <Ionicons name="copy-outline" color={C.lime} size={18} />
+                    <Ionicons name="copy-outline" color={Palette.accentInk} size={18} />
                     <Text style={s.copyText}>SAO CHÉP</Text>
                   </Pressable>
                 </View>
@@ -225,7 +226,7 @@ export default function PackagePaymentScreen() {
                     ? 'storefront-outline'
                     : 'information-circle-outline'
                 }
-                color={C.lime}
+                color={Palette.accentInk}
                 size={23}
               />
               <View style={{ flex: 1 }}>
@@ -381,7 +382,7 @@ const s = StyleSheet.create({
     zIndex: 2,
   },
   stepNumber: { color: C.surfaceLowest, fontSize: 10, fontWeight: '900' },
-  stepLabel: { color: C.lime, fontSize: 9, fontWeight: '800', marginTop: 5 },
+  stepLabel: { color: Palette.accentInk, fontSize: 9, fontWeight: '800', marginTop: 5 },
   track: {
     position: 'absolute',
     top: 12,
@@ -401,7 +402,7 @@ const s = StyleSheet.create({
     marginTop: 8,
   },
   status: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 25,
     fontWeight: '900',
     textAlign: 'center',
@@ -437,7 +438,7 @@ const s = StyleSheet.create({
     textAlign: 'right',
     flex: 1.5,
   },
-  accent: { color: C.lime, fontSize: 17, fontWeight: '900' },
+  accent: { color: Palette.accentInk, fontSize: 17, fontWeight: '900' },
   qrCard: {
     backgroundColor: C.surface,
     borderRadius: 13,
@@ -474,10 +475,10 @@ const s = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: C.surface,
   },
-  copyText: { color: C.lime, fontSize: 9, fontWeight: '900' },
+  copyText: { color: Palette.accentInk, fontSize: 9, fontWeight: '900' },
   qrNote: { color: C.muted, fontSize: 12, lineHeight: 17, textAlign: 'center' },
   reportedText: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 12,
     lineHeight: 17,
     textAlign: 'center',

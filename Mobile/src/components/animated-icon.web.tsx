@@ -1,4 +1,5 @@
 import { Image } from 'expo-image';
+import { studioMark } from '@/constants/theme';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Keyframe, Easing } from 'react-native-reanimated';
 
@@ -80,7 +81,7 @@ export function AnimatedIcon() {
       >
         <Image
           style={styles.image}
-          source={require('@/assets/images/expo-logo.png')}
+          source={studioMark}
         />
       </Animated.View>
     </View>

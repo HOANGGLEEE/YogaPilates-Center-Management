@@ -7,22 +7,44 @@ import '@/global.css';
 
 import { Platform } from 'react-native';
 
-export const Colors = {
-  light: {
-    text: '#26382f',
-    background: '#f2eee5',
-    backgroundElement: '#e8e2d4',
-    backgroundSelected: '#d7e3c6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#182521',
-    backgroundElement: '#26382f',
-    backgroundSelected: '#3c5045',
-    textSecondary: '#B0B4BA',
-  },
+export const Palette = {
+  background: '#F7F3EC',
+  accent: '#D9B7A5',
+  surface: '#FFFCF8',
+  soft: '#EFE3DA',
+  border: '#E8DCD1',
+  text: '#3F302B',
+  muted: '#7D6B62',
+  accentInk: '#805444',
+  white: '#FFFFFF',
+  success: '#526B53',
+  successSurface: '#EAF0E6',
+  error: '#B13F35',
+  errorSurface: '#F8E6E1',
+  warning: '#805E25',
+  warningSurface: '#F5EBD6',
+  scrim: 'rgba(63,48,43,0.48)',
+  imageScrim: 'rgba(63,48,43,0.68)',
+  shadow: 'rgba(63,48,43,0.08)',
 } as const;
+
+const warmTheme = {
+  text: Palette.text,
+  background: Palette.background,
+  backgroundElement: Palette.surface,
+  backgroundSelected: Palette.accent,
+  textSecondary: Palette.muted,
+} as const;
+
+export const Colors = { light: warmTheme, dark: warmTheme } as const;
+
+export const trainerPlaceholder = {
+  uri: `data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320"><rect width="320" height="320" rx="36" fill="#EFE3DA"/><circle cx="160" cy="121" r="42" fill="none" stroke="#805444" stroke-width="6"/><path d="M78 249c0-49 37-80 82-80s82 31 82 80" fill="none" stroke="#805444" stroke-width="6" stroke-linecap="round"/></svg>')}`,
+};
+
+export const studioMark = {
+  uri: `data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#F7F3EC"/><g fill="none" stroke="#805444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 45C18 35 23 21 32 13c9 8 14 22 0 32Z"/><path d="M32 45C17 46 10 37 9 27c11 0 21 6 23 18Zm0 0c15 1 22-8 23-18-11 0-21 6-23 18Z"/><path d="M18 51h28"/></g></svg>')}`,
+};
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
@@ -65,20 +87,20 @@ export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
 
 export const AuthColors = {
-  background: '#182521',
-  surfaceLowest: '#101c18',
-  surfaceLow: '#20312b',
-  surface: '#26382f',
-  surfaceHigh: '#30443a',
-  surfaceHighest: '#3c5045',
-  lime: '#c4d5aa',
-  text: '#f2eee5',
-  muted: '#b8c4b4',
-  border: '#526252',
-  mint: '#a8c7b5',
-  cyan: '#c7b899',
-  success: '#00a572',
-  error: '#ffb4ab',
+  background: Palette.background,
+  surfaceLowest: Palette.background,
+  surfaceLow: Palette.surface,
+  surface: Palette.surface,
+  surfaceHigh: Palette.soft,
+  surfaceHighest: Palette.soft,
+  lime: Palette.accent,
+  text: Palette.text,
+  muted: Palette.muted,
+  border: Palette.border,
+  mint: Palette.accentInk,
+  cyan: Palette.accentInk,
+  success: Palette.success,
+  error: Palette.error,
 } as const;
 
 export const AuthSpacing = { xs: 8, sm: 12, md: 16, lg: 24, xl: 32 } as const;

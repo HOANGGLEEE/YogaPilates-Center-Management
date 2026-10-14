@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
@@ -8,7 +9,7 @@ import {
   AuthScreen,
   authStyles,
 } from '@/components/auth-ui';
-import { AuthColors as C } from '@/constants/theme';
+
 import { useAuth } from '@/context/AuthContext';
 
 export default function ForgotPassword() {
@@ -51,10 +52,10 @@ export default function ForgotPassword() {
     <AuthScreen>
       <View style={s.security}>
         <View style={s.securityInner}>
-          <Ionicons name="lock-closed" size={30} color={C.lime} />
+          <Ionicons name="lock-closed" size={30} color={Palette.accentInk} />
         </View>
         <View style={s.bolt}>
-          <Ionicons name="flash" size={16} color="#00311f" />
+          <Ionicons name="flash" size={16} color={Palette.text} />
         </View>
       </View>
       <Text style={[authStyles.title, s.title]}>Khôi phục mật khẩu</Text>
@@ -95,7 +96,7 @@ export default function ForgotPassword() {
               <Ionicons
                 name={item.icon}
                 size={25}
-                color={method === item.key ? C.lime : C.muted}
+                color={method === item.key ? Palette.accentInk : C.muted}
               />
             </View>
             <View style={s.methodCopy}>
@@ -138,9 +139,9 @@ export default function ForgotPassword() {
         }
       />
       <View style={s.notice}>
-        <Ionicons name="shield-checkmark-outline" size={22} color={C.lime} />
+        <Ionicons name="shield-checkmark-outline" size={22} color={Palette.accentInk} />
         <Text style={s.noticeText}>
-          <Text style={{ color: C.lime, fontWeight: '700' }}>Lưu ý:</Text> Mã
+          <Text style={{ color: Palette.accentInk, fontWeight: '700' }}>Lưu ý:</Text> Mã
           OTP sẽ hết hạn sau <Text style={{ fontWeight: '700' }}>2 phút</Text>.
           Tuyệt đối không cung cấp mã cho bất kỳ ai kể cả HLV hay nhân viên
           trung tâm Yoga & Pilates.
@@ -212,7 +213,7 @@ const s = StyleSheet.create({
     width: 68,
     height: 68,
     borderRadius: 34,
-    backgroundColor: '#101c18',
+    backgroundColor: Palette.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -223,7 +224,7 @@ const s = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#00a572',
+    backgroundColor: Palette.soft,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -256,8 +257,8 @@ const s = StyleSheet.create({
   },
   methodDetail: { color: C.muted, fontSize: 13, marginTop: 6 },
   recommended: {
-    color: C.lime,
-    backgroundColor: '#343d1b',
+    color: Palette.accentInk,
+    backgroundColor: Palette.surface,
     fontSize: 10,
     fontWeight: '700',
     padding: 5,

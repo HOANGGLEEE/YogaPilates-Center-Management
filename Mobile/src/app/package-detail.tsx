@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -19,7 +20,7 @@ import {
   packageFromApiDetail,
 } from '@/lib/package-api';
 import { useAuth } from '@/context/AuthContext';
-import { AuthColors as C } from '@/constants/theme';
+
 import { formatVND, periodLabel } from '@/lib/package-logic';
 import { getFavorite, setFavorite } from '@/lib/membership';
 import { getStudentVerification } from '@/lib/student-verification';
@@ -61,7 +62,7 @@ function Action({
       style={[s.action, muted && s.actionMuted, disabled && { opacity: 0.55 }]}
     >
       <Text style={[s.actionText, muted && { color: C.text }]}>{title}</Text>
-      <Icon name="arrow-forward" color={muted ? C.text : '#263529'} size={19} />
+      <Icon name="arrow-forward" color={muted ? C.text : Palette.text} size={19} />
     </Pressable>
   );
 }
@@ -231,7 +232,7 @@ export default function PackageDetailScreen() {
             onPress={() => router.push('/profile')}
             style={s.avatar}
           >
-            <Icon name="person-outline" color="#263529" size={17} />
+            <Icon name="person-outline" color={Palette.text} size={17} />
           </Pressable>
         </View>
       </View>
@@ -253,7 +254,7 @@ export default function PackageDetailScreen() {
             >
               <Icon
                 name={favorite ? 'heart' : 'heart-outline'}
-                color={favorite ? C.lime : C.text}
+                color={favorite ? Palette.accentInk : C.text}
                 size={20}
               />
             </Pressable>
@@ -281,13 +282,13 @@ export default function PackageDetailScreen() {
         <View style={s.heroCard}>
           <View style={s.heroTop}>
             <View style={s.bestBadge}>
-              <Icon name="star-outline" color="#263529" size={12} />
+              <Icon name="star-outline" color={Palette.text} size={12} />
               <Text style={s.bestText}>
                 {item.popular ? 'PHỔ BIẾN NHẤT' : item.tier}
               </Text>
             </View>
             <View style={s.diamondIcon}>
-              <Icon name="diamond-outline" color={C.lime} />
+              <Icon name="diamond-outline" color={Palette.accentInk} />
             </View>
           </View>
           <Text style={s.heroKicker}>{item.tier}</Text>
@@ -374,7 +375,7 @@ export default function PackageDetailScreen() {
                     ? C.cyan
                     : privilege.accent === 'mint'
                       ? C.mint
-                      : C.lime
+                      : Palette.accentInk
                 }
               />
             </View>
@@ -501,7 +502,7 @@ export default function PackageDetailScreen() {
                   ? 'XÁC MINH HSSV'
                   : 'ĐĂNG KÝ NGAY'}
           </Text>
-          <Icon name="arrow-forward" color="#263529" size={17} />
+          <Icon name="arrow-forward" color={Palette.text} size={17} />
         </Pressable>
       </View>
       <Modal
@@ -579,7 +580,7 @@ const s = StyleSheet.create({
   microLeft: { flexDirection: 'row', alignItems: 'center', gap: 5, flex: 1 },
   dot: { width: 7, height: 7, borderRadius: 4, backgroundColor: C.lime },
   microText: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 10,
     fontWeight: '800',
     letterSpacing: 0.3,
@@ -594,7 +595,7 @@ const s = StyleSheet.create({
     justifyContent: 'center',
   },
   heroCard: {
-    backgroundColor: '#222a22',
+    backgroundColor: Palette.surface,
     borderRadius: 16,
     padding: 15,
     marginBottom: 25,
@@ -614,7 +615,7 @@ const s = StyleSheet.create({
     paddingVertical: 5,
   },
   bestText: {
-    color: '#263529',
+    color: Palette.text,
     fontSize: 10,
     fontWeight: '900',
     letterSpacing: 0.7,
@@ -661,7 +662,7 @@ const s = StyleSheet.create({
     left: 0,
     right: 0,
     height: 48,
-    backgroundColor: 'rgba(12,14,17,.68)',
+    backgroundColor: Palette.imageScrim,
   },
   imageBadges: {
     position: 'absolute',
@@ -671,8 +672,8 @@ const s = StyleSheet.create({
     gap: 6,
   },
   imagePill: {
-    color: C.lime,
-    backgroundColor: '#151916',
+    color: Palette.accentInk,
+    backgroundColor: Palette.soft,
     fontSize: 11,
     fontWeight: '700',
     paddingHorizontal: 8,
@@ -693,7 +694,7 @@ const s = StyleSheet.create({
     gap: 5,
   },
   price: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 32,
     lineHeight: 37,
     fontWeight: '900',
@@ -702,13 +703,13 @@ const s = StyleSheet.create({
   perMonth: { color: C.muted, fontSize: 12, fontWeight: '800' },
   priceMeta: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   original: {
-    color: '#8e9379',
+    color: Palette.muted,
     fontSize: 13,
     textDecorationLine: 'line-through',
   },
   discount: {
-    color: C.lime,
-    backgroundColor: '#303b0d',
+    color: Palette.accentInk,
+    backgroundColor: Palette.surface,
     borderRadius: 12,
     overflow: 'hidden',
     paddingHorizontal: 8,
@@ -743,13 +744,13 @@ const s = StyleSheet.create({
     marginTop: 3,
     textAlign: 'center',
   },
-  durationTextActive: { color: '#263529' },
+  durationTextActive: { color: Palette.text },
   hotDeal: {
     position: 'absolute',
     top: 2,
     right: 2,
-    color: C.lime,
-    backgroundColor: '#3c5045',
+    color: Palette.accentInk,
+    backgroundColor: Palette.surface,
     fontSize: 9,
     fontWeight: '800',
     paddingHorizontal: 5,
@@ -770,7 +771,7 @@ const s = StyleSheet.create({
     fontWeight: '800',
     flexShrink: 1,
   },
-  sectionBadge: { color: C.lime, fontSize: 11, fontWeight: '800' },
+  sectionBadge: { color: Palette.accentInk, fontSize: 11, fontWeight: '800' },
   sectionCopy: {
     color: C.muted,
     fontSize: 13,
@@ -802,7 +803,7 @@ const s = StyleSheet.create({
   },
   privilegeTitle: { color: C.text, fontSize: 13, fontWeight: '800', flex: 1 },
   privilegeBadge: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 10,
     fontWeight: '800',
     maxWidth: 88,
@@ -823,8 +824,8 @@ const s = StyleSheet.create({
     position: 'absolute',
     left: 7,
     top: 7,
-    color: C.lime,
-    backgroundColor: '#111916',
+    color: Palette.accentInk,
+    backgroundColor: Palette.soft,
     fontSize: 10,
     fontWeight: '800',
     paddingHorizontal: 5,
@@ -853,7 +854,7 @@ const s = StyleSheet.create({
     marginHorizontal: 9,
   },
   classMetric: { color: C.muted, fontSize: 11 },
-  classKcal: { color: C.lime, fontSize: 11, fontWeight: '800' },
+  classKcal: { color: Palette.accentInk, fontSize: 11, fontWeight: '800' },
   policyCard: {
     backgroundColor: C.surfaceLow,
     borderRadius: 12,
@@ -871,7 +872,7 @@ const s = StyleSheet.create({
   policyName: { color: C.text, fontSize: 12, fontWeight: '800' },
   policyCopy: { color: C.muted, fontSize: 11, lineHeight: 15, marginTop: 3 },
   checkout: {
-    backgroundColor: '#101c18',
+    backgroundColor: Palette.background,
     borderTopWidth: 1,
     borderTopColor: C.surfaceHigh,
     paddingHorizontal: 16,
@@ -882,7 +883,7 @@ const s = StyleSheet.create({
   },
   checkoutInfo: { flex: 1 },
   checkoutLabel: { color: C.muted, fontSize: 10, fontWeight: '800' },
-  checkoutPrice: { color: C.lime, fontSize: 20, fontWeight: '900' },
+  checkoutPrice: { color: Palette.accentInk, fontSize: 20, fontWeight: '900' },
   checkoutPeriod: { color: C.muted, fontSize: 11, marginTop: 2 },
   checkoutButton: {
     backgroundColor: C.lime,
@@ -894,7 +895,7 @@ const s = StyleSheet.create({
     justifyContent: 'center',
     gap: 5,
   },
-  checkoutButtonText: { color: '#263529', fontSize: 12, fontWeight: '800' },
+  checkoutButtonText: { color: Palette.text, fontSize: 12, fontWeight: '800' },
   toast: {
     position: 'absolute',
     bottom: 92,
@@ -911,7 +912,7 @@ const s = StyleSheet.create({
   toastText: { color: C.text, fontSize: 13, textAlign: 'center' },
   modalBackdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,.7)',
+    backgroundColor: Palette.scrim,
     justifyContent: 'flex-end',
   },
   modalCard: {
@@ -923,7 +924,7 @@ const s = StyleSheet.create({
     maxHeight: '90%',
   },
   modalKicker: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 1,
@@ -958,7 +959,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
   },
   modalTotalLabel: { color: C.muted, fontSize: 12, fontWeight: '800' },
-  modalTotalPrice: { color: C.lime, fontSize: 21, fontWeight: '900' },
+  modalTotalPrice: { color: Palette.accentInk, fontSize: 21, fontWeight: '900' },
   modalNote: { color: C.muted, fontSize: 13, lineHeight: 18, marginTop: 14 },
   action: {
     backgroundColor: C.lime,
@@ -971,7 +972,7 @@ const s = StyleSheet.create({
     marginTop: 19,
   },
   actionMuted: { backgroundColor: C.surfaceHigh },
-  actionText: { color: '#263529', fontSize: 13, fontWeight: '800' },
+  actionText: { color: Palette.text, fontSize: 13, fontWeight: '800' },
   cancel: { alignItems: 'center', padding: 13 },
   cancelText: { color: C.muted, fontSize: 13, fontWeight: '700' },
   modalClassImage: { height: 170, width: '100%', borderRadius: 10 },

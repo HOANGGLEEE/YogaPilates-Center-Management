@@ -1,30 +1,15 @@
-import BackendImage from '@/components/backend-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
-import {
-  Alert,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import BackendImage from '@/components/backend-image';
+import { Palette as P, trainerPlaceholder } from '@/constants/theme';
 import { useAuth } from '@/context/AuthContext';
-import {
-  bookPT,
-  getAvailablePTSchedules,
-  getPTDetail,
-  PTApiError,
-  type ApiPT,
-  type ApiPTSchedule,
-} from '@/lib/pt-api';
+import { bookPT, getAvailablePTSchedules, getPTDetail, PTApiError, type ApiPT, type ApiPTSchedule } from '@/lib/pt-api';
 
-const money = (value: string | number) =>
-  `${Number(value).toLocaleString('vi-VN')}đ`;
+const money = (value: string | number) => `${Number(value).toLocaleString('vi-VN')} ₫`;
+const dateLabel = (value: string) => new Date(`${value}T00:00:00`).toLocaleDateString('vi-VN', { weekday: 'long', day: '2-digit', month: '2-digit' });
 
 export default function PTBookingScreen() {
   const { user } = useAuth();
@@ -37,273 +22,83 @@ export default function PTBookingScreen() {
   const [note, setNote] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
   const load = useCallback(async () => {
-    if (!Number.isInteger(ptId) || ptId <= 0) {
-      setTrainer(null);
-      setError('PTID không hợp lệ.');
-      return;
-    }
+    if (!Number.isInteger(ptId) || ptId <= 0) { setTrainer(null); setError('Vui lòng chọn lại hướng dẫn viên.'); return; }
     try {
-      const [pt, slots] = await Promise.all([
-        getPTDetail(ptId),
-        getAvailablePTSchedules(ptId),
-      ]);
-      setTrainer(pt);
-      setSchedules(slots);
-      setSelected((current) =>
-        slots.some((slot) => slot.LichPTID === current) ? current : null
-      );
-      setSelectedDate((current) =>
-        current && slots.some((slot) => slot.NgayLam === current)
-          ? current
-          : (slots[0]?.NgayLam ?? '')
-      );
+      const [pt, slots] = await Promise.all([getPTDetail(ptId), getAvailablePTSchedules(ptId)]);
+      setTrainer(pt); setSchedules(slots);
+      setSelected(current => slots.some(slot => slot.LichPTID === current) ? current : null);
+      setSelectedDate(current => current && slots.some(slot => slot.NgayLam === current) ? current : slots[0]?.NgayLam ?? '');
       setError('');
-    } catch (loadError) {
-      setTrainer(null);
-      setSchedules([]);
-      setError(
-        loadError instanceof Error
-          ? loadError.message
-          : 'Không tải được lịch hướng dẫn 1-1.'
-      );
-    }
+    } catch (e) { setTrainer(null); setSchedules([]); setError(e instanceof Error ? e.message : 'Không tải được lịch trống của PT.'); }
   }, [ptId]);
-
-  useFocusEffect(
-    useCallback(() => {
-      load();
-    }, [load])
-  );
-  const dates = useMemo(
-    () => [...new Set(schedules.map((slot) => slot.NgayLam))],
-    [schedules]
-  );
-  const selectedSlot = schedules.find((slot) => slot.LichPTID === selected);
-  const visibleSlots = schedules.filter(
-    (slot) => slot.NgayLam === selectedDate
-  );
-
+  useFocusEffect(useCallback(() => { void load(); }, [load]));
+  const dates = useMemo(() => [...new Set(schedules.map(slot => slot.NgayLam))], [schedules]);
+  const selectedSlot = schedules.find(slot => slot.LichPTID === selected);
+  const visibleSlots = schedules.filter(slot => slot.NgayLam === selectedDate);
+  const disabled = !selected || loading || !user?.accountId;
   async function submit() {
     if (!user?.accountId || !selected || loading) return;
     setLoading(true);
     try {
       await bookPT({ accountId: user.accountId, scheduleId: selected, note });
-      Alert.alert('Thành công', 'Đăng ký lịch hướng dẫn 1-1 thành công', [
-        { text: 'Xem lịch', onPress: () => router.replace('/pt-schedule') },
-      ]);
-    } catch (submitError) {
-      const apiError = submitError instanceof PTApiError ? submitError : null;
+      Alert.alert('Đặt lịch thành công', 'Buổi hướng dẫn của bạn đã được đăng ký.', [{ text: 'Xem lịch của tôi', onPress: () => router.replace('/pt-schedule') }]);
+    } catch (e) {
+      const apiError = e instanceof PTApiError ? e : null;
       if (apiError?.code === 'SLOT_NOT_AVAILABLE') {
-        Alert.alert(
-          'Lịch vừa được đặt',
-          'Lịch này vừa được người khác đặt. Vui lòng chọn khung giờ khác.'
-        );
-        await load();
-      } else {
-        Alert.alert(
-          'Không thể đăng ký',
-          apiError?.code === 'BOOKING_EXISTS'
-            ? 'Bạn đã đăng ký khung giờ này.'
-            : apiError?.message || 'Vui lòng thử lại.'
-        );
-      }
-    } finally {
-      setLoading(false);
-    }
+        Alert.alert('Khung giờ vừa được đặt', 'Vui lòng chọn khung giờ khác.'); await load();
+      } else Alert.alert('Không thể đặt lịch', apiError?.code === 'BOOKING_EXISTS' ? 'Bạn đã đăng ký khung giờ này.' : apiError?.message || 'Vui lòng thử lại.');
+    } finally { setLoading(false); }
   }
-
-  return (
-    <SafeAreaView style={s.safe} edges={['top', 'bottom']}>
-      <View style={s.header}>
-        <Pressable accessibilityRole="button" accessibilityLabel="Quay lại" style={s.icon} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" color="#315d4c" size={21} />
-        </Pressable>
-        <Text style={s.headerTitle}>Đặt lịch hướng dẫn 1–1</Text>
-        <View style={s.icon} />
-      </View>
-      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={s.content}>
-        {trainer === undefined ? (
-          <Text style={s.center}>Đang tải lịch trống...</Text>
-        ) : null}
-        {error ? <Text style={s.error}>{error}</Text> : null}
-        {trainer ? (
-          <>
-            <View style={s.card}>
-              <BackendImage value={trainer.AnhDaiDien} fallback={require("../../assets/brand/icon.png")} style={s.avatar} contentFit="cover" />
-              <Text style={s.label}>HƯỚNG DẪN VIÊN</Text>
-              <Text style={s.name}>{trainer.HoTen}</Text>
-              <Text style={s.specialty}>
-                {trainer.ChuyenMon || 'Chưa cập nhật chuyên môn'}
-              </Text>
-              <Text style={s.price}>{money(trainer.GiaThue)} / buổi</Text>
-            </View>
-
-            <Text style={s.section}>01 · Chọn ngày tập</Text>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={s.row}
-            >
-              {dates.map((date) => (
-                <Pressable
-                  key={date}
-                  onPress={() => {
-                    setSelectedDate(date);
-                    setSelected(null);
-                  }}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: selectedDate === date }}
-                  style={[s.choice, selectedDate === date && s.choiceActive]}
-                >
-                  <Text
-                    style={[
-                      s.choiceText,
-                      selectedDate === date && s.choiceTextActive,
-                    ]}
-                  >
-                    {new Date(`${date}T00:00:00`).toLocaleDateString('vi-VN', {
-                      weekday: 'short',
-                      day: '2-digit',
-                      month: '2-digit',
-                    })}
-                  </Text>
-                </Pressable>
-              ))}
+  return <SafeAreaView style={s.safe} edges={['top', 'bottom']}>
+    <KeyboardAvoidingView style={s.flex} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <View style={s.header}><Pressable accessibilityRole="button" accessibilityLabel="Quay lại" style={s.back} onPress={() => router.canGoBack() ? router.back() : router.replace('/pt')}><Ionicons name="arrow-back" size={22} color={P.text} /></Pressable><Text style={s.headerTitle}>Đặt lịch PT</Text><View style={s.headerSpacer} /></View>
+      <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
+        {trainer === undefined ? <View style={s.state}><ActivityIndicator color={P.accentInk} /><Text style={s.muted}>Đang tải lịch trống…</Text></View> : null}
+        {error ? <View style={s.errorBox}><Text accessibilityRole="alert" style={s.error}>{error}</Text><Pressable accessibilityRole="button" onPress={() => void load()}><Text style={s.retry}>Thử lại</Text></Pressable></View> : null}
+        {trainer ? <>
+          <Text style={s.eyebrow}>BUỔI TẬP CÁ NHÂN · 1–1</Text>
+          <Text style={s.pageTitle}>Chọn thời gian phù hợp{ '\n' }với nhịp sống của bạn.</Text>
+          <View style={s.trainerCard}><BackendImage value={trainer.AnhDaiDien} fallback={trainerPlaceholder} contentFit="cover" style={s.avatar} /><View style={s.grow}><Text style={s.trainerLabel}>HƯỚNG DẪN VIÊN</Text><Text style={s.trainerName}>{trainer.HoTen}</Text><Text numberOfLines={2} style={s.specialty}>{trainer.ChuyenMon || 'Chưa cập nhật chuyên môn'}</Text></View></View>
+          <View style={s.card}>
+            <Step number="01" title="Chọn ngày tập" subtitle="Những ngày PT đang có lịch trống." />
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.dates}>
+              {dates.map(date => <Pressable key={date} accessibilityRole="button" accessibilityLabel={dateLabel(date)} accessibilityState={{ selected: selectedDate === date }} onPress={() => { setSelectedDate(date); setSelected(null); }} style={[s.date, selectedDate === date && s.selectedDate]}>
+                <Text style={s.dateWeek}>{new Date(`${date}T00:00:00`).toLocaleDateString('vi-VN', { weekday: 'short' })}</Text><Text style={s.dateDay}>{date.slice(8, 10)}</Text><Text style={s.dateMonth}>Tháng {Number(date.slice(5, 7))}</Text>
+              </Pressable>)}
             </ScrollView>
-
-
-            <Text style={s.section}>02 · Chọn khung giờ</Text>
-            <View style={s.slots}>
-              {visibleSlots.map((slot) => (
-                <Pressable
-                  key={slot.LichPTID}
-                  onPress={() => setSelected(slot.LichPTID)}
-                  accessibilityRole="button"
-                  accessibilityState={{ selected: selected === slot.LichPTID }}
-                  style={[s.slot, selected === slot.LichPTID && s.choiceActive]}
-                >
-                  <Text
-                    style={[
-                      s.slotText,
-                      selected === slot.LichPTID && s.choiceTextActive,
-                    ]}
-                  >
-                    {slot.GioBatDau.slice(0, 5)} - {slot.GioKetThuc.slice(0, 5)}
-                  </Text>
-                </Pressable>
-              ))}
-              {!visibleSlots.length ? (
-                <Text style={s.muted}>
-                  Chưa có khung giờ trống trong ngày này.
-                </Text>
-              ) : null}
-            </View>
-
-            <Text style={s.section}>03 · Ghi chú cho hướng dẫn viên</Text>
-            <TextInput
-              accessibilityLabel="Ghi chú cho hướng dẫn viên"
-              value={note}
-              onChangeText={setNote}
-              maxLength={500}
-              multiline
-              placeholder="Ví dụ: Muốn cải thiện tư thế và độ linh hoạt"
-              placeholderTextColor="#727d73"
-              style={s.input}
-            />
-
-          </>
-        ) : null}
+            {!dates.length ? <Text style={s.muted}>PT chưa có lịch trống. Vui lòng quay lại sau.</Text> : null}
+          </View>
+          <View style={s.card}>
+            <Step number="02" title="Chọn khung giờ" subtitle={selectedDate ? dateLabel(selectedDate) : 'Chọn ngày tập trước khi chọn giờ.'} />
+            <View style={s.slots}>{visibleSlots.map(slot => <Pressable key={slot.LichPTID} accessibilityRole="button" accessibilityState={{ selected: selected === slot.LichPTID }} onPress={() => setSelected(slot.LichPTID)} style={[s.slot, selected === slot.LichPTID && s.selectedSlot]}><Ionicons name={selected === slot.LichPTID ? 'checkmark-circle' : 'time-outline'} size={18} color={P.accentInk} /><Text style={s.slotText}>{slot.GioBatDau.slice(0, 5)}–{slot.GioKetThuc.slice(0, 5)}</Text></Pressable>)}</View>
+            {selectedDate && !visibleSlots.length ? <Text style={s.muted}>Ngày này chưa có khung giờ trống.</Text> : null}
+          </View>
+          <View style={s.card}>
+            <Step number="03" title="Ghi chú cho PT" subtitle="Không bắt buộc · chia sẻ mục tiêu của buổi tập." />
+            <TextInput accessibilityLabel="Ghi chú cho PT" value={note} onChangeText={setNote} multiline maxLength={500} placeholder="Ví dụ: Tôi muốn cải thiện tư thế và độ linh hoạt…" placeholderTextColor={P.muted} style={s.input} />
+            <Text style={s.counter}>{note.length}/500 ký tự</Text>
+          </View>
+        </> : null}
       </ScrollView>
       {trainer ? <View style={s.footer}>
-        <Text style={s.footerLabel}>{selectedSlot ? `${new Date(`${selectedSlot.NgayLam}T00:00:00`).toLocaleDateString("vi-VN")} · ${selectedSlot.GioBatDau.slice(0, 5)}–${selectedSlot.GioKetThuc.slice(0, 5)}` : "Chọn giờ để tiếp tục"}</Text>
-        <Text style={s.footerPrice}>{money(trainer.GiaThue)}</Text>
-            <Pressable accessibilityRole="button"
-              disabled={!selected || loading || !user?.accountId}
-              onPress={submit}
-              style={[
-                s.primary,
-                (!selected || loading || !user?.accountId) && s.disabled,
-              ]}
-            >
-              <Text style={s.primaryText}>
-                {loading ? 'Đang đăng ký…' : 'Xác nhận đặt lịch'}
-              </Text>
-            </Pressable>
+        <View style={s.summary}><Ionicons name="calendar-outline" size={18} color={P.accentInk} /><Text style={s.summaryText}>{selectedSlot ? `${dateLabel(selectedSlot.NgayLam)} · ${selectedSlot.GioBatDau.slice(0, 5)}–${selectedSlot.GioKetThuc.slice(0, 5)}` : 'Chọn khung giờ để tiếp tục'}</Text></View>
+        <View style={s.footerRow}><View><Text style={s.muted}>Giá một buổi</Text><Text style={s.price}>{money(trainer.GiaThue)}</Text></View><Pressable accessibilityRole="button" accessibilityState={{ disabled: !!disabled }} disabled={!!disabled} onPress={() => void submit()} style={[s.primary, disabled && s.disabled]}>{loading ? <ActivityIndicator color={P.text} /> : <><Text style={s.primaryText}>Xác nhận đặt lịch</Text><Ionicons name="arrow-forward" color={P.text} size={18} /></>}</Pressable></View>
       </View> : null}
-    </SafeAreaView>
-  );
+    </KeyboardAvoidingView>
+  </SafeAreaView>;
 }
-
+function Step({ number, title, subtitle }: { number: string; title: string; subtitle: string }) {
+  return <View style={s.step}><View style={s.stepNumber}><Text style={s.stepNumberText}>{number}</Text></View><View style={s.grow}><Text style={s.sectionTitle}>{title}</Text><Text style={s.stepSubtitle}>{subtitle}</Text></View></View>;
+}
 const s = StyleSheet.create({
-  eyebrow: { color: '#69766e', fontSize: 11, fontWeight: '700', letterSpacing: 1.2 },
-  avatar: { width: 64, height: 64, borderRadius: 20, backgroundColor: '#eaece3' },
-  footer: { padding: 18, gap: 8, backgroundColor: '#ffffff', borderTopWidth: 1, borderTopColor: '#e7eae3', width: '100%', maxWidth: 540, alignSelf: 'center' },
-  footerLabel: { color: '#69766e', fontSize: 13 },
-  footerPrice: { color: '#203c32', fontSize: 22, fontWeight: '700' },
-  safe: { flex: 1, backgroundColor: '#f6f4ee' },
-  header: {
-    height: 54,
-    paddingHorizontal: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  icon: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: '#eaece3',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerTitle: { color: '#315d4c', fontSize: 16, fontWeight: '700' },
-  content: {
-    width: '100%',
-    maxWidth: 540,
-    alignSelf: 'center',
-    padding: 20,
-    gap: 18,
-    paddingBottom: 35,
-  },
-  center: { color: '#69766e', textAlign: 'center', padding: 35 },
-  error: { color: '#a93e38', textAlign: 'center', padding: 20 },
-  card: { backgroundColor: '#ffffff', borderRadius: 24, padding: 20, gap: 8 },
-  label: { color: '#69766e', fontSize: 12, fontWeight: '700' },
-  name: { color: '#203c32', fontSize: 21, fontWeight: '700' },
-  specialty: { color: '#315d4c', fontSize: 13, fontWeight: '800' },
-  price: { color: '#315d4c', fontSize: 15, fontWeight: '700', marginTop: 5 },
-  section: { color: '#203c32', fontSize: 14, fontWeight: '700', marginTop: 6 },
-  row: { gap: 8 },
-  choice: {
-    backgroundColor: '#eaece3',
-    borderRadius: 14,
-    paddingHorizontal: 13,
-    paddingVertical: 11,
-  },
-  choiceActive: { backgroundColor: '#315d4c', borderColor: '#315d4c' },
-  choiceText: { color: '#69766e', fontSize: 13, fontWeight: '700' },
-  choiceTextActive: { color: '#ffffff' },
-  slots: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  slot: { backgroundColor: '#ffffff', borderRadius: 14, padding: 16, borderWidth: 1, borderColor: '#dfe5dc', minWidth: '45%', alignItems: 'center' },
-  slotText: { color: '#315d4c', fontSize: 14, fontWeight: '800' },
-  muted: { color: '#69766e', fontSize: 14 },
-  input: {
-    minHeight: 90,
-    backgroundColor: '#ffffff',
-    color: '#315d4c',
-    borderRadius: 10,
-    padding: 12,
-    textAlignVertical: 'top',
-  },
-  primary: {
-    minHeight: 52,
-    backgroundColor: '#315d4c',
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  disabled: { opacity: 0.45 },
-  primaryText: { color: '#ffffff', fontSize: 15, fontWeight: '700' },
+  safe: { flex: 1, backgroundColor: P.background }, flex: { flex: 1 }, header: { width: '100%', maxWidth: 560, alignSelf: 'center', height: 64, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, back: { width: 44, height: 44, borderRadius: 15, borderWidth: 1, borderColor: P.border, alignItems: 'center', justifyContent: 'center', backgroundColor: P.surface }, headerSpacer: { width: 44 }, headerTitle: { color: P.text, fontSize: 17, fontWeight: '600' },
+  content: { width: '100%', maxWidth: 560, alignSelf: 'center', padding: 20, paddingTop: 8, paddingBottom: 28, gap: 16 },
+  eyebrow: { color: P.accentInk, fontSize: 11, fontWeight: '700', letterSpacing: 1.2 }, pageTitle: { color: P.text, fontSize: 26, lineHeight: 34, fontWeight: '600', marginBottom: 4 },
+  trainerCard: { flexDirection: 'row', gap: 14, alignItems: 'center', padding: 18, backgroundColor: P.surface, borderWidth: 1, borderColor: P.border, borderRadius: 22 }, avatar: { width: 76, height: 86, borderRadius: 17, backgroundColor: P.soft }, grow: { flex: 1 }, trainerLabel: { color: P.muted, fontSize: 10, fontWeight: '600', letterSpacing: .7, marginBottom: 6 }, trainerName: { color: P.text, fontSize: 19, fontWeight: '700', lineHeight: 26 }, specialty: { color: P.accentInk, fontSize: 13, lineHeight: 19, marginTop: 5 },
+  card: { backgroundColor: P.surface, borderWidth: 1, borderColor: P.border, borderRadius: 22, padding: 18, gap: 18 }, step: { flexDirection: 'row', gap: 12, alignItems: 'center' }, stepNumber: { width: 38, height: 38, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: P.soft }, stepNumberText: { color: P.accentInk, fontSize: 13, fontWeight: '700' }, sectionTitle: { color: P.text, fontSize: 16, fontWeight: '600' }, stepSubtitle: { color: P.muted, fontSize: 12, lineHeight: 18, marginTop: 4 },
+  dates: { gap: 10 }, date: { minWidth: 80, minHeight: 100, padding: 12, gap: 6, alignItems: 'center', borderWidth: 1, borderColor: P.border, borderRadius: 16, backgroundColor: P.background }, selectedDate: { backgroundColor: P.accent, borderColor: P.accentInk }, dateWeek: { color: P.text, fontSize: 12 }, dateDay: { color: P.text, fontSize: 24, fontWeight: '700' }, dateMonth: { color: P.text, fontSize: 11 },
+  slots: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 }, slot: { flexBasis: '46%', flexGrow: 1, minHeight: 52, flexDirection: 'row', gap: 7, alignItems: 'center', justifyContent: 'center', padding: 10, backgroundColor: P.background, borderWidth: 1, borderColor: P.border, borderRadius: 14 }, selectedSlot: { backgroundColor: P.accent, borderColor: P.accentInk }, slotText: { color: P.text, fontSize: 13, fontWeight: '600' },
+  input: { minHeight: 110, borderWidth: 1, borderColor: P.border, borderRadius: 14, backgroundColor: P.background, color: P.text, fontSize: 14, lineHeight: 22, padding: 14, textAlignVertical: 'top' }, counter: { color: P.muted, fontSize: 11, textAlign: 'right', marginTop: -8 },
+  footer: { width: '100%', maxWidth: 560, alignSelf: 'center', backgroundColor: P.surface, borderTopWidth: 1, borderTopColor: P.border, padding: 18, gap: 14 }, summary: { flexDirection: 'row', alignItems: 'center', gap: 8 }, summaryText: { color: P.muted, fontSize: 12, lineHeight: 19, flex: 1 }, footerRow: { flexDirection: 'row', gap: 12, justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }, price: { color: P.text, fontSize: 23, fontWeight: '700', marginTop: 4 }, primary: { minHeight: 52, backgroundColor: P.accent, borderRadius: 15, paddingHorizontal: 16, flexDirection: 'row', gap: 8, justifyContent: 'center', alignItems: 'center' }, primaryText: { color: P.text, fontSize: 13, fontWeight: '700' }, disabled: { opacity: .45 }, muted: { color: P.muted, fontSize: 12, lineHeight: 19 }, state: { alignItems: 'center', padding: 30, gap: 14 }, errorBox: { backgroundColor: P.errorSurface, padding: 18, gap: 10, borderRadius: 16 }, error: { color: P.error, fontSize: 14, lineHeight: 22 }, retry: { color: P.accentInk, fontSize: 14, fontWeight: '600' },
 });

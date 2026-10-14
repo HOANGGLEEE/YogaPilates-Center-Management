@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import BackendImage from '@/components/backend-image';
 import { DEFAULT_PRODUCT_IMAGE } from '@/constants/shop-image';
@@ -86,7 +87,7 @@ export default function ProductDetailScreen() {
               }
               accessibilityLabel="Quay lại"
             >
-              <FontAwesome name="arrow-left" size={17} color="#edf2e8" />
+              <FontAwesome name="arrow-left" size={17} color={Palette.text} />
             </Pressable>
             <Text style={styles.topBarTitle}>CHI TIẾT SẢN PHẨM</Text>
             <Pressable
@@ -94,11 +95,11 @@ export default function ProductDetailScreen() {
               onPress={() => router.push('/cart')}
               accessibilityLabel="Mở giỏ hàng"
             >
-              <FontAwesome name="shopping-cart" size={17} color="#c4d5aa" />
+              <FontAwesome name="shopping-cart" size={17} color={Palette.accentInk} />
             </Pressable>
           </View>
           {loading ? (
-            <ActivityIndicator color="#c4d5aa" />
+            <ActivityIndicator color={Palette.accentInk} />
           ) : error ? (
             <View>
               <Text style={styles.productDetail}>{error}</Text>
@@ -158,7 +159,7 @@ export default function ProductDetailScreen() {
                     accessibilityLiveRegion="polite"
                     style={[
                       styles.productDetail,
-                      { color: '#c4d5aa', marginTop: 16 },
+                      { color: Palette.accentInk, marginTop: 16 },
                     ]}
                   >
                     {notice}
@@ -176,7 +177,7 @@ export default function ProductDetailScreen() {
               style={[styles.cartButton, !canBuy && { opacity: 0.4 }]}
               accessibilityLabel="Thêm vào giỏ hàng"
             >
-              <FontAwesome name="cart-plus" size={19} color="#c4d5aa" />
+              <FontAwesome name="cart-plus" size={19} color={Palette.accentInk} />
             </Pressable>
             <View style={styles.quantityControl}>
               <Pressable
@@ -216,7 +217,7 @@ export default function ProductDetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#101210' },
+  container: { flex: 1, backgroundColor: Palette.background },
   safeArea: { flex: 1, width: '100%', maxWidth: 540, alignSelf: 'center' },
   content: { paddingHorizontal: 10, paddingBottom: 26 },
   topBar: {
@@ -230,12 +231,12 @@ const styles = StyleSheet.create({
     width: 31,
     height: 31,
     borderRadius: 9,
-    backgroundColor: '#252a27',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
   },
   topBarTitle: {
-    color: '#e9efe4',
+    color: Palette.text,
     fontSize: 11,
     fontWeight: '900',
     letterSpacing: 0.7,
@@ -244,20 +245,20 @@ const styles = StyleSheet.create({
     height: 210,
     borderRadius: 8,
     overflow: 'hidden',
-    backgroundColor: '#242a26',
+    backgroundColor: Palette.surface,
     position: 'relative',
   },
   heroImage: { width: '100%', height: '100%' },
   heroShade: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(8, 13, 9, .2)',
+    backgroundColor: Palette.imageScrim,
   },
   badge: {
     position: 'absolute',
     top: 10,
     left: 10,
-    color: '#182000',
-    backgroundColor: '#c4d5aa',
+    color: Palette.text,
+    backgroundColor: Palette.accent,
     borderRadius: 3,
     paddingHorizontal: 6,
     paddingVertical: 4,
@@ -266,13 +267,13 @@ const styles = StyleSheet.create({
   },
   heroCopy: { position: 'absolute', left: 12, bottom: 11 },
   heroKicker: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 8,
     fontWeight: '900',
     letterSpacing: 1,
   },
   heroTitle: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 18,
     fontWeight: '900',
     marginTop: 3,
@@ -283,11 +284,11 @@ const styles = StyleSheet.create({
     height: 42,
     borderRadius: 5,
     overflow: 'hidden',
-    backgroundColor: '#272c28',
+    backgroundColor: Palette.surface,
     borderWidth: 1,
-    borderColor: '#272d28',
+    borderColor: Palette.border,
   },
-  thumbnailActive: { borderColor: '#c4d5aa' },
+  thumbnailActive: { borderColor: Palette.accentInk },
   thumbnailImage: { width: '100%', height: '100%' },
   productHeader: { paddingHorizontal: 4, paddingTop: 4 },
   ratingRow: {
@@ -295,28 +296,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  rating: { color: '#c4d5aa', fontSize: 10, fontWeight: '900' },
-  reviewCount: { color: '#8e998d', fontWeight: '400' },
-  stock: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
+  rating: { color: Palette.accentInk, fontSize: 10, fontWeight: '900' },
+  reviewCount: { color: Palette.muted, fontWeight: '400' },
+  stock: { color: Palette.accentInk, fontSize: 8, fontWeight: '900' },
   productName: {
-    color: '#f1f5eb',
+    color: Palette.text,
     fontSize: 18,
     lineHeight: 21,
     fontWeight: '900',
     marginTop: 7,
   },
-  productDetail: { color: '#96a095', fontSize: 10, marginTop: 5 },
+  productDetail: { color: Palette.muted, fontSize: 10, marginTop: 5 },
   priceLine: { flexDirection: 'row', alignItems: 'center', marginTop: 8 },
-  price: { color: '#c4d5aa', fontSize: 22, fontWeight: '900' },
+  price: { color: Palette.accentInk, fontSize: 22, fontWeight: '900' },
   oldPrice: {
-    color: '#6d776d',
+    color: Palette.muted,
     fontSize: 10,
     textDecorationLine: 'line-through',
     marginLeft: 8,
   },
   discount: {
-    color: '#172000',
-    backgroundColor: '#c4d5aa',
+    color: Palette.text,
+    backgroundColor: Palette.accent,
     fontSize: 8,
     fontWeight: '900',
     paddingHorizontal: 5,
@@ -328,19 +329,19 @@ const styles = StyleSheet.create({
   factCard: {
     width: '49%',
     minHeight: 59,
-    backgroundColor: '#202521',
+    backgroundColor: Palette.surface,
     borderRadius: 6,
     padding: 8,
   },
-  factLabel: { color: '#7d887d', fontSize: 7, fontWeight: '900' },
+  factLabel: { color: Palette.muted, fontSize: 7, fontWeight: '900' },
   factValueRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 3,
   },
-  factValue: { color: '#c4d5aa', fontSize: 17, fontWeight: '900' },
-  factDetail: { color: '#9ca79a', fontSize: 8, marginTop: 2 },
+  factValue: { color: Palette.accentInk, fontSize: 17, fontWeight: '900' },
+  factDetail: { color: Palette.muted, fontSize: 8, marginTop: 2 },
   sectionHeading: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -349,14 +350,14 @@ const styles = StyleSheet.create({
     marginBottom: 7,
   },
   sectionTitle: {
-    color: '#eff4e9',
+    color: Palette.text,
     fontSize: 10,
     fontWeight: '900',
     letterSpacing: 0.4,
   },
-  sectionKicker: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
+  sectionKicker: { color: Palette.accentInk, fontSize: 8, fontWeight: '900' },
   memberCard: {
-    backgroundColor: '#202521',
+    backgroundColor: Palette.surface,
     borderRadius: 7,
     paddingHorizontal: 9,
   },
@@ -365,27 +366,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     minHeight: 52,
     borderBottomWidth: 1,
-    borderBottomColor: '#30372f',
+    borderBottomColor: Palette.border,
   },
   benefitIcon: {
     width: 27,
     height: 27,
     borderRadius: 14,
-    backgroundColor: '#303a2d',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 9,
   },
   benefitCopy: { flex: 1 },
-  benefitTitle: { color: '#e8eee3', fontSize: 10, fontWeight: '900' },
+  benefitTitle: { color: Palette.text, fontSize: 10, fontWeight: '900' },
   benefitDetail: {
-    color: '#899388',
+    color: Palette.muted,
     fontSize: 8,
     marginTop: 3,
     lineHeight: 10,
   },
   nutritionCard: {
-    backgroundColor: '#202521',
+    backgroundColor: Palette.surface,
     borderRadius: 7,
     paddingHorizontal: 9,
     paddingVertical: 4,
@@ -396,20 +397,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#30372f',
+    borderBottomColor: Palette.border,
   },
   nutritionLastRow: { borderBottomWidth: 0 },
-  nutritionLabel: { color: '#d3dbcf', fontSize: 8 },
-  nutritionValue: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
-  proteinLabel: { color: '#c4d5aa', fontWeight: '900' },
-  proteinValue: { color: '#c4d5aa' },
+  nutritionLabel: { color: Palette.muted, fontSize: 8 },
+  nutritionValue: { color: Palette.accentInk, fontSize: 8, fontWeight: '900' },
+  proteinLabel: { color: Palette.muted, fontWeight: '900' },
+  proteinValue: { color: Palette.accentInk },
   featurePills: { flexDirection: 'row', gap: 4, marginTop: 5 },
   featurePill: {
     flex: 1,
     minHeight: 31,
-    backgroundColor: '#202521',
+    backgroundColor: Palette.soft,
     borderRadius: 5,
-    color: '#9ca79a',
+    color: Palette.muted,
     fontSize: 7,
     textAlign: 'center',
     paddingHorizontal: 3,
@@ -418,16 +419,16 @@ const styles = StyleSheet.create({
   reviewSummary: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#202521',
+    backgroundColor: Palette.surface,
     borderRadius: 7,
     padding: 9,
     gap: 8,
   },
-  reviewScore: { color: '#c4d5aa', fontSize: 13, fontWeight: '900' },
-  reviewStars: { color: '#c4d5aa', fontSize: 11, letterSpacing: 1 },
-  reviewCaption: { color: '#8d988c', fontSize: 8, marginLeft: 'auto' },
+  reviewScore: { color: Palette.accentInk, fontSize: 13, fontWeight: '900' },
+  reviewStars: { color: Palette.accentInk, fontSize: 11, letterSpacing: 1 },
+  reviewCaption: { color: Palette.muted, fontSize: 8, marginLeft: 'auto' },
   reviewCard: {
-    backgroundColor: '#202521',
+    backgroundColor: Palette.surface,
     borderRadius: 7,
     padding: 10,
     marginTop: 6,
@@ -437,17 +438,17 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#394238',
+    backgroundColor: Palette.soft,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  avatarText: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
+  avatarText: { color: Palette.accentInk, fontSize: 12, fontWeight: '900' },
   reviewIdentity: { flex: 1, marginLeft: 8 },
-  reviewer: { color: '#e4ebe0', fontSize: 9, fontWeight: '900' },
-  reviewDate: { color: '#7f897e', fontSize: 8, marginTop: 2 },
-  reviewText: { color: '#b0baad', fontSize: 9, lineHeight: 12, marginTop: 8 },
+  reviewer: { color: Palette.text, fontSize: 9, fontWeight: '900' },
+  reviewDate: { color: Palette.muted, fontSize: 8, marginTop: 2 },
+  reviewText: { color: Palette.muted, fontSize: 9, lineHeight: 12, marginTop: 8 },
   footerNote: {
-    color: '#566055',
+    color: Palette.muted,
     fontSize: 8,
     textAlign: 'center',
     marginTop: 20,
@@ -456,9 +457,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    backgroundColor: '#181b18',
+    backgroundColor: Palette.background,
     borderTopWidth: 1,
-    borderTopColor: '#2b322b',
+    borderTopColor: Palette.border,
     paddingHorizontal: 10,
     paddingTop: 8,
   },
@@ -466,7 +467,7 @@ const styles = StyleSheet.create({
     width: 39,
     height: 40,
     borderRadius: 7,
-    backgroundColor: '#292e2b',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -476,16 +477,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: '#292e2b',
+    backgroundColor: Palette.surface,
     borderRadius: 7,
   },
   quantityAction: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 19,
     lineHeight: 22,
     paddingHorizontal: 5,
   },
-  quantity: { color: '#f1f5eb', fontSize: 13, fontWeight: '900' },
+  quantity: { color: Palette.text, fontSize: 13, fontWeight: '900' },
   buyButton: {
     flex: 1,
     height: 40,
@@ -493,8 +494,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 5,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 7,
   },
-  buyButtonText: { color: '#182000', fontSize: 9, fontWeight: '900' },
+  buyButtonText: { color: Palette.text, fontSize: 9, fontWeight: '900' },
 });

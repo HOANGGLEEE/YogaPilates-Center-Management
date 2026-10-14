@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -102,7 +103,7 @@ export default function PasswordChangeScreen() {
 }
 
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#101210' },
+  safe: { flex: 1, backgroundColor: Palette.background },
   content: {
     width: '100%',
     maxWidth: 540,
@@ -110,23 +111,23 @@ const s = StyleSheet.create({
     padding: 20,
     gap: 16,
   },
-  back: { color: '#c4d5aa', fontWeight: '800' },
-  title: { color: '#f0f4ec', fontSize: 25, fontWeight: '900' },
-  hint: { color: '#aeb9aa', lineHeight: 21 },
-  label: { color: '#c4d5aa', marginBottom: 7, fontWeight: '700' },
+  back: { color: Palette.accentInk, fontWeight: '800' },
+  title: { color: Palette.text, fontSize: 25, fontWeight: '900' },
+  hint: { color: Palette.muted, lineHeight: 21 },
+  label: { color: Palette.muted, marginBottom: 7, fontWeight: '700' },
   input: {
-    backgroundColor: '#232826',
+    backgroundColor: Palette.surface,
     borderRadius: 9,
-    color: '#fff',
+    color: Palette.text,
     padding: 13,
   },
-  error: { color: '#ff9f9f' },
+  error: { color: Palette.error },
   button: {
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 10,
     padding: 16,
     alignItems: 'center',
   },
   disabled: { opacity: 0.4 },
-  buttonText: { color: '#182000', fontWeight: '900' },
+  buttonText: { color: Palette.text, fontWeight: '900' },
 });

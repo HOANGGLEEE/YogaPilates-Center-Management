@@ -29,6 +29,7 @@ import DashboardPage from './pages/DashboardPage'
 import ClassesPage from './pages/ClassesPage'
 import type { Member } from './services/members'
 import './App.css'
+import './warm-theme.css'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')

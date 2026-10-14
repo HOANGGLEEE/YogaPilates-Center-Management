@@ -13,7 +13,7 @@
     "android": {
       "package": "com.hoang.quanlyphonggym",
       "adaptiveIcon": {
-        "backgroundColor": "#182521",
+        "backgroundColor": "#F7F3EC",
         "foregroundImage": "./assets/brand/foreground.png",
         "monochromeImage": "./assets/brand/monochrome.png"
       },
@@ -28,7 +28,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#182521",
+          "backgroundColor": "#F7F3EC",
           "image": "./assets/brand/foreground.png",
           "imageWidth": 76
         }

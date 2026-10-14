@@ -1,6 +1,7 @@
+import { Palette, Fonts, ThemeColor } from '@/constants/theme';
 import { Platform, StyleSheet, Text, type TextProps } from 'react-native';
 
-import { Fonts, ThemeColor } from '@/constants/theme';
+
 import { useTheme } from '@/hooks/use-theme';
 
 export type ThemedTextProps = TextProps & {
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   linkPrimary: {
     lineHeight: 30,
     fontSize: 15,
-    color: '#3c87f7',
+    color: Palette.muted,
   },
   code: {
     fontFamily: Fonts.mono,

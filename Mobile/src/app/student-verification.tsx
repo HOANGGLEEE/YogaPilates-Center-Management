@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { useState } from 'react';
 import { router, useLocalSearchParams } from 'expo-router';
 import {
@@ -51,21 +52,21 @@ export default function StudentVerificationScreen() {
         <TextInput
           style={s.input}
           placeholder="Tên trường"
-          placeholderTextColor="#8b948e"
+          placeholderTextColor={Palette.muted}
           value={schoolName}
           onChangeText={setSchoolName}
         />
         <TextInput
           style={s.input}
           placeholder="Mã học sinh/sinh viên"
-          placeholderTextColor="#8b948e"
+          placeholderTextColor={Palette.muted}
           value={studentId}
           onChangeText={setStudentId}
         />
         <TextInput
           style={s.input}
           placeholder="Ngày hết hạn thẻ (YYYY-MM-DD)"
-          placeholderTextColor="#8b948e"
+          placeholderTextColor={Palette.muted}
           value={expiryDate}
           onChangeText={setExpiryDate}
         />
@@ -88,22 +89,22 @@ export default function StudentVerificationScreen() {
   );
 }
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#0c0f10' },
+  safe: { flex: 1, backgroundColor: Palette.background },
   content: { padding: 20, gap: 14 },
-  title: { color: '#e5e9e3', fontSize: 25, fontWeight: '900' },
-  note: { color: '#aeb59e', fontSize: 13, lineHeight: 18 },
+  title: { color: Palette.text, fontSize: 25, fontWeight: '900' },
+  note: { color: Palette.muted, fontSize: 13, lineHeight: 18 },
   input: {
-    backgroundColor: '#202427',
-    color: '#e5e9e3',
+    backgroundColor: Palette.surface,
+    color: Palette.text,
     borderRadius: 9,
     padding: 14,
   },
   button: {
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 9,
     padding: 15,
     alignItems: 'center',
   },
-  buttonText: { color: '#1b2600', fontWeight: '900' },
-  link: { color: '#c4d5aa', textAlign: 'center', marginTop: 12 },
+  buttonText: { color: Palette.text, fontWeight: '900' },
+  link: { color: Palette.accentInk, textAlign: 'center', marginTop: 12 },
 });

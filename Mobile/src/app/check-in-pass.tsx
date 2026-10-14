@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -21,15 +22,15 @@ import {
 } from '@/lib/check-in-api';
 
 const C = {
-  bg: '#182521',
-  card: '#26382f',
-  low: '#20312b',
-  high: '#30443a',
-  text: '#f2eee5',
-  muted: '#aeb59e',
-  lime: '#c4d5aa',
-  mint: '#a8c7b5',
-  ink: '#18251d',
+  bg: Palette.background,
+  card: Palette.text,
+  low: Palette.surface,
+  high: Palette.surface,
+  text: Palette.text,
+  muted: Palette.muted,
+  lime: Palette.accentInk,
+  mint: Palette.accentInk,
+  ink: Palette.text,
 };
 const club = {
   ...homeClubs[0],
@@ -115,7 +116,7 @@ export default function CheckInPassScreen() {
     <SafeAreaView style={s.safe} edges={['top']}>
       <View style={s.top}>
         <View style={s.brand}>
-          <Ionicons name="flash" color={C.lime} size={19} />
+          <Ionicons name="flash" color={Palette.accentInk} size={19} />
           <Text style={s.brandText}>CHECK IN PASS</Text>
         </View>
         <Ionicons name="person-circle-outline" color={C.text} size={28} />
@@ -152,7 +153,7 @@ export default function CheckInPassScreen() {
             }
             accessibilityLabel="Hướng dẫn tăng sáng"
           >
-            <Ionicons name="sunny-outline" color={C.lime} size={21} />
+            <Ionicons name="sunny-outline" color={Palette.accentInk} size={21} />
           </Pressable>
         </View>
         {notice ? (
@@ -178,7 +179,7 @@ export default function CheckInPassScreen() {
         <Text style={s.disabledReason}>Mã khách mời sẽ được hỗ trợ sau.</Text>
         <View style={s.club}>
           <View style={s.row}>
-            <Ionicons name="location-outline" color={C.lime} size={22} />
+            <Ionicons name="location-outline" color={Palette.accentInk} size={22} />
             <View style={{ flex: 1 }}>
               <Text style={s.cardTitle}>{club.name}</Text>
               <Text style={s.muted}>{club.address}</Text>
@@ -205,7 +206,7 @@ export default function CheckInPassScreen() {
           <Text style={s.center}>Đang tải thẻ hội viên...</Text>
         ) : !token ? (
           <View style={s.empty}>
-            <Ionicons name="lock-closed-outline" color={C.lime} size={34} />
+            <Ionicons name="lock-closed-outline" color={Palette.accentInk} size={34} />
             <Text style={s.cardTitle}>Không thể cấp mã QR</Text>
             <Text style={s.muted}>
               {error || 'Bạn chưa có gói tập đang hoạt động.'}
@@ -227,12 +228,12 @@ export default function CheckInPassScreen() {
                   <Text style={s.muted}>#{memberCode}</Text>
                 </View>
               </View>
-              <Ionicons name="flash" color={C.lime} size={22} />
+              <Ionicons name="flash" color={Palette.accentInk} size={22} />
             </View>
             <View style={s.timer}>
               <Text style={s.timerText}>
                 ↻ LÀM MỚI BẢO MẬT:{' '}
-                <Text style={{ color: C.lime }}>{seconds}s</Text>
+                <Text style={{ color: Palette.accentInk }}>{seconds}s</Text>
               </Text>
               <View style={s.timerTrack}>
                 <View
@@ -259,7 +260,7 @@ export default function CheckInPassScreen() {
                 <Text style={s.qrLabel}>♢ MÃ QR ĐƯỢC BACKEND KÝ</Text>
                 {token.shortCode ? <>
                   <Text style={s.qrLabel}>MÃ NHẬP TAY</Text>
-                  <Text selectable style={{ color: '#182521', fontSize: 20, fontWeight: '900', letterSpacing: 1 }}>{token.shortCode}</Text>
+                  <Text selectable style={{ color: Palette.text, fontSize: 20, fontWeight: '900', letterSpacing: 1 }}>{token.shortCode}</Text>
                 </> : null}
               </View>
             ) : <Text style={s.center}>Đang làm mới mã QR...</Text>}
@@ -352,7 +353,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderBottomColor: '#24272a',
+    borderBottomColor: Palette.border,
   },
   brand: { flexDirection: 'row', alignItems: 'center', gap: 9 },
   brandText: { color: C.text, fontSize: 17, fontWeight: '900' },
@@ -375,8 +376,8 @@ const s = StyleSheet.create({
   },
   kicker: { color: C.muted, fontSize: 10, fontWeight: '800' },
   title: { color: C.text, fontSize: 18, fontWeight: '900' },
-  notice: { backgroundColor: '#2a301c', borderRadius: 9, padding: 10 },
-  noticeText: { color: C.lime, fontSize: 12 },
+  notice: { backgroundColor: Palette.surface, borderRadius: 9, padding: 10 },
+  noticeText: { color: Palette.accentInk, fontSize: 12 },
   tabs: {
     flexDirection: 'row',
     backgroundColor: C.low,
@@ -402,7 +403,7 @@ const s = StyleSheet.create({
   cardTitle: { color: C.text, fontSize: 17, fontWeight: '900' },
   muted: { color: C.muted, fontSize: 12, lineHeight: 16 },
   online: { width: 10, height: 10, borderRadius: 5, backgroundColor: C.mint },
-  demo: { color: '#d5b976', fontSize: 9, fontWeight: '800' },
+  demo: { color: Palette.muted, fontSize: 9, fontWeight: '800' },
   statusRow: { flexDirection: 'row', gap: 8 },
   status: {
     flex: 1,
@@ -455,7 +456,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  avatarText: { color: C.lime, fontWeight: '900' },
+  avatarText: { color: Palette.accentInk, fontWeight: '900' },
   badge: {
     color: C.ink,
     backgroundColor: C.lime,
@@ -467,7 +468,7 @@ const s = StyleSheet.create({
   },
   timer: {
     width: '100%',
-    backgroundColor: '#101c18',
+    backgroundColor: Palette.background,
     padding: 10,
     borderRadius: 10,
     flexDirection: 'row',
@@ -486,19 +487,19 @@ const s = StyleSheet.create({
   qr: {
     maxWidth: 286,
     width: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: Palette.surface,
     borderRadius: 16,
     padding: 14,
     alignItems: 'center',
     gap: 9,
   },
-  qrLabel: { color: '#182521', fontSize: 9, fontWeight: '900' },
+  qrLabel: { color: Palette.muted, fontSize: 9, fontWeight: '900' },
   barcodeHint: { color: C.muted, fontSize: 9, fontWeight: '800' },
   barcode: {
     maxWidth: 286,
     width: '100%',
     minHeight: 67,
-    backgroundColor: '#fff',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingTop: 8,
@@ -512,7 +513,7 @@ const s = StyleSheet.create({
     left: 12,
     right: 12,
     textAlign: 'center',
-    color: '#111',
+    color: Palette.text,
     fontSize: 11,
     letterSpacing: 2,
     fontWeight: '800',
@@ -528,7 +529,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     gap: 11,
   },
-  stepNumber: { color: C.lime, fontSize: 17, fontWeight: '900' },
+  stepNumber: { color: Palette.accentInk, fontSize: 17, fontWeight: '900' },
   stepText: { color: C.text, fontSize: 13, flex: 1 },
   history: {
     minHeight: 48,

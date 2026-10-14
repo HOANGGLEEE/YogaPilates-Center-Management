@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import type { ReactNode } from 'react';
@@ -30,7 +31,7 @@ export function ShopPage({
             }
             style={{ padding: 10 }}
           >
-            <FontAwesome name="arrow-left" size={18} color="#c4d5aa" />
+            <FontAwesome name="arrow-left" size={18} color={Palette.accentInk} />
           </Pressable>
           <Text style={checkoutStyles.heading}>{title}</Text>
           <Pressable
@@ -38,7 +39,7 @@ export function ShopPage({
             onPress={() => router.push('/orders')}
             style={{ padding: 10 }}
           >
-            <FontAwesome name="list-alt" size={20} color="#c4d5aa" />
+            <FontAwesome name="list-alt" size={20} color={Palette.accentInk} />
           </Pressable>
         </View>
         <ScrollView
@@ -79,7 +80,7 @@ export function ShopButton({
       ]}
     >
       <Text
-        style={[checkoutStyles.buttonText, secondary && { color: '#e7eee5' }, choice && { color: !secondary ? '#c4d5aa' : '#e7eee5' }]}
+        style={[checkoutStyles.buttonText, secondary && { color: Palette.text }, choice && { color: !secondary ? Palette.accentInk : Palette.text }]}
       >
         {choice ? `${!secondary ? '●' : '○'}  ${title}` : title}
       </Text>
@@ -95,7 +96,7 @@ export function ShopField({
       <Text style={checkoutStyles.muted}>{label}</Text>
       <TextInput
         accessibilityLabel={label}
-        placeholderTextColor="#849080"
+        placeholderTextColor={Palette.muted}
         {...props}
         style={[checkoutStyles.input, props.style]}
       />
@@ -113,7 +114,7 @@ export function ShopRow({ label, value }: { label: string; value: string }) {
   );
 }
 export const checkoutStyles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: '#0f1213' },
+  screen: { flex: 1, backgroundColor: Palette.background },
   container: { flex: 1, width: '100%', maxWidth: 540, alignSelf: 'center' },
   header: {
     flexDirection: 'row',
@@ -123,12 +124,12 @@ export const checkoutStyles = StyleSheet.create({
     minHeight: 56,
   },
   content: { padding: 16, gap: 16, paddingBottom: 32 },
-  heading: { fontSize: 17, fontWeight: '800', color: '#c4d5aa' },
-  text: { color: '#c4d5aa', fontSize: 14, lineHeight: 21 },
-  muted: { color: '#a6b0a0', fontSize: 13, lineHeight: 20 },
-  accent: { color: '#c4d5aa', fontSize: 23, fontWeight: '800' },
-  error: { color: '#ffaaa0', fontSize: 14, lineHeight: 21 },
-  card: { backgroundColor: '#1c2224', borderRadius: 16, padding: 16, gap: 14, borderWidth: 1, borderColor: '#293134' },
+  heading: { fontSize: 17, fontWeight: '800', color: Palette.accentInk },
+  text: { color: Palette.accentInk, fontSize: 14, lineHeight: 21 },
+  muted: { color: Palette.muted, fontSize: 13, lineHeight: 20 },
+  accent: { color: Palette.accentInk, fontSize: 23, fontWeight: '800' },
+  error: { color: Palette.error, fontSize: 14, lineHeight: 21 },
+  card: { backgroundColor: Palette.surface, borderRadius: 16, padding: 16, gap: 14, borderWidth: 1, borderColor: Palette.border },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -137,10 +138,10 @@ export const checkoutStyles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#394346',
-    backgroundColor: '#141a1c',
+    borderColor: Palette.border,
+    backgroundColor: Palette.background,
     borderRadius: 10,
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     padding: 12,
     fontSize: 15,
     minHeight: 46,
@@ -151,20 +152,20 @@ export const checkoutStyles = StyleSheet.create({
     borderRadius: 9,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
   },
   secondary: {
-    backgroundColor: '#242c2f',
+    backgroundColor: Palette.surface,
     borderWidth: 1,
-    borderColor: '#3a464a',
+    borderColor: Palette.border,
   },
-  choice: { backgroundColor: '#161d1f', borderWidth: 1, borderColor: '#3a464a', alignItems: 'flex-start', paddingHorizontal: 16 },
-  choiceSelected: { backgroundColor: '#242e1d', borderColor: '#c4d5aa' },
+  choice: { backgroundColor: Palette.background, borderWidth: 1, borderColor: Palette.border, alignItems: 'flex-start', paddingHorizontal: 16 },
+  choiceSelected: { backgroundColor: Palette.soft, borderColor: Palette.accentInk },
   buttonText: {
-    color: '#182000',
+    color: Palette.text,
     fontSize: 14,
     fontWeight: '800',
     textAlign: 'center',
   },
-  image: { width: 66, height: 66, borderRadius: 8, backgroundColor: '#101210' },
+  image: { width: 66, height: 66, borderRadius: 8, backgroundColor: Palette.background },
 });

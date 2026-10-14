@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import BackendImage from '@/components/backend-image';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useRef, useState } from 'react';
@@ -186,7 +187,7 @@ export default function CheckoutScreen() {
           onPress={() => router.push('/login')}
         />
       ) : loading ? (
-        <ActivityIndicator color="#c4d5aa" />
+        <ActivityIndicator color={Palette.accentInk} />
       ) : (
         <>
           {!!error && (

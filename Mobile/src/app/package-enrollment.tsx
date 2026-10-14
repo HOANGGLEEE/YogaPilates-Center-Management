@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C } from '@/constants/theme';
 import { enrollmentGifts, homeClubs } from '@/constants/package-detail';
 import { type GymPackage } from '@/lib/packages';
 import {
@@ -16,7 +17,7 @@ import {
   getPaymentByRegistration,
 } from '@/lib/payment-api';
 import { getStudentVerification } from '@/lib/student-verification';
-import { AuthColors as C } from '@/constants/theme';
+
 import { useAuth } from '@/context/AuthContext';
 import { type PaymentMethod } from '@/lib/membership';
 import {
@@ -379,7 +380,7 @@ export default function PackageEnrollmentScreen() {
             <View style={s.summaryHead}>
               <View style={{ flex: 1 }}>
                 <View style={s.pillRow}>
-                  <Ionicons name="flash" color={C.lime} size={11} />
+                  <Ionicons name="flash" color={Palette.accentInk} size={11} />
                   <Text style={s.pill}>{item.tier}</Text>
                 </View>
                 <Text style={s.packageName}>{item.name}</Text>
@@ -394,7 +395,7 @@ export default function PackageEnrollmentScreen() {
                 </Text>
               </View>
               <View style={s.diamond}>
-                <Ionicons name="diamond-outline" size={24} color={C.lime} />
+                <Ionicons name="diamond-outline" size={24} color={Palette.accentInk} />
               </View>
             </View>
             <View style={s.priceModule}>
@@ -425,7 +426,7 @@ export default function PackageEnrollmentScreen() {
                     </View>
                     <Ionicons
                       name="checkmark-circle"
-                      color={C.lime}
+                      color={Palette.accentInk}
                       size={17}
                     />
                   </View>
@@ -569,7 +570,7 @@ export default function PackageEnrollmentScreen() {
                   <Ionicons
                     name={method.icon}
                     size={21}
-                    color={method.id === 'card' ? C.cyan : C.lime}
+                    color={method.id === 'card' ? C.cyan : Palette.accentInk}
                   />
                 </View>
                 <View style={{ flex: 1 }}>
@@ -890,7 +891,7 @@ function Choice({
     <Pressable onPress={onPress} style={[s.choice, selected && s.methodActive]}>
       <Text style={s.selectText}>{label}</Text>
       {selected ? (
-        <Ionicons name="checkmark-circle" color={C.lime} size={20} />
+        <Ionicons name="checkmark-circle" color={Palette.accentInk} size={20} />
       ) : null}
     </Pressable>
   );
@@ -944,7 +945,7 @@ const s = StyleSheet.create({
   stepNumber: { color: C.muted, fontSize: 10, fontWeight: '800' },
   stepNumberActive: { color: C.surfaceLowest },
   stepLabel: { color: C.muted, fontSize: 9, fontWeight: '800', marginTop: 5 },
-  stepLabelActive: { color: C.lime },
+  stepLabelActive: { color: Palette.accentInk },
   track: {
     position: 'absolute',
     top: 12,
@@ -960,12 +961,12 @@ const s = StyleSheet.create({
     alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#2b3511',
+    backgroundColor: Palette.soft,
     paddingHorizontal: 6,
     borderRadius: 10,
   },
   pill: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 9,
     fontWeight: '900',
     paddingHorizontal: 3,
@@ -974,7 +975,7 @@ const s = StyleSheet.create({
   packageName: { color: C.text, fontSize: 18, fontWeight: '800', marginTop: 5 },
   muted: { color: C.muted, fontSize: 12, flex: 1 },
   white: { color: C.text, fontWeight: '700' },
-  lime: { color: C.lime },
+  lime: { color: Palette.accentInk },
   diamond: {
     width: 43,
     height: 43,
@@ -993,7 +994,7 @@ const s = StyleSheet.create({
     gap: 8,
   },
   strike: { color: C.muted, fontSize: 11, textDecorationLine: 'line-through' },
-  price: { color: C.lime, fontSize: 22, fontWeight: '900' },
+  price: { color: Palette.accentInk, fontSize: 22, fontWeight: '900' },
   save: {
     color: C.surfaceLowest,
     backgroundColor: C.lime,
@@ -1065,7 +1066,7 @@ const s = StyleSheet.create({
     justifyContent: 'center',
   },
   primaryText: { color: C.surfaceLowest, fontSize: 11, fontWeight: '900' },
-  limeLabel: { color: C.lime, fontSize: 9, fontWeight: '800' },
+  limeLabel: { color: Palette.accentInk, fontSize: 9, fontWeight: '800' },
   applied: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -1109,7 +1110,7 @@ const s = StyleSheet.create({
   },
   methodBadge: {
     color: C.mint,
-    backgroundColor: '#143428',
+    backgroundColor: Palette.soft,
     fontSize: 8,
     fontWeight: '900',
     padding: 3,
@@ -1143,7 +1144,7 @@ const s = StyleSheet.create({
   },
   totalLabel: { flex: 1, minWidth: 0 },
   total: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 23,
     fontWeight: '900',
     flexShrink: 1,
@@ -1167,7 +1168,7 @@ const s = StyleSheet.create({
   },
   checked: { backgroundColor: C.lime, borderColor: C.lime },
   termsText: { color: C.muted, flex: 1, fontSize: 11, lineHeight: 15 },
-  link: { color: C.lime, textDecorationLine: 'underline' },
+  link: { color: Palette.accentInk, textDecorationLine: 'underline' },
   security: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1186,7 +1187,7 @@ const s = StyleSheet.create({
   },
   bottomTotal: { flexShrink: 1, minWidth: 0, maxWidth: '42%' },
   bottomPrice: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 19,
     fontWeight: '900',
     flexShrink: 1,
@@ -1205,7 +1206,7 @@ const s = StyleSheet.create({
   disabled: { opacity: 0.42 },
   backdrop: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,.72)',
+    backgroundColor: Palette.scrim,
     justifyContent: 'flex-end',
   },
   sheet: {
