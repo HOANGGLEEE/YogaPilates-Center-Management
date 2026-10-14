@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
@@ -10,7 +11,7 @@ import {
   AuthScreen,
   SocialButtons,
 } from '@/components/auth-ui';
-import { AuthColors as C } from '@/constants/theme';
+
 import { useAuth } from '@/context/AuthContext';
 
 const goals = [
@@ -108,7 +109,7 @@ export default function Register() {
       <View style={s.promo}>
         <Text style={s.promoBadge}>ϟ ĐẶC QUYỀN HỘI VIÊN MỚI</Text>
         <Text style={s.promoTitle}>
-          Gia nhập <Text style={{ color: C.lime }}>Yoga & Pilates</Text>
+          Gia nhập <Text style={{ color: Palette.accentInk }}>Yoga & Pilates</Text>
         </Text>
         <Text style={s.promoCopy}>
           Tạo tài khoản để khám phá gói Yoga & Pilates và đặt lịch hướng dẫn
@@ -223,11 +224,11 @@ export default function Register() {
                 <Ionicons
                   name={goal.icon}
                   size={19}
-                  color={selected ? '#263529' : C.text}
+                  color={selected ? Palette.text : C.text}
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={[s.goalTitle, selected && { color: C.lime }]}>
+                <Text style={[s.goalTitle, selected && { color: Palette.accentInk }]}>
                   {goal.title}
                 </Text>
                 <Text style={s.goalDetail}>{goal.detail}</Text>
@@ -244,7 +245,7 @@ export default function Register() {
         accessibilityState={{ checked: terms }}
       >
         <View style={[s.check, terms && { backgroundColor: C.lime }]}>
-          {terms && <Ionicons name="checkmark" size={18} color="#263529" />}
+          {terms && <Ionicons name="checkmark" size={18} color={Palette.text} />}
         </View>
         <Text style={s.termsText}>
           Tôi đồng ý với <Text style={s.underline}>Điều khoản dịch vụ</Text> &{' '}
@@ -274,7 +275,7 @@ export default function Register() {
       <AuthDivider title="HOẶC ĐĂNG KÝ NHANH" />
       <SocialButtons />
       <View style={s.community}>
-        <Ionicons name="trophy-outline" size={26} color={C.lime} />
+        <Ionicons name="trophy-outline" size={26} color={Palette.accentInk} />
         <View>
           <Text style={s.communityTitle}>Cùng xây dựng thói quen vận động mỗi ngày</Text>
           <Text style={s.communityCopy}>
@@ -288,13 +289,13 @@ export default function Register() {
 }
 const s = StyleSheet.create({
   promo: {
-    backgroundColor: '#2b2d2e',
+    backgroundColor: Palette.surface,
     borderRadius: 15,
     padding: 17,
     marginBottom: 26,
   },
   promoBadge: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0.5,
@@ -337,7 +338,7 @@ const s = StyleSheet.create({
     fontWeight: '800',
     letterSpacing: 0.5,
   },
-  hint: { color: C.lime, fontSize: 12, fontWeight: '700' },
+  hint: { color: Palette.accentInk, fontSize: 12, fontWeight: '700' },
   goals: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   goal: {
     width: '48%',
@@ -349,7 +350,7 @@ const s = StyleSheet.create({
     gap: 8,
     padding: 8,
   },
-  goalSelected: { borderWidth: 1, borderColor: '#394713' },
+  goalSelected: { borderWidth: 1, borderColor: Palette.border },
   goalIcon: {
     width: 30,
     height: 30,
@@ -380,7 +381,7 @@ const s = StyleSheet.create({
   error: { color: C.error, fontSize: 13, marginTop: 8 },
   community: {
     marginTop: 28,
-    backgroundColor: '#101c18',
+    backgroundColor: Palette.background,
     borderRadius: 13,
     padding: 16,
     flexDirection: 'row',

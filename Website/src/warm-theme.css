@@ -1,0 +1,20 @@
+:root {
+  color-scheme: light;
+  --warm-bg: #F7F3EC;
+  --warm-accent: #D9B7A5;
+  --warm-surface: #FFFCF8;
+  --warm-soft: #EFE3DA;
+  --warm-border: #E8DCD1;
+  --warm-text: #3F302B;
+  --warm-muted: #7D6B62;
+  --warm-accent-ink: #805444;
+  --warm-white: #FFFFFF;
+  --warm-success: #526B53;
+  --warm-success-surface: #EAF0E6;
+  --warm-error: #B13F35;
+  --warm-error-surface: #F8E6E1;
+  --warm-warning: #805E25;
+  --warm-warning-surface: #F5EBD6;
+  --warm-scrim: rgba(63,48,43,.48);
+  --warm-shadow: rgba(63,48,43,.08);
+}

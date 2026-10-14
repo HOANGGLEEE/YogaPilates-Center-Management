@@ -26,8 +26,10 @@ import ShopOrdersPage from './pages/ShopOrdersPage'
 import WarehousePages from './pages/WarehousePages'
 import RevenueInvoicePage from './pages/RevenueInvoicePage'
 import DashboardPage from './pages/DashboardPage'
+import ClassesPage from './pages/ClassesPage'
 import type { Member } from './services/members'
 import './App.css'
+import './warm-theme.css'
 
 function App() {
   const [activePage, setActivePage] = useState('Dashboard')
@@ -66,6 +68,7 @@ function App() {
   }, [])
 
   const moduleViews: Record<string, { tabs: string[]; pages: ReactNode[] }> = {
+    'Lớp học': { tabs: [], pages: [<ClassesPage key="classes" />] },
     'Gói tập': {
       tabs: ['Danh sách gói tập', 'Quản lý đăng ký'],
       pages: [

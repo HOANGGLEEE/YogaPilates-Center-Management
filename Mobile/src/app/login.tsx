@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -11,7 +12,7 @@ import {
   SocialButtons,
   authStyles,
 } from '@/components/auth-ui';
-import { AuthColors as C } from '@/constants/theme';
+
 import { useAuth } from '@/context/AuthContext';
 
 const hero = require('../../assets/packages/diamond/classes/power-yoga.jpg');
@@ -61,14 +62,14 @@ export default function Login() {
         <View style={s.heroShade} />
         <View style={s.heroBottomShade} />
         <View style={s.heroBadge}>
-          <Ionicons name="flash" size={17} color={C.lime} />
+          <Ionicons name="flash" size={17} color={Palette.accentInk} />
           <Text style={s.heroBadgeText}>YOGA • PILATES • MINDFULNESS</Text>
         </View>
         <View style={s.heroDot} />
       </View>
       <View style={s.kickerRow}>
         <View style={s.iconBox}>
-          <Ionicons name="leaf" size={20} color={C.lime} />
+          <Ionicons name="leaf" size={20} color={Palette.accentInk} />
         </View>
         <Text style={authStyles.kicker}>MINDFUL MOVEMENT</Text>
       </View>
@@ -101,7 +102,7 @@ export default function Login() {
         >
           <View style={[s.checkbox, remember && s.checked]}>
             {remember && (
-              <Ionicons name="checkmark" size={16} color="#263529" />
+              <Ionicons name="checkmark" size={16} color={Palette.text} />
             )}
           </View>
           <Text style={s.muted}>Ghi nhớ đăng nhập</Text>
@@ -119,7 +120,7 @@ export default function Login() {
       />
       <View style={[authStyles.card, s.bio]}>
         <View style={s.iconBox}>
-          <Ionicons name="finger-print" size={27} color={C.lime} />
+          <Ionicons name="finger-print" size={27} color={Palette.accentInk} />
         </View>
         <View style={s.bioCopy}>
           <Text style={s.bioTitle}>Xác thực sinh trắc học</Text>
@@ -161,7 +162,7 @@ const s = StyleSheet.create({
   },
   heroShade: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(17,19,22,0.18)',
+    backgroundColor: Palette.imageScrim,
   },
   heroBottomShade: {
     position: 'absolute',
@@ -169,13 +170,13 @@ const s = StyleSheet.create({
     left: 0,
     right: 0,
     height: 60,
-    backgroundColor: 'rgba(17,19,22,0.72)',
+    backgroundColor: Palette.imageScrim,
   },
   heroBadge: {
     position: 'absolute',
     left: 12,
     bottom: 12,
-    backgroundColor: 'rgba(40,42,45,0.95)',
+    backgroundColor: Palette.soft,
     borderRadius: 20,
     flexDirection: 'row',
     alignItems: 'center',
@@ -231,7 +232,7 @@ const s = StyleSheet.create({
   },
   checked: { backgroundColor: C.lime },
   muted: { color: C.muted, fontSize: 14, lineHeight: 19 },
-  link: { color: C.lime, fontSize: 13, fontWeight: '700' },
+  link: { color: Palette.accentInk, fontSize: 13, fontWeight: '700' },
   error: { color: C.error, marginTop: 10, fontSize: 13 },
   bio: { marginTop: 26, flexDirection: 'row', alignItems: 'center', gap: 12 },
   bioCopy: { flex: 1 },

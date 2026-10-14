@@ -18,6 +18,7 @@ const navigation: { group: string; items: NavigationItem[] }[] = [
       { label: 'Gói tập', icon: '◇' },
       { label: 'Check-In', icon: '✓' },
       { label: 'Hướng dẫn viên', icon: '♟' },
+      { label: 'Lớp học', icon: '▦' },
     ],
   },
   {

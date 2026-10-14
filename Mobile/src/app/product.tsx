@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import BackendImage from '@/components/backend-image';
 import { DEFAULT_PRODUCT_IMAGE } from '@/constants/shop-image';
@@ -111,7 +112,7 @@ export default function ProductsScreen() {
             <RefreshControl
               refreshing={loading}
               onRefresh={() => setReload((n) => n + 1)}
-              tintColor="#c4d5aa"
+              tintColor={Palette.accentInk}
             />
           }
         >
@@ -125,12 +126,12 @@ export default function ProductsScreen() {
           </View>
           <View style={styles.searchRow}>
             <View style={styles.searchBox}>
-              <FontAwesome name="search" size={15} color="#a8b09f" />
+              <FontAwesome name="search" size={15} color={Palette.muted} />
               <TextInput
                 value={search}
                 onChangeText={setSearch}
                 placeholder="Tìm sản phẩm..."
-                placeholderTextColor="#8c9389"
+                placeholderTextColor={Palette.muted}
                 style={styles.searchInput}
                 accessibilityLabel="Tìm sản phẩm"
               />
@@ -182,7 +183,7 @@ export default function ProductsScreen() {
             </Text>
           )}
           {loading ? (
-            <ActivityIndicator color="#c4d5aa" />
+            <ActivityIndicator color={Palette.accentInk} />
           ) : error ? (
             <View>
               <Text style={styles.subtitle}>{error}</Text>
@@ -262,24 +263,24 @@ export default function ProductsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#101210' },
+  container: { flex: 1, backgroundColor: Palette.background },
   safeArea: { flex: 1, width: '100%', maxWidth: 540, alignSelf: 'center' },
   content: { paddingHorizontal: 16, paddingBottom: 24 },
   intro: { marginBottom: 14 },
   kicker: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 10,
     fontWeight: '900',
     letterSpacing: 0.5,
   },
   title: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 24,
     lineHeight: 27,
     fontWeight: '900',
     marginTop: 8,
   },
-  subtitle: { color: '#9ca599', fontSize: 11, marginTop: 6 },
+  subtitle: { color: Palette.muted, fontSize: 11, marginTop: 6 },
   searchRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -292,11 +293,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    backgroundColor: '#292d30',
+    backgroundColor: Palette.surface,
     borderRadius: 9,
     paddingHorizontal: 11,
   },
-  searchInput: { flex: 1, color: '#e6ebe1', fontSize: 12, paddingVertical: 0 },
+  searchInput: { flex: 1, color: Palette.text, fontSize: 12, paddingVertical: 0 },
   filterDot: {
     position: 'absolute',
     top: 8,
@@ -304,7 +305,7 @@ const styles = StyleSheet.create({
     width: 6,
     height: 6,
     borderRadius: 3,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
   },
   cartBadge: {
     position: 'absolute',
@@ -313,8 +314,8 @@ const styles = StyleSheet.create({
     minWidth: 17,
     height: 17,
     borderRadius: 9,
-    backgroundColor: '#c4d5aa',
-    color: '#182000',
+    backgroundColor: Palette.accent,
+    color: Palette.text,
     fontSize: 10,
     fontWeight: '900',
     textAlign: 'center',
@@ -322,18 +323,18 @@ const styles = StyleSheet.create({
   },
   categoryList: { gap: 7, paddingBottom: 18 },
   categoryChip: {
-    backgroundColor: '#1d211e',
+    backgroundColor: Palette.soft,
     borderRadius: 15,
     paddingHorizontal: 13,
     paddingVertical: 8,
   },
-  categoryChipActive: { backgroundColor: '#c4d5aa' },
-  categoryText: { color: '#bdc5b8', fontSize: 10, fontWeight: '800' },
-  categoryTextActive: { color: '#172000' },
+  categoryChipActive: { backgroundColor: Palette.accent },
+  categoryText: { color: Palette.muted, fontSize: 10, fontWeight: '800' },
+  categoryTextActive: { color: Palette.text },
   promoCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#272c27',
+    backgroundColor: Palette.surface,
     borderRadius: 9,
     padding: 11,
     marginBottom: 22,
@@ -342,35 +343,35 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    backgroundColor: '#1d241d',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
   },
   promoCopy: { flex: 1 },
-  promoTitle: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
+  promoTitle: { color: Palette.accentInk, fontSize: 9, fontWeight: '900' },
   promoDiscount: {
-    color: '#c4d5aa',
-    backgroundColor: '#385500',
+    color: Palette.accentInk,
+    backgroundColor: Palette.surface,
     fontSize: 8,
     paddingHorizontal: 3,
   },
-  promoText: { color: '#c1c9bc', fontSize: 10, lineHeight: 13, marginTop: 5 },
+  promoText: { color: Palette.muted, fontSize: 10, lineHeight: 13, marginTop: 5 },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 11,
   },
-  sectionTitle: { color: '#eff4e9', fontSize: 16, fontWeight: '900' },
+  sectionTitle: { color: Palette.text, fontSize: 16, fontWeight: '900' },
   countBadge: {
-    color: '#b8c0b3',
-    backgroundColor: '#303631',
+    color: Palette.muted,
+    backgroundColor: Palette.soft,
     fontSize: 10,
     paddingHorizontal: 5,
     borderRadius: 7,
   },
-  sortText: { color: '#9ba59a', fontSize: 10 },
+  sortText: { color: Palette.muted, fontSize: 10 },
   productGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -379,13 +380,13 @@ const styles = StyleSheet.create({
   },
   productCard: {
     width: '48.6%',
-    backgroundColor: '#1d211f',
+    backgroundColor: Palette.surface,
     borderRadius: 10,
     overflow: 'hidden',
   },
   productImageWrap: {
     height: 142,
-    backgroundColor: '#252a26',
+    backgroundColor: Palette.surface,
     position: 'relative',
   },
   productImage: { width: '100%', height: '100%' },
@@ -393,8 +394,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     left: 8,
-    color: '#182000',
-    backgroundColor: '#c4d5aa',
+    color: Palette.text,
+    backgroundColor: Palette.accent,
     borderRadius: 3,
     paddingHorizontal: 5,
     paddingVertical: 4,
@@ -408,25 +409,25 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     borderRadius: 13,
-    backgroundColor: 'rgba(16, 18, 16, .72)',
+    backgroundColor: Palette.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  favoriteText: { color: '#e6eee2', fontSize: 21, lineHeight: 22 },
+  favoriteText: { color: Palette.text, fontSize: 21, lineHeight: 22 },
   productInfo: { padding: 9 },
-  rating: { color: '#c4d5aa', fontSize: 10, fontWeight: '800' },
-  reviewCount: { color: '#8e998d', fontWeight: '400' },
+  rating: { color: Palette.accentInk, fontSize: 10, fontWeight: '800' },
+  reviewCount: { color: Palette.muted, fontWeight: '400' },
   productName: {
-    color: '#edf2e8',
+    color: Palette.text,
     fontSize: 12,
     lineHeight: 14,
     fontWeight: '800',
     marginTop: 7,
     minHeight: 28,
   },
-  productDetail: { color: '#8e998d', fontSize: 9, marginTop: 4 },
+  productDetail: { color: Palette.muted, fontSize: 9, marginTop: 4 },
   oldPrice: {
-    color: '#6c756d',
+    color: Palette.muted,
     fontSize: 9,
     textDecorationLine: 'line-through',
     marginTop: 5,
@@ -437,18 +438,18 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     marginTop: 2,
   },
-  productPrice: { color: '#c4d5aa', fontSize: 16, fontWeight: '900' },
+  productPrice: { color: Palette.accentInk, fontSize: 16, fontWeight: '900' },
   addButton: {
     width: 30,
     height: 30,
     borderRadius: 9,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 'auto',
   },
   addButtonText: {
-    color: '#1b2600',
+    color: Palette.text,
     fontSize: 24,
     lineHeight: 25,
     fontWeight: '500',
@@ -456,7 +457,7 @@ const styles = StyleSheet.create({
   helpCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#252a27',
+    backgroundColor: Palette.surface,
     borderRadius: 10,
     padding: 12,
     marginTop: 22,
@@ -465,22 +466,22 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#303930',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 9,
   },
   helpCopy: { flex: 1 },
-  helpTitle: { color: '#e8eee3', fontSize: 12, fontWeight: '800' },
-  helpText: { color: '#8f998e', fontSize: 9, marginTop: 4 },
+  helpTitle: { color: Palette.text, fontSize: 12, fontWeight: '800' },
+  helpText: { color: Palette.muted, fontSize: 9, marginTop: 4 },
   helpButton: {
-    backgroundColor: '#383d3b',
+    backgroundColor: Palette.surface,
     borderRadius: 6,
     paddingHorizontal: 10,
     paddingVertical: 8,
   },
   helpButtonText: {
-    color: '#e2e9df',
+    color: Palette.text,
     fontSize: 9,
     fontWeight: '800',
     textAlign: 'center',

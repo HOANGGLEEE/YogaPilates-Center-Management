@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import BackendImage from '@/components/backend-image';
 import { router, useFocusEffect } from 'expo-router';
@@ -235,7 +236,7 @@ export default function ProfileScreen() {
                   contentFit="cover"
                 />
                 <View style={styles.camera}>
-                  <FontAwesome name="camera" size={11} color="#182000" />
+                  <FontAwesome name="camera" size={11} color={Palette.text} />
                 </View>
               </View>
               <Text style={styles.memberName}>
@@ -356,18 +357,18 @@ export default function ProfileScreen() {
               onPress={() => router.push('/check-in-history')}
               accessibilityLabel="Xem lịch sử check-in"
             >
-              <FontAwesome name="history" size={12} color="#182000" />
+              <FontAwesome name="history" size={12} color={Palette.text} />
               <Text style={styles.ordersButtonText}>LỊCH SỬ CHECK-IN</Text>
-              <FontAwesome name="arrow-right" size={11} color="#182000" />
+              <FontAwesome name="arrow-right" size={11} color={Palette.text} />
             </Pressable>
             <Pressable
               style={styles.ptBookingButton}
               onPress={() => router.push('/pt-schedule')}
               accessibilityLabel="Xem lịch hướng dẫn 1-1"
             >
-              <FontAwesome name="calendar" size={12} color="#182000" />
+              <FontAwesome name="calendar" size={12} color={Palette.text} />
               <Text style={styles.ptBookingButtonText}>LỊCH HƯỚNG DẪN 1-1</Text>
-              <FontAwesome name="arrow-right" size={11} color="#182000" />
+              <FontAwesome name="arrow-right" size={11} color={Palette.text} />
             </Pressable>
             <View style={styles.actionDivider} />
             <Pressable
@@ -375,9 +376,9 @@ export default function ProfileScreen() {
               onPress={() => router.push('/orders')}
               accessibilityLabel="Xem đơn hàng của tôi"
             >
-              <FontAwesome name="shopping-bag" size={12} color="#182000" />
+              <FontAwesome name="shopping-bag" size={12} color={Palette.text} />
               <Text style={styles.ordersButtonText}>ĐƠN HÀNG CỦA TÔI</Text>
-              <FontAwesome name="arrow-right" size={11} color="#182000" />
+              <FontAwesome name="arrow-right" size={11} color={Palette.text} />
             </Pressable>
             <View style={styles.sectionHeading}>
               <Text style={styles.sectionTitle}>
@@ -390,7 +391,7 @@ export default function ProfileScreen() {
               accessibilityLabel="Xem tất cả giao dịch"
             >
               <Text style={styles.viewAllOrdersText}>XEM TẤT CẢ</Text>
-              <FontAwesome name="arrow-right" size={11} color="#c4d5aa" />
+              <FontAwesome name="arrow-right" size={11} color={Palette.accentInk} />
             </Pressable>
           </>
           <View style={styles.pageIntro}>
@@ -452,7 +453,7 @@ export default function ProfileScreen() {
               onPress={saveProfile}
               disabled={saving || !profile}
             >
-              <FontAwesome name="save" size={12} color="#192000" />
+              <FontAwesome name="save" size={12} color={Palette.text} />
               <Text style={styles.primaryText}>
                 {saving ? 'ĐANG LƯU...' : 'CẬP NHẬT THÔNG TIN'}
               </Text>
@@ -483,7 +484,7 @@ export default function ProfileScreen() {
                     : undefined
                 }
               >
-                <FontAwesome name={icon as never} size={14} color="#c4d5aa" />
+                <FontAwesome name={icon as never} size={14} color={Palette.accentInk} />
                 <Text style={styles.menuText}>{label}</Text>
                 <Text style={styles.menuArrow}>›</Text>
               </Pressable>
@@ -495,7 +496,7 @@ export default function ProfileScreen() {
             accessibilityRole="button"
             accessibilityLabel="Đăng xuất tài khoản"
           >
-            <FontAwesome name="sign-out" size={13} color="#ff8d82" />
+            <FontAwesome name="sign-out" size={13} color={Palette.muted} />
             <Text style={styles.logoutText}>Đăng xuất tài khoản</Text>
           </Pressable>
           <Text style={styles.version}>
@@ -508,28 +509,28 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#101210' },
+  container: { flex: 1, backgroundColor: Palette.background },
   safeArea: { flex: 1, width: '100%', maxWidth: 540, alignSelf: 'center' },
   content: { paddingHorizontal: 16, paddingBottom: 24 },
   pageIntro: {
     borderTopWidth: 1,
-    borderTopColor: '#303631',
+    borderTopColor: Palette.border,
     marginTop: 30,
     paddingVertical: 12,
   },
   personalDivider: { marginTop: 0, paddingTop: 0, marginBottom: 2 },
-  kicker: { color: '#c4d5aa', fontSize: 11, fontWeight: '900' },
-  formCard: { backgroundColor: '#1d221f', borderRadius: 10, padding: 11 },
+  kicker: { color: Palette.accentInk, fontSize: 11, fontWeight: '900' },
+  formCard: { backgroundColor: Palette.surface, borderRadius: 10, padding: 11 },
   field: { flex: 1, marginBottom: 10 },
   fieldLabel: {
-    color: '#d3dfc6',
+    color: Palette.muted,
     fontSize: 8,
     fontWeight: '900',
     marginBottom: 5,
   },
   fieldInput: {
-    color: '#f0f5eb',
-    backgroundColor: '#0e1110',
+    color: Palette.text,
+    backgroundColor: Palette.background,
     borderRadius: 6,
     minHeight: 34,
     paddingHorizontal: 9,
@@ -538,18 +539,18 @@ const styles = StyleSheet.create({
   tripleRow: { flexDirection: 'row', gap: 7 },
   selectBox: {
     minHeight: 36,
-    backgroundColor: '#0e1110',
+    backgroundColor: Palette.background,
     borderRadius: 6,
     paddingHorizontal: 9,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  selectText: { color: '#e5ece0', fontSize: 10 },
-  chevron: { color: '#c4d5aa', fontSize: 19 },
+  selectText: { color: Palette.text, fontSize: 10 },
+  chevron: { color: Palette.accentInk, fontSize: 19 },
   primaryButton: {
     minHeight: 34,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 7,
     marginTop: 9,
     alignItems: 'center',
@@ -557,9 +558,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 7,
   },
-  primaryText: { color: '#192000', fontSize: 10, fontWeight: '900' },
+  primaryText: { color: Palette.text, fontSize: 10, fontWeight: '900' },
   menuCard: {
-    backgroundColor: '#1d221f',
+    backgroundColor: Palette.surface,
     borderRadius: 10,
     marginTop: 10,
     paddingHorizontal: 11,
@@ -569,24 +570,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#303631',
+    borderBottomColor: Palette.border,
     gap: 10,
   },
-  menuText: { color: '#e0e7de', fontSize: 10, flex: 1 },
-  menuArrow: { color: '#c4d5aa', fontSize: 21 },
+  menuText: { color: Palette.text, fontSize: 10, flex: 1 },
+  menuArrow: { color: Palette.accentInk, fontSize: 21 },
   logout: {
     minHeight: 34,
     borderRadius: 7,
-    backgroundColor: '#292d30',
+    backgroundColor: Palette.surface,
     marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 7,
   },
-  logoutText: { color: '#ff8d82', fontSize: 10, fontWeight: '800' },
+  logoutText: { color: Palette.muted, fontSize: 10, fontWeight: '800' },
   version: {
-    color: '#788278',
+    color: Palette.muted,
     textAlign: 'center',
     fontSize: 8,
     fontWeight: '800',
@@ -594,7 +595,7 @@ const styles = StyleSheet.create({
   },
   memberHero: {
     alignItems: 'center',
-    backgroundColor: '#171b18',
+    backgroundColor: Palette.background,
     borderRadius: 10,
     padding: 13,
   },
@@ -603,7 +604,7 @@ const styles = StyleSheet.create({
     height: 76,
     borderRadius: 38,
     borderWidth: 2,
-    borderColor: '#c4d5aa',
+    borderColor: Palette.accentInk,
     padding: 2,
     position: 'relative',
   },
@@ -615,42 +616,42 @@ const styles = StyleSheet.create({
     width: 21,
     height: 21,
     borderRadius: 11,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     alignItems: 'center',
     justifyContent: 'center',
   },
   memberName: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 18,
     fontWeight: '900',
     marginTop: 7,
   },
-  verified: { color: '#c4d5aa', fontSize: 11 },
+  verified: { color: Palette.accentInk, fontSize: 11 },
   memberTier: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 8,
     fontWeight: '900',
     marginTop: 3,
   },
-  contact: { color: '#b3beb0', fontSize: 9, marginTop: 8 },
+  contact: { color: Palette.muted, fontSize: 9, marginTop: 8 },
   memberStats: {
     flexDirection: 'row',
     alignSelf: 'stretch',
     justifyContent: 'space-around',
-    backgroundColor: '#202521',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     marginTop: 12,
     paddingVertical: 9,
     alignItems: 'center',
   },
   statNumber: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 17,
     fontWeight: '900',
     textAlign: 'center',
   },
   statLabel: {
-    color: '#8e998d',
+    color: Palette.muted,
     fontSize: 8,
     textAlign: 'center',
     marginTop: 2,
@@ -662,12 +663,12 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 8,
   },
-  sectionTitle: { color: '#dce7d6', fontSize: 10, fontWeight: '900' },
-  sectionAction: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
+  sectionTitle: { color: Palette.text, fontSize: 10, fontWeight: '900' },
+  sectionAction: { color: Palette.accentInk, fontSize: 8, fontWeight: '900' },
   ptBookingButton: {
     minHeight: 34,
     borderRadius: 7,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     marginTop: 16,
     paddingHorizontal: 12,
     flexDirection: 'row',
@@ -675,12 +676,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 7,
   },
-  ptBookingButtonText: { color: '#182000', fontSize: 9, fontWeight: '900' },
-  actionDivider: { height: 1, backgroundColor: '#3a413b', marginTop: 7 },
+  ptBookingButtonText: { color: Palette.text, fontSize: 9, fontWeight: '900' },
+  actionDivider: { height: 1, backgroundColor: Palette.surface, marginTop: 7 },
   ordersButton: {
     minHeight: 34,
     borderRadius: 7,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     marginTop: 7,
     paddingHorizontal: 12,
     flexDirection: 'row',
@@ -688,18 +689,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 7,
   },
-  ordersButtonText: { color: '#182000', fontSize: 9, fontWeight: '900' },
-  passCard: { backgroundColor: '#252c24', borderRadius: 9, padding: 12 },
-  passKicker: { color: '#c4d5aa', fontSize: 8, fontWeight: '900' },
-  passName: { color: '#c4d5aa', fontSize: 15, fontWeight: '900', marginTop: 3 },
+  ordersButtonText: { color: Palette.text, fontSize: 9, fontWeight: '900' },
+  passCard: { backgroundColor: Palette.surface, borderRadius: 9, padding: 12 },
+  passKicker: { color: Palette.accentInk, fontSize: 8, fontWeight: '900' },
+  passName: { color: Palette.accentInk, fontSize: 15, fontWeight: '900', marginTop: 3 },
   passInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 14,
   },
-  passLabel: { color: '#dce5d8', fontSize: 9, lineHeight: 13 },
-  passGreen: { color: '#c4d5aa' },
-  passMutedText: { color: '#aeb9aa', fontSize: 8 },
+  passLabel: { color: Palette.muted, fontSize: 9, lineHeight: 13 },
+  passGreen: { color: Palette.accentInk },
+  passMutedText: { color: Palette.muted, fontSize: 8 },
   progressLabel: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -708,17 +709,17 @@ const styles = StyleSheet.create({
   progressTrack: {
     height: 5,
     borderRadius: 3,
-    backgroundColor: '#111511',
+    backgroundColor: Palette.background,
     marginTop: 5,
   },
   progress: {
     width: '68%',
     height: 5,
     borderRadius: 3,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
   },
   passBenefits: {
-    color: '#b9c8b5',
+    color: Palette.muted,
     fontSize: 8,
     fontWeight: '900',
     marginTop: 13,
@@ -730,36 +731,36 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   benefitPill: {
-    color: '#dfe8db',
+    color: Palette.text,
     fontSize: 8,
-    backgroundColor: '#182018',
+    backgroundColor: Palette.soft,
     padding: 4,
     borderRadius: 4,
   },
   passActions: { flexDirection: 'row', gap: 7, marginTop: 13 },
   darkButton: {
     flex: 1,
-    backgroundColor: '#111411',
+    backgroundColor: Palette.background,
     borderRadius: 7,
     minHeight: 31,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  darkButtonText: { color: '#e6eee1', fontSize: 9, fontWeight: '800' },
+  darkButtonText: { color: Palette.text, fontSize: 9, fontWeight: '800' },
   primaryButtonSmall: {
     flex: 1,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 7,
     minHeight: 31,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  primaryButtonSmallText: { color: '#192000', fontSize: 9, fontWeight: '900' },
+  primaryButtonSmallText: { color: Palette.text, fontSize: 9, fontWeight: '900' },
   transactions: { gap: 7 },
   transaction: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#1d221f',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     padding: 9,
   },
@@ -767,36 +768,36 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: '#29372a',
-    color: '#c4d5aa',
+    backgroundColor: Palette.surface,
+    color: Palette.accentInk,
     textAlign: 'center',
     paddingTop: 6,
     marginRight: 8,
   },
   transactionCopy: { flex: 1 },
-  transactionTitle: { color: '#e5ede2', fontSize: 9, fontWeight: '900' },
+  transactionTitle: { color: Palette.text, fontSize: 9, fontWeight: '900' },
   success: {
-    color: '#172000',
-    backgroundColor: '#c4d5aa',
+    color: Palette.text,
+    backgroundColor: Palette.accent,
     fontSize: 7,
     paddingHorizontal: 3,
   },
-  transactionName: { color: '#a5b0a2', fontSize: 9, marginTop: 3 },
+  transactionName: { color: Palette.muted, fontSize: 9, marginTop: 3 },
   viewAllOrdersButton: {
     minHeight: 32,
     borderRadius: 7,
     borderWidth: 1,
-    borderColor: '#566315',
-    backgroundColor: '#1d221f',
+    borderColor: Palette.border,
+    backgroundColor: Palette.surface,
     marginTop: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 7,
   },
-  viewAllOrdersText: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
-  transactionDate: { color: '#778378', fontSize: 8, marginTop: 3 },
+  viewAllOrdersText: { color: Palette.accentInk, fontSize: 9, fontWeight: '900' },
+  transactionDate: { color: Palette.muted, fontSize: 8, marginTop: 3 },
   transactionAmount: { alignItems: 'flex-end' },
-  transactionAmountText: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
-  transactionDetail: { color: '#9ba89a', fontSize: 8, marginTop: 4 },
+  transactionAmountText: { color: Palette.accentInk, fontSize: 9, fontWeight: '900' },
+  transactionDetail: { color: Palette.muted, fontSize: 8, marginTop: 4 },
 });

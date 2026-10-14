@@ -80,6 +80,11 @@ Thuept.book = (input, callback) => {
         throw appError(403, "MEMBER_NOT_ACTIVE", "Tài khoản hội viên không hoạt động");
       }
 
+      const Classes = require('./classes.model');
+      const [refs] = await query.query('SELECT PTID FROM lichpt WHERE LichPTID=?', [input.LichPTID]);
+      if (!refs.length) throw appError(404, 'SCHEDULE_NOT_FOUND', 'Không tìm thấy lịch PT');
+      await Classes.lockPT(query, refs[0].PTID);
+
       const [schedules] = await query.query(
         `SELECT
            l.LichPTID, l.PTID, l.NgayLam, l.GioBatDau, l.GioKetThuc,
@@ -116,6 +121,11 @@ Thuept.book = (input, callback) => {
       if (!timeCheck[0].IsFuture) {
         throw appError(409, "SLOT_NOT_AVAILABLE", "Lịch PT đã qua");
       }
+
+      const [bounds] = await query.query("SELECT DATE_FORMAT(TIMESTAMP(?,?), '%Y-%m-%d %H:%i:%s') startAt, DATE_FORMAT(TIMESTAMP(?,?), '%Y-%m-%d %H:%i:%s') endAt", [schedule.NgayLam,schedule.GioBatDau,schedule.NgayLam,schedule.GioKetThuc]);
+      const [groupClasses] = await query.query("SELECT BuoiHocID FROM buoihoc WHERE PTID=? AND TrangThai='PUBLISHED' AND BatDau<? AND KetThuc>? LIMIT 1 FOR UPDATE", [schedule.PTID,bounds[0].endAt,bounds[0].startAt]);
+      if (groupClasses.length) throw appError(409,'SLOT_NOT_AVAILABLE','Hướng dẫn viên đã có lịch lớp nhóm.');
+      await Classes.checkMemberOverlap(query,members[0].HoiVienID,bounds[0].startAt,bounds[0].endAt);
 
       const [insertResult] = await query.query(
         `INSERT INTO thuept

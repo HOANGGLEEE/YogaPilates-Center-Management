@@ -1,3 +1,4 @@
+import { Palette, trainerPlaceholder } from '@/constants/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import BackendImage from '@/components/backend-image';
 import { router, useFocusEffect } from 'expo-router';
@@ -8,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/app/Common/header';
 import { getActivePTs, type ApiPT } from '@/lib/pt-api';
 
-const fallback = require('../../assets/images/icon.png');
+const fallback = trainerPlaceholder;
 const money = (value: string | number) =>
   `${Number(value).toLocaleString('vi-VN')}đ`;
 
@@ -76,7 +77,7 @@ export default function PTScreen() {
               style={s.schedule}
               onPress={() => router.push('/pt-schedule')}
             >
-              <FontAwesome name="calendar" size={12} color="#182000" />
+              <FontAwesome name="calendar" size={12} color={Palette.text} />
               <Text style={s.scheduleText}>LỊCH CỦA TÔI</Text>
             </Pressable>
           </View>
@@ -134,7 +135,7 @@ export default function PTScreen() {
                 </Text>
                 <Text style={s.price}>{money(trainer.GiaThue)} / buổi</Text>
               </View>
-              <FontAwesome name="chevron-right" size={13} color="#c4d5aa" />
+              <FontAwesome name="chevron-right" size={13} color={Palette.accentInk} />
             </Pressable>
           ))}
         </ScrollView>
@@ -144,7 +145,7 @@ export default function PTScreen() {
 }
 
 const s = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0d1011' },
+  container: { flex: 1, backgroundColor: Palette.background },
   safe: { flex: 1, width: '100%', maxWidth: 540, alignSelf: 'center' },
   content: { paddingHorizontal: 14, paddingBottom: 30, gap: 12 },
   heading: {
@@ -153,41 +154,41 @@ const s = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
   },
-  kicker: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
-  title: { color: '#f0f5eb', fontSize: 20, fontWeight: '900', marginTop: 3 },
+  kicker: { color: Palette.accentInk, fontSize: 9, fontWeight: '900' },
+  title: { color: Palette.text, fontSize: 20, fontWeight: '900', marginTop: 3 },
   schedule: {
     flexDirection: 'row',
     gap: 6,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 8,
     padding: 10,
     alignItems: 'center',
   },
-  scheduleText: { color: '#182000', fontSize: 9, fontWeight: '900' },
+  scheduleText: { color: Palette.text, fontSize: 9, fontWeight: '900' },
   filters: { gap: 8 },
   chip: {
-    backgroundColor: '#242829',
+    backgroundColor: Palette.soft,
     borderRadius: 18,
     paddingHorizontal: 13,
     paddingVertical: 9,
   },
-  chipActive: { backgroundColor: '#c4d5aa' },
-  chipText: { color: '#aeb9ad', fontSize: 10, fontWeight: '800' },
-  chipTextActive: { color: '#182000' },
-  center: { color: '#aeb9ad', textAlign: 'center', padding: 30 },
-  error: { color: '#ff8d82', textAlign: 'center', padding: 15 },
+  chipActive: { backgroundColor: Palette.accent },
+  chipText: { color: Palette.muted, fontSize: 10, fontWeight: '800' },
+  chipTextActive: { color: Palette.text },
+  center: { color: Palette.muted, textAlign: 'center', padding: 30 },
+  error: { color: Palette.error, textAlign: 'center', padding: 15 },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    backgroundColor: '#1b2022',
+    backgroundColor: Palette.surface,
     borderRadius: 12,
     padding: 12,
   },
-  image: { width: 82, height: 96, borderRadius: 9, backgroundColor: '#282d2f' },
+  image: { width: 82, height: 96, borderRadius: 9, backgroundColor: Palette.surface },
   copy: { flex: 1, gap: 5 },
-  name: { color: '#f0f5eb', fontSize: 16, fontWeight: '900' },
-  specialty: { color: '#c4d5aa', fontSize: 10, fontWeight: '800' },
-  experience: { color: '#aeb9ad', fontSize: 10, lineHeight: 14 },
-  price: { color: '#49d79e', fontSize: 12, fontWeight: '900' },
+  name: { color: Palette.text, fontSize: 16, fontWeight: '900' },
+  specialty: { color: Palette.accentInk, fontSize: 10, fontWeight: '800' },
+  experience: { color: Palette.muted, fontSize: 10, lineHeight: 14 },
+  price: { color: Palette.accentInk, fontSize: 12, fontWeight: '900' },
 });

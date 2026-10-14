@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
@@ -19,14 +20,14 @@ import { formatVND, parseLocalDate } from '@/lib/package-logic';
 import { backendPaymentMethodNames } from '@/lib/payment-api';
 
 const C = {
-  bg: '#182521',
-  card: '#26382f',
-  high: '#30443a',
-  text: '#f2eee5',
-  muted: '#aeb59e',
-  lime: '#c4d5aa',
-  mint: '#a8c7b5',
-  ink: '#18251d',
+  bg: Palette.background,
+  card: Palette.text,
+  high: Palette.surface,
+  text: Palette.text,
+  muted: Palette.muted,
+  lime: Palette.accentInk,
+  mint: Palette.accentInk,
+  ink: Palette.text,
 };
 const daysBetween = (from: Date, to: Date) =>
   Math.max(0, Math.ceil((to.getTime() - from.getTime()) / 86400000));
@@ -91,7 +92,7 @@ export default function MembershipDetailScreen() {
     <SafeAreaView style={s.safe} edges={['top']}>
       <View style={s.top}>
         <View style={s.brand}>
-          <Ionicons name="flash" color={C.lime} size={19} />
+          <Ionicons name="flash" color={Palette.accentInk} size={19} />
           <Text style={s.brandText}>WORKOUT PACKAGES</Text>
         </View>
         <Ionicons name="person-circle-outline" color={C.text} size={28} />
@@ -117,7 +118,7 @@ export default function MembershipDetailScreen() {
           <Text style={s.center}>Đang tải gói tập...</Text>
         ) : !membership || !data ? (
           <View style={s.empty}>
-            <Ionicons name="diamond-outline" color={C.lime} size={38} />
+            <Ionicons name="diamond-outline" color={Palette.accentInk} size={38} />
             <Text style={s.cardTitle}>Bạn chưa có gói tập đang hoạt động</Text>
             <Text style={s.muted}>
               Gói chờ thanh toán không được hiển thị như thẻ đang dùng.
@@ -134,7 +135,7 @@ export default function MembershipDetailScreen() {
             <View style={s.memberCard}>
               <View style={s.packageHead}>
                 <View style={s.diamond}>
-                  <Ionicons name="diamond-outline" color={C.lime} size={27} />
+                  <Ionicons name="diamond-outline" color={Palette.accentInk} size={27} />
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={s.packageName}>
@@ -275,7 +276,7 @@ export default function MembershipDetailScreen() {
                 data.package.privileges.map((item) => (
                   <View style={s.privilege} key={item.id}>
                     <View style={s.check}>
-                      <Ionicons name="checkmark" color={C.lime} size={15} />
+                      <Ionicons name="checkmark" color={Palette.accentInk} size={15} />
                     </View>
                     <View style={{ flex: 1 }}>
                       <Text style={s.privilegeTitle}>{item.title}</Text>
@@ -377,7 +378,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderBottomColor: '#24272a',
+    borderBottomColor: Palette.border,
   },
   brand: { flexDirection: 'row', alignItems: 'center', gap: 9 },
   brandText: { color: C.text, fontSize: 17, fontWeight: '900' },
@@ -399,7 +400,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  kicker: { color: C.lime, fontSize: 10, fontWeight: '900' },
+  kicker: { color: Palette.accentInk, fontSize: 10, fontWeight: '900' },
   title: { color: C.text, fontSize: 19, fontWeight: '900' },
   center: { color: C.muted, textAlign: 'center', padding: 30 },
   empty: {
@@ -445,8 +446,8 @@ const s = StyleSheet.create({
   packageName: { color: C.text, fontSize: 18, fontWeight: '900' },
   label: { color: C.muted, fontSize: 9, fontWeight: '900' },
   active: {
-    color: C.lime,
-    backgroundColor: '#303719',
+    color: Palette.accentInk,
+    backgroundColor: Palette.soft,
     borderRadius: 13,
     paddingHorizontal: 8,
     paddingVertical: 5,
@@ -538,7 +539,7 @@ const s = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: '#3c4a12',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
   },

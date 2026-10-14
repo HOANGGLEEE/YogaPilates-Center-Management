@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import {
@@ -167,7 +168,7 @@ export default function NotificationsScreen() {
   );
 }
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#101210' },
+  safe: { flex: 1, backgroundColor: Palette.background },
   content: {
     width: '100%',
     maxWidth: 540,
@@ -175,16 +176,16 @@ const s = StyleSheet.create({
     padding: 18,
     gap: 12,
   },
-  title: { color: '#f0f4ec', fontSize: 24, fontWeight: '900' },
-  link: { color: '#c4d5aa', fontWeight: '800' },
+  title: { color: Palette.text, fontSize: 24, fontWeight: '900' },
+  link: { color: Palette.accentInk, fontWeight: '800' },
   actions: { flexDirection: 'row', justifyContent: 'space-between', gap: 8 },
-  card: { backgroundColor: '#202522', borderRadius: 10, padding: 14, gap: 7 },
-  unread: { borderLeftWidth: 3, borderLeftColor: '#c4d5aa' },
-  heading: { color: '#fff', fontWeight: '800', fontSize: 15 },
-  body: { color: '#d4ded1', flexShrink: 1 },
-  category: { color: '#aebaaa', fontSize: 11 },
-  muted: { color: '#aebaaa' },
-  error: { color: '#ff9f9f' },
+  card: { backgroundColor: Palette.surface, borderRadius: 10, padding: 14, gap: 7 },
+  unread: { borderLeftWidth: 3, borderLeftColor: Palette.accentInk },
+  heading: { color: Palette.text, fontWeight: '800', fontSize: 15 },
+  body: { color: Palette.text, flexShrink: 1 },
+  category: { color: Palette.muted, fontSize: 11 },
+  muted: { color: Palette.muted },
+  error: { color: Palette.error },
   setting: {
     flexDirection: 'row',
     justifyContent: 'space-between',

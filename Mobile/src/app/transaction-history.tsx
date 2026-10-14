@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { useCallback, useState } from 'react';
 import { router, useFocusEffect } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -120,7 +121,7 @@ export default function TransactionHistoryScreen() {
   );
 }
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#0d1011' },
+  safe: { flex: 1, backgroundColor: Palette.background },
   content: {
     width: '100%',
     maxWidth: 540,
@@ -128,16 +129,16 @@ const s = StyleSheet.create({
     padding: 16,
     gap: 12,
   },
-  back: { color: '#c4d5aa', fontWeight: '900' },
-  title: { color: '#e9f0e5', fontSize: 20, fontWeight: '900' },
+  back: { color: Palette.accentInk, fontWeight: '900' },
+  title: { color: Palette.text, fontSize: 20, fontWeight: '900' },
   filters: { flexDirection: 'row', gap: 8 },
-  filter: { padding: 10, backgroundColor: '#282d2a', borderRadius: 8 },
-  selected: { backgroundColor: '#607000' },
-  filterText: { color: '#fff' },
-  card: { backgroundColor: '#1b2022', borderRadius: 9, padding: 13, gap: 8 },
+  filter: { padding: 10, backgroundColor: Palette.surface, borderRadius: 8 },
+  selected: { backgroundColor: Palette.soft },
+  filterText: { color: Palette.text },
+  card: { backgroundColor: Palette.surface, borderRadius: 9, padding: 13, gap: 8 },
   row: { flexDirection: 'row', justifyContent: 'space-between', gap: 8 },
-  name: { color: '#e9f0e5', fontSize: 13, fontWeight: '800', flex: 1 },
-  amount: { color: '#c4d5aa', fontSize: 13, fontWeight: '900' },
-  muted: { color: '#929d92', fontSize: 11 },
-  status: { color: '#c4d5aa', fontSize: 11, fontWeight: '700' },
+  name: { color: Palette.text, fontSize: 13, fontWeight: '800', flex: 1 },
+  amount: { color: Palette.accentInk, fontSize: 13, fontWeight: '900' },
+  muted: { color: Palette.muted, fontSize: 11 },
+  status: { color: Palette.accentInk, fontSize: 11, fontWeight: '700' },
 });

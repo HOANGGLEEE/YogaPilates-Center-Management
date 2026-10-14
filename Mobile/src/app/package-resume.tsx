@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { useCallback, useRef, useState } from 'react';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Alert, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -83,12 +84,12 @@ export default function PackageResumeScreen() {
   </ScrollView></SafeAreaView>;
 }
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#182521' }, content: { padding: 20, paddingBottom: 40, gap: 16, width: '100%', maxWidth: 560, alignSelf: 'center' },
-  back: { color: '#c4d5aa', paddingVertical: 8, fontWeight: '600' }, title: { color: '#f2eee5', fontSize: 25, fontWeight: '800' },
-  note: { color: '#aeb59e', fontSize: 13, lineHeight: 20 }, text: { color: '#f2eee5', fontSize: 14 },
-  card: { padding: 18, borderRadius: 12, borderWidth: 1, borderColor: '#343b36', backgroundColor: '#20312b', gap: 12 },
-  package: { color: '#f2eee5', fontSize: 19, fontWeight: '700' }, heading: { color: '#f2eee5', fontSize: 15, fontWeight: '700' }, amount: { color: '#c4d5aa', fontSize: 24, fontWeight: '700' },
-  choice: { padding: 14, borderWidth: 1, borderColor: '#343b36', borderRadius: 8, backgroundColor: '#30443a' }, selected: { borderColor: '#c4d5aa', backgroundColor: '#29321f' },
-  primary: { padding: 16, borderRadius: 10, backgroundColor: '#c4d5aa', alignItems: 'center' }, primaryText: { color: '#18251d', fontSize: 14, fontWeight: '700' }, disabled: { opacity: .45 },
-  errorBox: { padding: 14, borderRadius: 10, backgroundColor: '#3a2323', gap: 8 }, error: { color: '#ffb4ab', lineHeight: 20 },
+  safe: { flex: 1, backgroundColor: Palette.background }, content: { padding: 20, paddingBottom: 40, gap: 16, width: '100%', maxWidth: 560, alignSelf: 'center' },
+  back: { color: Palette.accentInk, paddingVertical: 8, fontWeight: '600' }, title: { color: Palette.text, fontSize: 25, fontWeight: '800' },
+  note: { color: Palette.muted, fontSize: 13, lineHeight: 20 }, text: { color: Palette.text, fontSize: 14 },
+  card: { padding: 18, borderRadius: 12, borderWidth: 1, borderColor: Palette.border, backgroundColor: Palette.surface, gap: 12 },
+  package: { color: Palette.text, fontSize: 19, fontWeight: '700' }, heading: { color: Palette.text, fontSize: 15, fontWeight: '700' }, amount: { color: Palette.accentInk, fontSize: 24, fontWeight: '700' },
+  choice: { padding: 14, borderWidth: 1, borderColor: Palette.border, borderRadius: 8, backgroundColor: Palette.surface }, selected: { borderColor: Palette.accentInk, backgroundColor: Palette.soft },
+  primary: { padding: 16, borderRadius: 10, backgroundColor: Palette.accent, alignItems: 'center' }, primaryText: { color: Palette.text, fontSize: 14, fontWeight: '700' }, disabled: { opacity: .45 },
+  errorBox: { padding: 14, borderRadius: 10, backgroundColor: Palette.errorSurface, gap: 8 }, error: { color: Palette.error, lineHeight: 20 },
 });

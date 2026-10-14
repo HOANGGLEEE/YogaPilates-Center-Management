@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router, useFocusEffect } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -31,11 +32,11 @@ export default function Header() {
     <View style={styles.header}>
       <View style={styles.brandBlock}>
         <Text style={styles.brand}>
-          <MaterialCommunityIcons name="yoga" size={24} color="white" />
+          <MaterialCommunityIcons name="yoga" size={24} color={Palette.text} />
           YOGA & PILATES<Text style={styles.brandDot}>.</Text>
         </Text>
         <Text style={styles.location}>
-          <FontAwesome name="map-marker" size={12} color="#7b7c7d" /> Khoái
+          <FontAwesome name="map-marker" size={12} color={Palette.muted} /> Khoái
           Châu, Hưng Yên
         </Text>
       </View>
@@ -46,7 +47,7 @@ export default function Header() {
           accessibilityRole="button"
           accessibilityLabel={`Thông báo, ${user ? unread : 0} chưa đọc`}
         >
-          <FontAwesome name="bell" size={22} color="#cfcfcf" />
+          <FontAwesome name="bell" size={22} color={Palette.muted} />
           {user && unread > 0 ? (
             <Text style={styles.badge}>{unread > 9 ? '9+' : unread}</Text>
           ) : null}
@@ -56,7 +57,7 @@ export default function Header() {
           onPress={() => router.push('/cart')}
           accessibilityLabel="Mở giỏ hàng"
         >
-          <FontAwesome name="shopping-cart" size={24} color="#c4d5aa" />
+          <FontAwesome name="shopping-cart" size={24} color={Palette.accentInk} />
         </Pressable>
       </View>
     </View>
@@ -72,13 +73,13 @@ const styles = StyleSheet.create({
   },
   brandBlock: { flexShrink: 1, paddingRight: 76 },
   brand: {
-    color: '#f3f5ec',
+    color: Palette.text,
     fontSize: 22,
     fontWeight: '900',
     letterSpacing: 1.2,
   },
-  brandDot: { color: '#c4d5aa' },
-  location: { color: '#899083', fontSize: 11, marginTop: 5 },
+  brandDot: { color: Palette.accentInk },
+  location: { color: Palette.muted, fontSize: 11, marginTop: 5 },
   headerActions: {
     position: 'absolute',
     top: 20.5,
@@ -107,8 +108,8 @@ const styles = StyleSheet.create({
     height: 17,
     borderRadius: 9,
     overflow: 'hidden',
-    backgroundColor: '#c4d5aa',
-    color: '#18251d',
+    backgroundColor: Palette.accent,
+    color: Palette.text,
     textAlign: 'center',
     fontSize: 11,
     fontWeight: '900',

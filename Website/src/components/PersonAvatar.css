@@ -7,7 +7,7 @@
   overflow: hidden;
   border-radius: 50%;
   background: var(--qa-surface-high);
-  color: var(--qa-primary);
+  color: var(--warm-accent-ink);
   font-style: normal;
   font-size: 20px;
 }

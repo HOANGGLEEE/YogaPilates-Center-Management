@@ -1,3 +1,4 @@
+import { Palette } from '@/constants/theme';
 import { FontAwesome } from '@expo/vector-icons';
 import BackendImage from '@/components/backend-image';
 import { DEFAULT_PRODUCT_IMAGE } from '@/constants/shop-image';
@@ -121,7 +122,7 @@ export default function CartScreen() {
               onRefresh={() => {
                 if (!saving) setReload((n) => n + 1);
               }}
-              tintColor="#c4d5aa"
+              tintColor={Palette.accentInk}
             />
           }
         >
@@ -133,7 +134,7 @@ export default function CartScreen() {
               }
               accessibilityLabel="Quay lại"
             >
-              <FontAwesome name="angle-left" size={22} color="#c4d5aa" />
+              <FontAwesome name="angle-left" size={22} color={Palette.accentInk} />
             </Pressable>
             <Text style={styles.topBarTitle}>GIỎ HÀNG ({count})</Text>
           </View>
@@ -141,12 +142,12 @@ export default function CartScreen() {
             <Pressable accessibilityRole="button" disabled={saving}
               style={styles.resumePayment}
               onPress={() => resumeOrder === 0 ? router.push('/checkout') : router.push({ pathname: '/order-payment', params: { orderId: resumeOrder } })}>
-              <FontAwesome name="credit-card" size={18} color="#c4d5aa" />
+              <FontAwesome name="credit-card" size={18} color={Palette.accentInk} />
               <View style={{ flex: 1 }}>
                 <Text style={styles.resumeTitle}>Tiếp tục thanh toán{resumeOrder > 0 ? ` đơn #${resumeOrder}` : ''}</Text>
                 <Text style={styles.resumeSubtitle}>Mở lại thanh toán đang dang dở</Text>
               </View>
-              <FontAwesome name="angle-right" size={22} color="#c4d5aa" />
+              <FontAwesome name="angle-right" size={22} color={Palette.accentInk} />
             </Pressable>
           )}
           {!!resumeError && <Pressable disabled={saving} onPress={() => setReload(n => n + 1)}>
@@ -157,7 +158,7 @@ export default function CartScreen() {
               <Text style={styles.itemName}>Đăng nhập để xem giỏ hàng</Text>
             </Pressable>
           ) : loading ? (
-            <ActivityIndicator color="#c4d5aa" />
+            <ActivityIndicator color={Palette.accentInk} />
           ) : error ? (
             <View>
               <Text style={styles.itemName}>{error}</Text>
@@ -288,7 +289,7 @@ export default function CartScreen() {
             onPress={() => router.push('/checkout')}
           >
             <Text style={styles.checkoutText}>THANH TOÁN NGAY</Text>
-            <FontAwesome name="arrow-right" size={13} color="#1b2400" />
+            <FontAwesome name="arrow-right" size={13} color={Palette.text} />
           </Pressable>
         </View>
       </SafeAreaView>
@@ -297,10 +298,10 @@ export default function CartScreen() {
 }
 
 const styles = StyleSheet.create({
-  resumePayment: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, marginBottom: 14, borderRadius: 12, backgroundColor: '#202b1d', borderWidth: 1, borderColor: '#52682b' },
-  resumeTitle: { color: '#c4d5aa', fontSize: 14, fontWeight: '700' },
-  resumeSubtitle: { color: '#a6b0a0', fontSize: 12, lineHeight: 18, marginTop: 3 },
-  container: { flex: 1, minHeight: 0, backgroundColor: '#0f1213' },
+  resumePayment: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, marginBottom: 14, borderRadius: 12, backgroundColor: Palette.surface, borderWidth: 1, borderColor: Palette.border },
+  resumeTitle: { color: Palette.accentInk, fontSize: 14, fontWeight: '700' },
+  resumeSubtitle: { color: Palette.muted, fontSize: 12, lineHeight: 18, marginTop: 3 },
+  container: { flex: 1, minHeight: 0, backgroundColor: Palette.background },
   safeArea: {
     flex: 1,
     minHeight: 0,
@@ -322,12 +323,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  topBarTitle: { color: '#e7eee5', fontSize: 13, fontWeight: '900' },
+  topBarTitle: { color: Palette.text, fontSize: 13, fontWeight: '900' },
   accountButton: {
     width: 25,
     height: 25,
     borderRadius: 13,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -337,11 +338,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
   },
-  heading: { color: '#eef3e9', fontSize: 13, fontWeight: '900' },
-  itemCount: { color: '#c4d5aa', fontSize: 9 },
-  clearText: { color: '#c4d5aa', fontSize: 9, fontWeight: '800' },
+  heading: { color: Palette.text, fontSize: 13, fontWeight: '900' },
+  itemCount: { color: Palette.accentInk, fontSize: 9 },
+  clearText: { color: Palette.accentInk, fontSize: 9, fontWeight: '800' },
   shippingCard: {
-    backgroundColor: '#1e2325',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
@@ -351,29 +352,29 @@ const styles = StyleSheet.create({
     width: 21,
     height: 21,
     borderRadius: 5,
-    backgroundColor: '#2a3b18',
+    backgroundColor: Palette.surface,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 7,
   },
-  shippingTitle: { color: '#e9f0e6', fontSize: 10, fontWeight: '900', flex: 1 },
-  shippingPercent: { color: '#c4d5aa', fontSize: 9, fontWeight: '900' },
-  shippingCopy: { color: '#bac2b8', fontSize: 9, marginTop: 7 },
-  highlight: { color: '#c4d5aa', fontWeight: '900' },
+  shippingTitle: { color: Palette.text, fontSize: 10, fontWeight: '900', flex: 1 },
+  shippingPercent: { color: Palette.accentInk, fontSize: 9, fontWeight: '900' },
+  shippingCopy: { color: Palette.muted, fontSize: 9, marginTop: 7 },
+  highlight: { color: Palette.accentInk, fontWeight: '900' },
   progressTrack: {
     height: 5,
-    backgroundColor: '#3a4041',
+    backgroundColor: Palette.surface,
     borderRadius: 3,
     marginTop: 8,
   },
   progressFill: {
     width: '85%',
     height: 5,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 3,
   },
   itemCard: {
-    backgroundColor: '#1b2022',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     padding: 9,
     marginBottom: 9,
@@ -382,7 +383,7 @@ const styles = StyleSheet.create({
   checkbox: {
     width: 14,
     height: 14,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 7,
@@ -391,20 +392,20 @@ const styles = StyleSheet.create({
     width: 54,
     height: 54,
     borderRadius: 4,
-    backgroundColor: '#2b3032',
+    backgroundColor: Palette.surface,
   },
   itemCopy: { flex: 1, marginLeft: 9 },
-  itemName: { color: '#e9eee7', fontSize: 11, fontWeight: '900' },
-  itemDetail: { color: '#95a095', fontSize: 8, marginTop: 4 },
+  itemName: { color: Palette.text, fontSize: 11, fontWeight: '900' },
+  itemDetail: { color: Palette.muted, fontSize: 8, marginTop: 4 },
   itemPriceRow: { flexDirection: 'row', alignItems: 'center', marginTop: 5 },
-  itemPrice: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
+  itemPrice: { color: Palette.accentInk, fontSize: 12, fontWeight: '900' },
   itemOldPrice: {
-    color: '#717a72',
+    color: Palette.muted,
     fontSize: 8,
     textDecorationLine: 'line-through',
     marginLeft: 6,
   },
-  remove: { color: '#c4d5aa', fontSize: 20, lineHeight: 19, marginLeft: 6 },
+  remove: { color: Palette.accentInk, fontSize: 20, lineHeight: 19, marginLeft: 6 },
   itemBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -412,29 +413,29 @@ const styles = StyleSheet.create({
     marginTop: 7,
     paddingLeft: 21,
   },
-  stock: { color: '#45d49e', fontSize: 8, fontWeight: '900' },
+  stock: { color: Palette.muted, fontSize: 8, fontWeight: '900' },
   quantity: {
     width: 67,
     height: 27,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    backgroundColor: '#292d30',
+    backgroundColor: Palette.surface,
     borderRadius: 6,
   },
-  quantityAction: { color: '#c4d5aa', fontSize: 16, paddingHorizontal: 5 },
-  quantityValue: { color: '#f0f5eb', fontSize: 10, fontWeight: '900' },
+  quantityAction: { color: Palette.accentInk, fontSize: 16, paddingHorizontal: 5 },
+  quantityValue: { color: Palette.text, fontSize: 10, fontWeight: '900' },
   giftCard: {
-    backgroundColor: '#1b2022',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     padding: 9,
     marginBottom: 9,
   },
   giftTop: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  giftTitle: { color: '#c4d5aa', fontSize: 9, fontWeight: '900', flex: 1 },
+  giftTitle: { color: Palette.accentInk, fontSize: 9, fontWeight: '900', flex: 1 },
   giftBadge: {
-    color: '#253000',
-    backgroundColor: '#c4d5aa',
+    color: Palette.text,
+    backgroundColor: Palette.accent,
     fontSize: 7,
     fontWeight: '900',
     paddingHorizontal: 5,
@@ -444,65 +445,65 @@ const styles = StyleSheet.create({
   giftContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#252a2c',
+    backgroundColor: Palette.surface,
     borderRadius: 5,
     padding: 6,
     marginTop: 7,
   },
   giftImage: { width: 43, height: 43, borderRadius: 3 },
   giftCopy: { flex: 1, marginLeft: 8 },
-  giftName: { color: '#e7eee4', fontSize: 9, fontWeight: '900' },
-  giftDetail: { color: '#9ca69b', fontSize: 8, marginTop: 3 },
-  giftPrice: { color: '#c4d5aa', fontSize: 8, fontWeight: '900', marginTop: 3 },
+  giftName: { color: Palette.text, fontSize: 9, fontWeight: '900' },
+  giftDetail: { color: Palette.muted, fontSize: 8, marginTop: 3 },
+  giftPrice: { color: Palette.accentInk, fontSize: 8, fontWeight: '900', marginTop: 3 },
   giftOldPrice: {
-    color: '#879085',
+    color: Palette.muted,
     textDecorationLine: 'line-through',
     fontWeight: '400',
   },
   couponCard: {
-    backgroundColor: '#1b2022',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     padding: 10,
     marginBottom: 9,
   },
   couponTitleRow: { flexDirection: 'row', alignItems: 'center' },
-  couponTitle: { color: '#e7eee4', fontSize: 9, fontWeight: '900' },
+  couponTitle: { color: Palette.text, fontSize: 9, fontWeight: '900' },
   couponForm: { flexDirection: 'row', gap: 6, marginTop: 9 },
   couponCode: {
     flex: 1,
-    backgroundColor: '#34383c',
+    backgroundColor: Palette.surface,
     borderRadius: 7,
-    color: '#e6ece2',
+    color: Palette.text,
     fontSize: 9,
     fontWeight: '900',
     paddingHorizontal: 10,
     paddingVertical: 10,
   },
   applyButton: {
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 7,
     paddingHorizontal: 13,
     justifyContent: 'center',
   },
-  applyText: { color: '#192100', fontSize: 9, fontWeight: '900' },
+  applyText: { color: Palette.text, fontSize: 9, fontWeight: '900' },
   appliedCoupon: {
-    backgroundColor: '#263519',
+    backgroundColor: Palette.surface,
     borderRadius: 6,
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
     marginTop: 7,
   },
-  appliedText: { color: '#c4d5aa', fontSize: 9, fontWeight: '900', flex: 1 },
-  appliedDetail: { color: '#b8c2ab', fontWeight: '400' },
+  appliedText: { color: Palette.accentInk, fontSize: 9, fontWeight: '900', flex: 1 },
+  appliedDetail: { color: Palette.muted, fontWeight: '400' },
   summaryCard: {
-    backgroundColor: '#1b2022',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     padding: 10,
     marginBottom: 6,
   },
   summaryTitle: {
-    color: '#e9efe6',
+    color: Palette.text,
     fontSize: 11,
     fontWeight: '900',
     marginBottom: 8,
@@ -513,41 +514,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 4,
   },
-  summaryLabel: { color: '#bdc6ba', fontSize: 9 },
-  summaryValue: { color: '#e2e9df', fontSize: 9, fontWeight: '800' },
-  summaryAccent: { color: '#c4d5aa' },
+  summaryLabel: { color: Palette.muted, fontSize: 9 },
+  summaryValue: { color: Palette.text, fontSize: 9, fontWeight: '800' },
+  summaryAccent: { color: Palette.accentInk },
   totalRow: {
     borderTopWidth: 1,
-    borderTopColor: '#303638',
+    borderTopColor: Palette.border,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 6,
     paddingTop: 9,
   },
-  totalLabel: { color: '#edf2e9', fontSize: 10, fontWeight: '900' },
-  totalValue: { color: '#c4d5aa', fontSize: 17, fontWeight: '900' },
-  tax: { color: '#9ba59a', fontSize: 8, textAlign: 'right', marginTop: 2 },
+  totalLabel: { color: Palette.muted, fontSize: 10, fontWeight: '900' },
+  totalValue: { color: Palette.accentInk, fontSize: 17, fontWeight: '900' },
+  tax: { color: Palette.muted, fontSize: 8, textAlign: 'right', marginTop: 2 },
   bottomBar: {
     flexShrink: 0,
     minHeight: 84,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#171b1c',
+    backgroundColor: Palette.background,
     borderTopWidth: 1,
-    borderTopColor: '#2b3031',
+    borderTopColor: Palette.border,
     paddingHorizontal: 13,
     paddingVertical: 12,
     gap: 10,
   },
   bottomSummary: { flex: 1, gap: 3 },
-  bottomLabel: { color: '#b6c0b7', fontSize: 12 },
-  bottomTotal: { color: '#c4d5aa', fontSize: 20, fontWeight: '900' },
-  bottomNote: { color: '#89938a', fontSize: 10 },
+  bottomLabel: { color: Palette.muted, fontSize: 12 },
+  bottomTotal: { color: Palette.accentInk, fontSize: 20, fontWeight: '900' },
+  bottomNote: { color: Palette.muted, fontSize: 10 },
   continueShopping: { alignItems: 'center', paddingVertical: 16 },
-  continueShoppingText: { color: '#c4d5aa', fontSize: 12, fontWeight: '800' },
-  saved: { color: '#8c978c', fontSize: 7 },
+  continueShoppingText: { color: Palette.accentInk, fontSize: 12, fontWeight: '800' },
+  saved: { color: Palette.muted, fontSize: 7 },
   checkoutButton: {
     minHeight: 48,
     paddingHorizontal: 14,
@@ -555,9 +556,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: Palette.accent,
     borderRadius: 8,
   },
-  checkoutText: { color: '#1b2400', fontSize: 12, fontWeight: '900' },
-  checkoutDisabled: { backgroundColor: '#929c62' },
+  checkoutText: { color: Palette.text, fontSize: 12, fontWeight: '900' },
+  checkoutDisabled: { backgroundColor: Palette.soft },
 });

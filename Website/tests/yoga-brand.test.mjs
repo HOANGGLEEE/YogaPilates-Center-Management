@@ -8,7 +8,9 @@ assert.match(navigation, /YOGA & PILATES/)
 assert.match(navigation, /label: 'Hướng dẫn viên'/)
 assert.match(app, /'Hướng dẫn viên':/)
 assert.doesNotMatch(read('../src/pages/Login.tsx'), /QA-GYM|FIDO2|biometric/)
-assert.match(read('../src/App.css'), /--qa-primary: #c4d5aa/)
+assert.match(read('../src/App.css'), /--qa-primary: var\(--warm-accent\)/)
+assert.match(read('../src/warm-theme.css'), /--warm-bg: #F7F3EC/)
+assert.match(read('../src/warm-theme.css'), /--warm-accent: #D9B7A5/)
 
 const config = JSON.parse(read('../../Mobile/app.json')).expo
 assert.equal(config.name, 'Yoga & Pilates')
@@ -19,7 +21,7 @@ for (const path of [config.icon, config.ios.icon, config.web.favicon,
 }
 assert.match(read('../../Mobile/src/app/order-payment.tsx'), /QAGYM DH/)
 assert.match(read('../../Mobile/src/lib/account-api.ts'), /qa-gym-api-token-v1/)
-assert.match(read('../../Mobile/src/app/index.tsx'), /lịch minh họa/)
+assert.match(read('../../Mobile/src/app/index.tsx'), /ClassPreview/)
 assert.match(read('../../Mobile/src/app/package-detail.tsx'), /badge="MINH HỌA"/)
 assert.match(read('../../Mobile/src/app/login.tsx'), /disabled accessibilityState/)
 console.log('Yoga branding, navigation, assets and compatibility checks passed')

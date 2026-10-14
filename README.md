@@ -12,7 +12,7 @@ Quản lý hội viên, gói tập, hướng dẫn cá nhân 1-1, lịch hướn
 
 ## Thiết kế và dữ liệu
 
-Giao diện dùng nền xanh rừng, điểm nhấn sage, cát ấm và hình ảnh Yoga. Các lịch lớp học tĩnh trên trang chủ được đánh dấu minh họa; chưa có API đặt chỗ lớp nhóm.
+Giao diện mobile và website dùng nền kem ấm `#F7F3EC`, điểm nhấn hồng đất `#D9B7A5` và chữ nâu đậm. Hồ sơ PT tách rõ chuyên môn, kinh nghiệm, liên hệ; thuê PT chia ba bước chọn ngày, giờ và ghi chú, dùng dữ liệu từ API.
 
 Tên bảng, trường API, mã quyền lợi, khóa phiên đăng nhập, mã chuyển khoản và Android application ID được giữ tương thích. Chức năng hướng dẫn 1-1 sử dụng API PT hiện có.
 

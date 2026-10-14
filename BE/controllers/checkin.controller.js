@@ -343,3 +343,4 @@ const CheckinController = {
 };
 
 module.exports = CheckinController;
+module.exports.resolveCode = resolveCode;

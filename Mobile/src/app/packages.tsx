@@ -1,3 +1,4 @@
+import { Palette, AuthColors as C } from '@/constants/theme';
 import { useCallback, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect } from 'expo-router';
@@ -5,7 +6,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/app/Common/header';
 import PendingPackageNotice from '@/components/pending-package-notice';
-import { AuthColors as C } from '@/constants/theme';
+
 import { useAuth } from '@/context/AuthContext';
 import {
   getActiveMembership,
@@ -278,7 +279,7 @@ export default function PackagesScreen() {
                               ? C.cyan
                               : privilege.accent === 'mint'
                                 ? C.mint
-                                : C.lime
+                                : Palette.accentInk
                           }
                           size={15}
                         />
@@ -350,20 +351,20 @@ export default function PackagesScreen() {
   );
 }
 const s = StyleSheet.create({
-  background: { flex: 1, backgroundColor: '#0c0f10' },
+  background: { flex: 1, backgroundColor: Palette.background },
   safe: { flex: 1, width: '100%', maxWidth: 540, alignSelf: 'center' },
   content: { paddingHorizontal: 16, paddingBottom: 32 },
   intro: { alignItems: 'center', paddingTop: 22, paddingBottom: 17 },
   eyebrow: {
-    color: '#c4d5aa',
-    backgroundColor: '#253500',
+    color: Palette.accentInk,
+    backgroundColor: Palette.surface,
     borderRadius: 7,
     padding: 6,
     fontSize: 9,
     fontWeight: '900',
   },
   title: {
-    color: '#e5e9e3',
+    color: Palette.text,
     textAlign: 'center',
     fontSize: 19,
     lineHeight: 22,
@@ -371,14 +372,14 @@ const s = StyleSheet.create({
     marginTop: 10,
   },
   subtitle: {
-    color: '#879087',
+    color: Palette.muted,
     textAlign: 'center',
     fontSize: 11,
     marginTop: 8,
   },
   durationBar: {
     flexDirection: 'row',
-    backgroundColor: '#1a1e20',
+    backgroundColor: Palette.surface,
     borderRadius: 7,
     padding: 3,
     marginBottom: 18,
@@ -390,17 +391,17 @@ const s = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
   },
-  selected: { backgroundColor: '#c4d5aa' },
-  durationText: { color: '#c3c9c0', fontSize: 10, fontWeight: '800' },
-  selectedText: { color: '#1d2700' },
-  error: { color: '#ff6b6b', marginBottom: 10 },
+  selected: { backgroundColor: Palette.accent },
+  durationText: { color: Palette.muted, fontSize: 10, fontWeight: '800' },
+  selectedText: { color: Palette.text },
+  error: { color: Palette.error, marginBottom: 10 },
   card: {
-    backgroundColor: '#202427',
+    backgroundColor: Palette.surface,
     borderRadius: 8,
     padding: 11,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#2c3133',
+    borderColor: Palette.border,
   },
   cardTop: {
     flexDirection: 'row',
@@ -408,8 +409,8 @@ const s = StyleSheet.create({
     alignItems: 'center',
   },
   tag: {
-    color: '#263100',
-    backgroundColor: '#c4d5aa',
+    color: Palette.text,
+    backgroundColor: Palette.accent,
     fontSize: 9,
     fontWeight: '900',
     paddingHorizontal: 7,
@@ -417,11 +418,11 @@ const s = StyleSheet.create({
     borderRadius: 5,
     overflow: 'hidden',
   },
-  star: { color: '#c4d5aa', fontSize: 26 },
-  name: { color: '#e5e8e3', fontSize: 15, fontWeight: '900', marginTop: 8 },
+  star: { color: Palette.accentInk, fontSize: 26 },
+  name: { color: Palette.text, fontSize: 15, fontWeight: '900', marginTop: 8 },
   priceRow: { flexDirection: 'row', alignItems: 'baseline', marginTop: 2 },
-  price: { color: '#e0e4df', fontSize: 28, fontWeight: '900' },
-  perMonth: { color: '#88908b', fontSize: 10, marginLeft: 3 },
+  price: { color: Palette.text, fontSize: 28, fontWeight: '900' },
+  perMonth: { color: Palette.muted, fontSize: 10, marginLeft: 3 },
   priceSummary: {
     backgroundColor: C.surfaceLowest,
     borderRadius: 8,
@@ -445,7 +446,7 @@ const s = StyleSheet.create({
     flexShrink: 1,
   },
   durationPill: {
-    color: C.lime,
+    color: Palette.accentInk,
     backgroundColor: C.surfaceHigh,
     borderRadius: 12,
     overflow: 'hidden',
@@ -506,15 +507,15 @@ const s = StyleSheet.create({
     lineHeight: 15,
   },
   moreBenefits: {
-    color: C.lime,
+    color: Palette.accentInk,
     fontSize: 10,
     fontWeight: '700',
     paddingHorizontal: 3,
     paddingTop: 2,
   },
-  restriction: { color: '#50d9a9', fontSize: 10, marginTop: 9 },
+  restriction: { color: Palette.muted, fontSize: 10, marginTop: 9 },
   button: {
-    backgroundColor: '#3b3e42',
+    backgroundColor: Palette.surface,
     minHeight: 34,
     borderRadius: 5,
     justifyContent: 'center',
@@ -522,34 +523,34 @@ const s = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
   },
-  buttonText: { color: '#e1e4df', fontSize: 11, fontWeight: '900' },
-  arrow: { color: '#e1e4df', marginLeft: 6 },
+  buttonText: { color: Palette.text, fontSize: 11, fontWeight: '900' },
+  arrow: { color: Palette.text, marginLeft: 6 },
   tableKicker: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     textAlign: 'center',
     fontSize: 9,
     fontWeight: '900',
     marginTop: 10,
   },
   tableTitle: {
-    color: '#e5e9e4',
+    color: Palette.text,
     textAlign: 'center',
     fontSize: 15,
     fontWeight: '900',
     marginBottom: 9,
   },
-  table: { backgroundColor: '#1c2022', borderRadius: 7, overflow: 'hidden' },
+  table: { backgroundColor: Palette.surface, borderRadius: 7, overflow: 'hidden' },
   row: {
     flexDirection: 'row',
     minHeight: 34,
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: '#2d3234',
+    borderBottomColor: Palette.border,
   },
-  cell: { color: '#c4d5aa', fontSize: 9, flex: 1, textAlign: 'center' },
-  label: { color: '#d7dbd6', textAlign: 'left', paddingLeft: 6, flex: 1.3 },
+  cell: { color: Palette.accentInk, fontSize: 9, flex: 1, textAlign: 'center' },
+  label: { color: Palette.muted, textAlign: 'left', paddingLeft: 6, flex: 1.3 },
   headingCell: {
-    color: '#c4d5aa',
+    color: Palette.accentInk,
     fontSize: 9,
     fontWeight: '800',
     textAlign: 'center',
