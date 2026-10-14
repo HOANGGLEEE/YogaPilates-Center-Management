@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { getPTDetail, type ApiPT } from '@/lib/pt-api';
 
-const fallback = require('../../assets/images/icon.png');
+const fallback = require('../../assets/brand/icon.png');
 const money = (value: string | number) =>
   `${Number(value).toLocaleString('vi-VN')}đ`;
 
@@ -49,16 +49,16 @@ export default function PTDetailScreen() {
   const back = () =>
     router.canGoBack() ? router.back() : router.replace('/pt');
   return (
-    <SafeAreaView style={s.safe} edges={['top']}>
+    <SafeAreaView style={s.safe} edges={['top', 'bottom']}>
       <View style={s.header}>
-        <Pressable style={s.icon} onPress={back}>
-          <Ionicons name="arrow-back" color="#c4d5aa" size={21} />
+        <Pressable accessibilityRole="button" accessibilityLabel="Quay lại" style={s.icon} onPress={back}>
+          <Ionicons name="arrow-back" color="#315d4c" size={21} />
         </Pressable>
-        <Text style={s.headerTitle}>CHI TIẾT HƯỚNG DẪN VIÊN</Text>
+        <Text style={s.headerTitle}>Hồ sơ hướng dẫn viên</Text>
         <View style={s.icon} />
       </View>
       <ScrollView contentContainerStyle={s.content}>
-        {trainer === undefined ? (
+        {validId && trainer === undefined ? (
           <Text style={s.center}>Đang tải thông tin PT...</Text>
         ) : null}
         {!trainer && displayError ? (
@@ -73,6 +73,7 @@ export default function PTDetailScreen() {
               contentFit="cover"
             />
             <View style={s.card}>
+              <Text style={s.eyebrow}>YOGA & PILATES · 1–1</Text>
               <Text style={s.name}>{trainer.HoTen}</Text>
               <Text style={s.specialty}>
                 {trainer.ChuyenMon || 'Chưa cập nhật chuyên môn'}
@@ -91,8 +92,16 @@ export default function PTDetailScreen() {
                 label="SỐ ĐIỆN THOẠI"
                 value={trainer.SoDienThoai || 'Chưa cập nhật'}
               />
+
+            </View>
+          </>
+        ) : null}
+      </ScrollView>
+      {trainer ? <View style={s.footer}>
+        <Text style={s.footerLabel}>Yoga & Pilates · 1–1</Text>
+        <Text style={s.footerPrice}>{money(trainer.GiaThue)}</Text>
               <Pressable
-                style={s.primary}
+                accessibilityRole="button" style={s.primary}
                 onPress={() =>
                   router.push({
                     pathname: '/pt-booking',
@@ -100,13 +109,10 @@ export default function PTDetailScreen() {
                   })
                 }
               >
-                <Text style={s.primaryText}>ĐẶT LỊCH HƯỚNG DẪN 1-1</Text>
-                <Ionicons name="calendar-outline" color="#182000" size={18} />
+                <Text style={s.primaryText}>Chọn lịch tập 1–1</Text>
+                <Ionicons name="calendar-outline" color="#ffffff" size={18} />
               </Pressable>
-            </View>
-          </>
-        ) : null}
-      </ScrollView>
+      </View> : null}
     </SafeAreaView>
   );
 }
@@ -129,7 +135,12 @@ function Info({
 }
 
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#0d1011' },
+  eyebrow: { color: '#69766e', fontSize: 11, fontWeight: '700', letterSpacing: 1.2 },
+  avatar: { width: 64, height: 64, borderRadius: 20, backgroundColor: '#eaece3' },
+  footer: { padding: 18, gap: 8, backgroundColor: '#ffffff', borderTopWidth: 1, borderTopColor: '#e7eae3', width: '100%', maxWidth: 540, alignSelf: 'center' },
+  footerLabel: { color: '#69766e', fontSize: 13 },
+  footerPrice: { color: '#203c32', fontSize: 22, fontWeight: '700' },
+  safe: { flex: 1, backgroundColor: '#f6f4ee' },
   header: {
     height: 54,
     paddingHorizontal: 14,
@@ -141,47 +152,47 @@ const s = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#242829',
+    backgroundColor: '#eaece3',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
+  headerTitle: { color: '#315d4c', fontSize: 16, fontWeight: '700' },
   content: {
     width: '100%',
     maxWidth: 540,
     alignSelf: 'center',
-    padding: 15,
-    gap: 12,
+    padding: 20,
+    gap: 18,
     paddingBottom: 35,
   },
-  center: { color: '#aeb9ad', textAlign: 'center', padding: 35 },
-  error: { color: '#ff8d82', textAlign: 'center', padding: 35 },
+  center: { color: '#69766e', textAlign: 'center', padding: 35 },
+  error: { color: '#a93e38', textAlign: 'center', padding: 35 },
   hero: {
     width: '100%',
-    height: 320,
-    borderRadius: 16,
-    backgroundColor: '#242829',
+    height: 280,
+    borderRadius: 24,
+    backgroundColor: '#eaece3',
   },
-  card: { backgroundColor: '#1b2022', borderRadius: 15, padding: 16, gap: 13 },
-  name: { color: '#f0f5eb', fontSize: 25, fontWeight: '900' },
-  specialty: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
+  card: { backgroundColor: '#ffffff', borderRadius: 24, padding: 22, gap: 16 },
+  name: { color: '#203c32', fontSize: 25, fontWeight: '700' },
+  specialty: { color: '#315d4c', fontSize: 12, fontWeight: '700' },
   info: {
     borderTopWidth: 1,
-    borderTopColor: '#303638',
+    borderTopColor: '#e7eae3',
     paddingTop: 11,
     gap: 5,
   },
-  label: { color: '#8e998d', fontSize: 9, fontWeight: '900' },
-  value: { color: '#e8efe4', fontSize: 13, lineHeight: 19 },
-  accent: { color: '#49d79e', fontSize: 17, fontWeight: '900' },
+  label: { color: '#69766e', fontSize: 12, fontWeight: '700' },
+  value: { color: '#203c32', fontSize: 13, lineHeight: 19 },
+  accent: { color: '#315d4c', fontSize: 17, fontWeight: '700' },
   primary: {
     minHeight: 50,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: '#315d4c',
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
   },
-  primaryText: { color: '#182000', fontSize: 12, fontWeight: '900' },
+  primaryText: { color: '#ffffff', fontSize: 15, fontWeight: '700' },
 });

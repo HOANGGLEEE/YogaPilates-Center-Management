@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/app/Common/header';
 import { getActivePTs, type ApiPT } from '@/lib/pt-api';
 
-const fallback = require('../../assets/images/icon.png');
+const fallback = require('../../assets/brand/icon.png');
 const money = (value: string | number) =>
   `${Number(value).toLocaleString('vi-VN')}đ`;
 

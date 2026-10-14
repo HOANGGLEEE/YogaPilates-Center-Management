@@ -1,3 +1,4 @@
+import ClassPreview from '@/components/class-preview';
 import { Image } from 'expo-image';
 import {
   ScrollView,
@@ -181,25 +182,7 @@ export default function HomeScreen() {
             />
           </ScrollView>
 
-          <SectionTitle title="Lớp Yoga & Pilates · lịch minh họa" />
-          <View style={styles.schedule}>
-            {[
-              ['17:30', 'Hatha Yoga', 'Yoga Studio', 'Minh họa'],
-              ['18:45', 'Mat Pilates', 'Pilates Studio', 'Minh họa'],
-              ['19:30', 'Yin Yoga', 'Studio 3', 'Minh họa'],
-            ].map(([time, title, room, seats]) => (
-              <View style={styles.scheduleRow} key={title}>
-                <Text style={styles.scheduleTime}>{time}</Text>
-                <View style={styles.scheduleInfo}>
-                  <Text style={styles.scheduleTitle}>{title}</Text>
-                  <Text style={styles.scheduleRoom}>{room}</Text>
-                </View>
-                <View style={styles.seatPill}>
-                  <Text style={styles.seatText}>{seats}</Text>
-                </View>
-              </View>
-            ))}
-          </View>
+          <ClassPreview />
 
           <View style={styles.ctaCard}>
             <Text style={styles.ctaIcon}>♨</Text>

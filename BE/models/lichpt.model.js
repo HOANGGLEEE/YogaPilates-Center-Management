@@ -65,26 +65,34 @@ Lichpt.getAvailableByPT = (PTID, from, to, callback) => {
 };
 
 Lichpt.insert = (lichpt, callback) => {
-  const sqlString = "INSERT INTO `lichpt` SET ?";
-  db.query(sqlString, lichpt, (err, res) => {
-    if (err) {
-      return callback(err);
-    }
-    callback(null, { LichPTID: res.insertId, ...lichpt });
-  });
+  saveSchedule(lichpt, null).then(result=>callback(null,result),callback);
 };
 
 Lichpt.update = (lichpt, LichPTID, callback) => {
-  const sqlString = `UPDATE lichpt SET ? WHERE LichPTID = ?
-    AND NOT EXISTS (SELECT 1 FROM thuept WHERE thuept.LichPTID = lichpt.LichPTID)`;
-  db.query(sqlString, [lichpt, LichPTID], (err, res) => {
-    if (err) {
-      return callback(err);
-    }
-    if (res.affectedRows !== 1) return callback(lockedError());
-    callback(null, { message: "Cập nhật lichpt thành công" });
-  });
+  saveSchedule(lichpt,LichPTID).then(result=>callback(null,result),callback);
 };
+
+async function saveSchedule(data,id) {
+  const c=await db.promise().getConnection();
+  try {
+    await c.query('SET TRANSACTION ISOLATION LEVEL READ COMMITTED');
+    await c.beginTransaction();
+    await require('./classes.model').lockPT(c,data.PTID);
+    if(id) {
+      const [rows]=await c.query('SELECT PTID FROM lichpt WHERE LichPTID=? FOR UPDATE',[id]);
+      const [booked]=await c.query('SELECT 1 FROM thuept WHERE LichPTID=? LIMIT 1',[id]);
+      if(!rows.length || booked.length) throw lockedError();
+    }
+    if(data.TrangThai!=='OFF') {
+      const [classes]=await c.query("SELECT BuoiHocID FROM buoihoc WHERE PTID=? AND TrangThai='PUBLISHED' AND BatDau<TIMESTAMP(?,?) AND KetThuc>TIMESTAMP(?,?) LIMIT 1 FOR UPDATE",[data.PTID,data.NgayLam,data.GioKetThuc,data.NgayLam,data.GioBatDau]);
+      const [shifts]=await c.query("SELECT LichPTID FROM lichpt WHERE PTID=? AND TrangThai<>'OFF' AND NgayLam=? AND GioBatDau<? AND GioKetThuc>? AND LichPTID<>? LIMIT 1 FOR UPDATE",[data.PTID,data.NgayLam,data.GioKetThuc,data.GioBatDau,id||0]);
+      if(classes.length || shifts.length) throw Object.assign(new Error('Hướng dẫn viên trùng lịch lớp nhóm hoặc lịch 1–1.'),{status:409,code:'SCHEDULE_OVERLAP'});
+    }
+    const [r]=id ? await c.query('UPDATE lichpt SET ? WHERE LichPTID=?',[data,id]) : await c.query('INSERT INTO lichpt SET ?',data);
+    await c.commit();
+    return {LichPTID:id||r.insertId,...data};
+  } catch(error) {await c.rollback();throw error;} finally {c.release();}
+}
 
 Lichpt.delete = (LichPTID, callback) => {
   db.query(`DELETE FROM lichpt WHERE LichPTID = ?

@@ -27,6 +27,7 @@ function AuthStack() {
           <Stack.Screen name="packages" />
           <Stack.Screen name="product" />
           <Stack.Screen name="pt" />
+          <Stack.Screen name="classes" />
           <Stack.Screen name="profile" />
           <Stack.Screen name="product-detail" />
           <Stack.Screen name="package-detail" />

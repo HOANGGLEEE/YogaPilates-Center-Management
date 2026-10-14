@@ -1,3 +1,4 @@
+import BackendImage from '@/components/backend-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
@@ -79,6 +80,7 @@ export default function PTBookingScreen() {
     () => [...new Set(schedules.map((slot) => slot.NgayLam))],
     [schedules]
   );
+  const selectedSlot = schedules.find((slot) => slot.LichPTID === selected);
   const visibleSlots = schedules.filter(
     (slot) => slot.NgayLam === selectedDate
   );
@@ -113,15 +115,15 @@ export default function PTBookingScreen() {
   }
 
   return (
-    <SafeAreaView style={s.safe} edges={['top']}>
+    <SafeAreaView style={s.safe} edges={['top', 'bottom']}>
       <View style={s.header}>
-        <Pressable style={s.icon} onPress={() => router.back()}>
-          <Ionicons name="arrow-back" color="#c4d5aa" size={21} />
+        <Pressable accessibilityRole="button" accessibilityLabel="Quay lại" style={s.icon} onPress={() => router.back()}>
+          <Ionicons name="arrow-back" color="#315d4c" size={21} />
         </Pressable>
-        <Text style={s.headerTitle}>ĐĂNG KÝ LỊCH HƯỚNG DẪN 1-1</Text>
+        <Text style={s.headerTitle}>Đặt lịch hướng dẫn 1–1</Text>
         <View style={s.icon} />
       </View>
-      <ScrollView contentContainerStyle={s.content}>
+      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={s.content}>
         {trainer === undefined ? (
           <Text style={s.center}>Đang tải lịch trống...</Text>
         ) : null}
@@ -129,6 +131,7 @@ export default function PTBookingScreen() {
         {trainer ? (
           <>
             <View style={s.card}>
+              <BackendImage value={trainer.AnhDaiDien} fallback={require("../../assets/brand/icon.png")} style={s.avatar} contentFit="cover" />
               <Text style={s.label}>HƯỚNG DẪN VIÊN</Text>
               <Text style={s.name}>{trainer.HoTen}</Text>
               <Text style={s.specialty}>
@@ -137,7 +140,7 @@ export default function PTBookingScreen() {
               <Text style={s.price}>{money(trainer.GiaThue)} / buổi</Text>
             </View>
 
-            <Text style={s.section}>CHỌN NGÀY</Text>
+            <Text style={s.section}>01 · Chọn ngày tập</Text>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -150,6 +153,8 @@ export default function PTBookingScreen() {
                     setSelectedDate(date);
                     setSelected(null);
                   }}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: selectedDate === date }}
                   style={[s.choice, selectedDate === date && s.choiceActive]}
                 >
                   <Text
@@ -168,12 +173,15 @@ export default function PTBookingScreen() {
               ))}
             </ScrollView>
 
-            <Text style={s.section}>CHỌN KHUNG GIỜ</Text>
+
+            <Text style={s.section}>02 · Chọn khung giờ</Text>
             <View style={s.slots}>
               {visibleSlots.map((slot) => (
                 <Pressable
                   key={slot.LichPTID}
                   onPress={() => setSelected(slot.LichPTID)}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: selected === slot.LichPTID }}
                   style={[s.slot, selected === slot.LichPTID && s.choiceActive]}
                 >
                   <Text
@@ -188,13 +196,14 @@ export default function PTBookingScreen() {
               ))}
               {!visibleSlots.length ? (
                 <Text style={s.muted}>
-                  Không có lịch AVAILABLE trong ngày này.
+                  Chưa có khung giờ trống trong ngày này.
                 </Text>
               ) : null}
             </View>
 
-            <Text style={s.section}>GHI CHÚ CHO NGƯỜI HƯỚNG DẪN</Text>
+            <Text style={s.section}>03 · Ghi chú cho hướng dẫn viên</Text>
             <TextInput
+              accessibilityLabel="Ghi chú cho hướng dẫn viên"
               value={note}
               onChangeText={setNote}
               maxLength={500}
@@ -203,7 +212,14 @@ export default function PTBookingScreen() {
               placeholderTextColor="#727d73"
               style={s.input}
             />
-            <Pressable
+
+          </>
+        ) : null}
+      </ScrollView>
+      {trainer ? <View style={s.footer}>
+        <Text style={s.footerLabel}>{selectedSlot ? `${new Date(`${selectedSlot.NgayLam}T00:00:00`).toLocaleDateString("vi-VN")} · ${selectedSlot.GioBatDau.slice(0, 5)}–${selectedSlot.GioKetThuc.slice(0, 5)}` : "Chọn giờ để tiếp tục"}</Text>
+        <Text style={s.footerPrice}>{money(trainer.GiaThue)}</Text>
+            <Pressable accessibilityRole="button"
               disabled={!selected || loading || !user?.accountId}
               onPress={submit}
               style={[
@@ -212,18 +228,21 @@ export default function PTBookingScreen() {
               ]}
             >
               <Text style={s.primaryText}>
-                {loading ? 'ĐANG ĐĂNG KÝ...' : 'ĐĂNG KÝ LỊCH HƯỚNG DẪN 1-1'}
+                {loading ? 'Đang đăng ký…' : 'Xác nhận đặt lịch'}
               </Text>
             </Pressable>
-          </>
-        ) : null}
-      </ScrollView>
+      </View> : null}
     </SafeAreaView>
   );
 }
 
 const s = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#0d1011' },
+  eyebrow: { color: '#69766e', fontSize: 11, fontWeight: '700', letterSpacing: 1.2 },
+  avatar: { width: 64, height: 64, borderRadius: 20, backgroundColor: '#eaece3' },
+  footer: { padding: 18, gap: 8, backgroundColor: '#ffffff', borderTopWidth: 1, borderTopColor: '#e7eae3', width: '100%', maxWidth: 540, alignSelf: 'center' },
+  footerLabel: { color: '#69766e', fontSize: 13 },
+  footerPrice: { color: '#203c32', fontSize: 22, fontWeight: '700' },
+  safe: { flex: 1, backgroundColor: '#f6f4ee' },
   header: {
     height: 54,
     paddingHorizontal: 14,
@@ -235,56 +254,56 @@ const s = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#242829',
+    backgroundColor: '#eaece3',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: { color: '#c4d5aa', fontSize: 12, fontWeight: '900' },
+  headerTitle: { color: '#315d4c', fontSize: 16, fontWeight: '700' },
   content: {
     width: '100%',
     maxWidth: 540,
     alignSelf: 'center',
-    padding: 15,
-    gap: 12,
+    padding: 20,
+    gap: 18,
     paddingBottom: 35,
   },
-  center: { color: '#aeb9ad', textAlign: 'center', padding: 35 },
-  error: { color: '#ff8d82', textAlign: 'center', padding: 20 },
-  card: { backgroundColor: '#1b2022', borderRadius: 13, padding: 15, gap: 6 },
-  label: { color: '#8e998d', fontSize: 9, fontWeight: '900' },
-  name: { color: '#f0f5eb', fontSize: 21, fontWeight: '900' },
-  specialty: { color: '#c4d5aa', fontSize: 10, fontWeight: '800' },
-  price: { color: '#49d79e', fontSize: 15, fontWeight: '900', marginTop: 5 },
-  section: { color: '#e8efe4', fontSize: 11, fontWeight: '900', marginTop: 6 },
+  center: { color: '#69766e', textAlign: 'center', padding: 35 },
+  error: { color: '#a93e38', textAlign: 'center', padding: 20 },
+  card: { backgroundColor: '#ffffff', borderRadius: 24, padding: 20, gap: 8 },
+  label: { color: '#69766e', fontSize: 12, fontWeight: '700' },
+  name: { color: '#203c32', fontSize: 21, fontWeight: '700' },
+  specialty: { color: '#315d4c', fontSize: 13, fontWeight: '800' },
+  price: { color: '#315d4c', fontSize: 15, fontWeight: '700', marginTop: 5 },
+  section: { color: '#203c32', fontSize: 14, fontWeight: '700', marginTop: 6 },
   row: { gap: 8 },
   choice: {
-    backgroundColor: '#242829',
-    borderRadius: 9,
+    backgroundColor: '#eaece3',
+    borderRadius: 14,
     paddingHorizontal: 13,
     paddingVertical: 11,
   },
-  choiceActive: { backgroundColor: '#c4d5aa' },
-  choiceText: { color: '#aeb9ad', fontSize: 10, fontWeight: '900' },
-  choiceTextActive: { color: '#182000' },
+  choiceActive: { backgroundColor: '#315d4c', borderColor: '#315d4c' },
+  choiceText: { color: '#69766e', fontSize: 13, fontWeight: '700' },
+  choiceTextActive: { color: '#ffffff' },
   slots: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  slot: { backgroundColor: '#242829', borderRadius: 9, padding: 12 },
-  slotText: { color: '#c4d5aa', fontSize: 11, fontWeight: '800' },
-  muted: { color: '#aeb9ad', fontSize: 11 },
+  slot: { backgroundColor: '#ffffff', borderRadius: 14, padding: 16, borderWidth: 1, borderColor: '#dfe5dc', minWidth: '45%', alignItems: 'center' },
+  slotText: { color: '#315d4c', fontSize: 14, fontWeight: '800' },
+  muted: { color: '#69766e', fontSize: 14 },
   input: {
     minHeight: 90,
-    backgroundColor: '#1b2022',
-    color: '#c4d5aa',
+    backgroundColor: '#ffffff',
+    color: '#315d4c',
     borderRadius: 10,
     padding: 12,
     textAlignVertical: 'top',
   },
   primary: {
     minHeight: 52,
-    backgroundColor: '#c4d5aa',
+    backgroundColor: '#315d4c',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
   disabled: { opacity: 0.45 },
-  primaryText: { color: '#182000', fontSize: 12, fontWeight: '900' },
+  primaryText: { color: '#ffffff', fontSize: 15, fontWeight: '700' },
 });

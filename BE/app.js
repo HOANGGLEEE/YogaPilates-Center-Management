@@ -69,6 +69,7 @@ app.get('/health', (req, res) => {
 });
 
 const routes = [
+  ['/classes', './routes/classes.route'],
   ['/auth/admin', './routes/admin-auth.route'],
   ['/auth', './routes/auth.route', 'router'],
   ['/auth', './routes/recovery.route'],
@@ -103,6 +104,8 @@ const routes = [
 
 const adminOnly = new Set(['/apdungkhuyenmaidonhang','/apdungkhuyenmaigoitap','/apdungkhuyenmaipt','/danhmuc','/goitap','/hoadon','/kho','/khuyenmai','/nhanvien','/phieunhap','/reports','/sanpham','/taikhoan']);
 const customerPaths = [
+  /^GET \/classes(?:\/mine)?\/?$/,
+  /^POST \/classes\/(?:\d+\/book|bookings\/\d+\/cancel)$/,
   /^GET \/checkin\/crowding$/,
   /^GET \/(?:goitap\/active|pt\/active|lichpt\/available|sanpham|danhmuc)(?:\/|$)/,
   /^(?:GET|PUT) \/hoivien\/account\/\d+$/, /^POST \/taikhoan\/\d+\/change-password$/,
